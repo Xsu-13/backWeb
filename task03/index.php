@@ -82,7 +82,7 @@ if ($errors) {
 }
 
 // Сохранение в базу данных.
-/*
+
 $user = 'u67344'; // Заменить на ваш логин uXXXXX
 $pass = '7915464'; // Заменить на пароль, такой же, как от SSH
 $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
@@ -110,7 +110,7 @@ $bioDB = $bio;
 $checkDB = $check;
 
 $stmt->execute();
-*/
+
 
 
 // Делаем перенаправление.
