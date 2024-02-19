@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   if (!empty($_GET['save'])) {
     // Если есть параметр save, то выводим сообщение пользователю.
     print('Спасибо, результаты сохранены.');
-    print($_GET['str']);
+    //print($_GET['str']);
     exit();
   }
   // if (!empty($_GET['error'])) {
