@@ -88,34 +88,59 @@ $pass = '7915464'; // Заменить на пароль, такой же, ка�
 $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); // Заменить test на имя БД, совпадает с логином uXXXXX
 
-  $fioDB = $fioValue;
-  $emailDB = $email;
-  $telDB = $tel;
-  $dateDB = $date;
-  $genderDB = $gender;
-  $langsDB = $langsValue;
-  $bioDB = $bio;
-  $checkDB = $check;
+  // $fioDB = $fioValue;
+  // $emailDB = $email;
+  // $telDB = $tel;
+  // $dateDB = $date;
+  // $genderDB = $gender;
+  // $langsDB = $langsValue;
+  // $bioDB = $bio;
+  // $checkDB = $check;
 
 //Еще вариант
-$stmt = $db->prepare("INSERT INTO Form (fio, phone, email, formDate, gender, favoriteLanguages, biography, agreeCheck) VALUES (:fioDB, :telDB, :emailDB, :dateDB, :genderDB, :langsDB, :bioDB, :checkDB)");
+// $stmt = $db->prepare("INSERT INTO Form (fio, phone, email, formDate, gender, favoriteLanguages, biography, agreeCheck) VALUES (:fioDB, :telDB, :emailDB, :dateDB, :genderDB, :langsDB, :bioDB, :checkDB)");
 
-$stmt->bindParam(':fioDB', $fioDB);
-$stmt->bindParam(':emailDB', $emailDB);
-$stmt->bindParam(':telDB', $telDB);
-$stmt->bindParam(':dateDB', $dateDB);
-$stmt->bindParam(':genderDB', $genderDB);
-$stmt->bindParam(':langsDB', $langsDB);
-$stmt->bindParam(':bioDB', $bioDB);
-$stmt->bindParam(':checkDB', $checkDB);
+// $stmt->bindParam(':fioDB', $fioDB);
+// $stmt->bindParam(':emailDB', $emailDB);
+// $stmt->bindParam(':telDB', $telDB);
+// $stmt->bindParam(':dateDB', $dateDB);
+// $stmt->bindParam(':genderDB', $genderDB);
+// $stmt->bindParam(':langsDB', $langsDB);
+// $stmt->bindParam(':bioDB', $bioDB);
+// $stmt->bindParam(':checkDB', $checkDB);
 
 
 
-$stmt->execute();
+// $stmt->execute();
 
+try {
+  $stmt = $db->prepare("INSERT INTO Form (fio, phone, email, formDate, gender, favoriteLanguages, biography, agreeCheck) VALUES (:fioDB, :telDB, :emailDB, :dateDB, :genderDB, :langsDB, :bioDB, :checkDB)");
+  $stmt -> execute(['fioDB'=>$fioValue, 'telDB'=>$tel, 'emailDB'=>$email,'dateDB'=>$date,'genderDB'=>$gender,'langsDB'=>$langsValue,'bioDB'=>$bio, 'checkDB'=>$check]);
+}
+catch(PDOException $e){
+  print('Error : ' . $e->getMessage());
+  exit();
+}
 
 
 // Делаем перенаправление.
 // Если запись не сохраняется, но ошибок не видно, то можно закомментировать эту строку чтобы увидеть ошибку.
 // Если ошибок при этом не видно, то необходимо настроить параметр display_errors для PHP.
 header('Location: ?save=1&str=' . $fioValue . " " . $tel . "" . $email . "" . $gender . "" . $langsValue . "" . $date . "" . $bio . "" . $check);
+
+//  stmt - это "дескриптор состояния".
+ 
+//  Именованные метки.
+//$stmt = $db->prepare("INSERT INTO test (label,color) VALUES (:label,:color)");
+//$stmt -> execute(['label'=>'perfect', 'color'=>'green']);
+ 
+//Еще вариант
+/*$stmt = $db->prepare("INSERT INTO users (firstname, lastname, email) VALUES (:firstname, :lastname, :email)");
+$stmt->bindParam(':firstname', $firstname);
+$stmt->bindParam(':lastname', $lastname);
+$stmt->bindParam(':email', $email);
+$firstname = "John";
+$lastname = "Smith";
+$email = "john@test.com";
+$stmt->execute();
+*/
