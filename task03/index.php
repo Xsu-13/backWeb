@@ -41,7 +41,7 @@ $bio = $_POST['bio'];
 $langs = $_POST['favorite-langs'];
 $date = $_POST['field-date'];
 
-$langsValue = '(';
+$langsValue = '';
 
 for($i = 0; $i < count($langs); $i++)
 {
@@ -49,7 +49,6 @@ for($i = 0; $i < count($langs); $i++)
 }
 
 $langsValue = substr($langsValue, 0, -1);
-$langsValue .= ")";
 
 if (empty($fioValue) || preg_match($fioExp, $fioValue) == 0) {
   print('Имя должно содержать только буквы и быть не длинее 150 символов.<br/>');
