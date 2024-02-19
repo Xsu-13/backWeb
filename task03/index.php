@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 // Проверяем ошибки.
 $errors = FALSE;
-$fioExp = '/^[\p{Cyrillic}a-zA-Z\s]{3,150}$/';
+$fioExp = '/^[\p{Cyrillic}a-zA-Z\s]{3,150}$/u';
 $telExp = "/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/";
 $emailExp = "/[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+/";
 $genderExp = '/^(Male||Female)$/';
