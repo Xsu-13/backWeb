@@ -40,7 +40,7 @@
       <label>
         Выберете ваши любимые языки программирования:
         <br />
-        <select name="favorite-langs" multiple="multiple">
+        <select name="favorite-langs[]" multiple="multiple">
           <option value="Pascal">Pascal</option>
           <option value="C#" selected="selected">C#</option>
           <option value="C++">C++</option>

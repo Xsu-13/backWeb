@@ -41,6 +41,16 @@ $bio = $_POST['bio'];
 $langs = $_POST['favorite-langs'];
 $date = $_POST['field-date'];
 
+$langsValue = '(';
+
+for($i = 0; $i < count($langs); $i++)
+{
+  $langsValue .= "'" . $langs[$i] . "',";
+}
+
+$langsValue = substr($langsValue, 0, -1);
+$langsValue .= ")";
+
 if (empty($fioValue) || preg_match($fioExp, $fioValue) == 0) {
   print('Имя должно содержать только буквы и быть не длинее 150 символов.<br/>');
   $errors = TRUE;
@@ -106,4 +116,4 @@ $stmt->execute();
 // Делаем перенаправление.
 // Если запись не сохраняется, но ошибок не видно, то можно закомментировать эту строку чтобы увидеть ошибку.
 // Если ошибок при этом не видно, то необходимо настроить параметр display_errors для PHP.
-header('Location: ?save=1&str=' . $fioValue . " " . $tel . "" . $email . "" . $gender . "" . $langs . "" . $date . "" . $bio . "" . $check);
+header('Location: ?save=1&str=' . $fioValue . " " . $tel . "" . $email . "" . $gender . "" . $langsValue . "" . $date . "" . $bio . "" . $check);
