@@ -105,7 +105,7 @@ $emailDB = $email;
 $telDB = $tel;
 $dateDB = $date;
 $genderDB = $gender;
-$langsDB = $langs;
+$langsDB = $langsValue;
 $bioDB = $bio;
 $checkDB = $check;
 
