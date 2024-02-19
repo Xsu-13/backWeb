@@ -75,12 +75,12 @@ if ($errors) {
 
 $user = 'u67344'; // Заменить на ваш логин uXXXXX
 $pass = '7915464'; // Заменить на пароль, такой же, как от SSH
-$db = new PDO('mysql:host=localhost;dbname=test', $user, $pass,
+$db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); // Заменить test на имя БД, совпадает с логином uXXXXX
 
  
 //Еще вариант
-$stmt = $db->prepare("INSERT INTO users (firstname, lastname, email) VALUES (:fioDB, :telDB, :emailDB, :dateDB, :genderDB, :langsDB, :bioDB, :checkDB)");
+$stmt = $db->prepare("INSERT INTO Form (fio, phone, email, formDate, gender, favoriteLanguages, biography, agreeCheck) VALUES (:fioDB, :telDB, :emailDB, :dateDB, :genderDB, :langsDB, :bioDB, :checkDB)");
 $stmt->bindParam(':fioDB', $fioDB);
 $stmt->bindParam(':emailDB', $emailDB);
 $stmt->bindParam(':telDB', $telDB);
