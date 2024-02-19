@@ -10,7 +10,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   if (!empty($_GET['save'])) {
     // Если есть параметр save, то выводим сообщение пользователю.
     print('Спасибо, результаты сохранены.');
-
+    print($_GET['str']);
     exit();
   }
   // if (!empty($_GET['error'])) {
@@ -71,8 +71,6 @@ if ($errors) {
   exit();
 }
 
-print($fioValue . " " . $tel . "" . $email . "" . $gender . "" . $langs . "" . $date . "" . $bio . "" . $check);
-
 // Сохранение в базу данных.
 /*
 $user = 'u67344'; // Заменить на ваш логин uXXXXX
@@ -108,4 +106,4 @@ $stmt->execute();
 // Делаем перенаправление.
 // Если запись не сохраняется, но ошибок не видно, то можно закомментировать эту строку чтобы увидеть ошибку.
 // Если ошибок при этом не видно, то необходимо настроить параметр display_errors для PHP.
-header('Location: ?save=1');
+header('Location: ?save=1&str=' . $fioValue . " " . $tel . "" . $email . "" . $gender . "" . $langs . "" . $date . "" . $bio . "" . $check);
