@@ -32,9 +32,9 @@
         <input name="field-date" value="2003-10-13" type="date" />
       </label><br />
       Выберете ваш пол:<br />
-      <label><input type="radio" checked="checked" name="radio-group" value="Male" />
+      <label><input type="radio" checked="checked" name="gender" value="Male" />
         Мужчина</label>
-      <label><input type="radio" name="radio-group" value="Female" />
+      <label><input type="radio" name="gender" value="Female" />
         Женщина</label><br />
       <br />
       <label>
