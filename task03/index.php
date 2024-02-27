@@ -106,7 +106,8 @@ try {
   for($i = 0; $i < count($langs); $i++)
   {
       $langId = null;
-      $sth = $db->query('SELECT Id FROM Languages Where LanguageName = '.$langs[$i]);
+      $sth = $db->prepare('SELECT Id FROM Languages WHERE LanguageName = :langName');
+      $sth->execute(['langName' => $langs[$i]]); 
       while ($row = $sth->fetch()) {
         $langId = $row['Id'];
       }
