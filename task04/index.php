@@ -145,7 +145,7 @@ else {
     $errors = TRUE;
   }
   else{
-    setcookie('langs_value', $langsValue, time() + 30 * 24 * 60 * 60);
+    setcookie('langs_value', $langs, time() + 30 * 24 * 60 * 60);
   }
   if (empty($date)) {
     setcookie('date_error', '1', time() + 24 * 60 * 60);

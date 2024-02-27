@@ -58,7 +58,7 @@
         <textarea name="bio" <?php if ($errors['bio']) {print 'class="error"';} ?> cols="90" rows="10"><?php print $values['bio']; ?></textarea>
       </label><br />
       <br />
-      <label><input type="checkbox" class="checkbox" <?php if ($errors['check-1']) {print 'class="error"';} ?> <?php if($values['check-1'] == "on") print "checked" ?> name="check-1" />
+      <label><input type="checkbox" class="checkbox" <?php if ($errors['check-1']) {print 'class="error"';} ?> <?php if($values['check-1'] == 1) print "checked" ?> name="check-1" />
         с контрактом ознакомлен(а)</label><br />
       <br />
       <input class="button" type="submit" value="Сохранить" />
@@ -74,10 +74,9 @@ if (!empty($messages)) {
 }
 
 function SelectLang($langs, $value){
-  $langArray = str_getcsv($langs, ',', '"');
-  for($i = 0; $i < count($langArray); $i++)
+  for($i = 0; $i < count($langs); $i++)
   {
-     if($langArray[$i] == $value)
+     if($langs[$i] == $value)
        print "selected";
   }
 }
