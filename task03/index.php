@@ -106,8 +106,9 @@ try {
   foreach($langs as $lang)
   {
     try{
-      $sth = $db->query('SELECT Id FROM Languages Where LanguageName = '.$lang, PDO::FETCH_ASSOC);
-      $langId = $sth["Id"];
+      $sth = $db->prepare('SELECT Id FROM Languages Where LanguageName = '.$lang);
+      $sth->execute();
+      $langId = ($sth->fetch(PDO::FETCH_ASSOC))[0];
     }
     catch(PDOException $e){
       $stmt = $db->prepare("INSERT INTO Languages (LanguageName) VALUES (:languageNameDB)");
