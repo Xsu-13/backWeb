@@ -74,7 +74,7 @@ if (!empty($messages)) {
 }
 
 function SelectLang($langs, $value){
-  $langArray = str_getcsv($langs, ',', '"');
+  $langArray = str_getcsv($langs, ',');
   for($i = 0; $i < count($langArray); $i++)
   {
      if($langArray[$i] == $value)

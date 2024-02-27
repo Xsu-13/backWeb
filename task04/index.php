@@ -103,13 +103,10 @@ else {
   if($langs != null && !empty($langs))
   {
     $langs = array($langs);
-    $langsValue = '"';
     for($i = 0; $i < count($langs); $i++)
     {
       $langsValue .= $langs[$i] . ",";
     }
-    $langsValue = substr($langsValue, 0, -1);
-    $langsValue .= '"';
   }
 
   // Проверяем ошибки.
