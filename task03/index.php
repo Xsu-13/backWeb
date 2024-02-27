@@ -108,7 +108,7 @@ try {
     try{
       $sth = $db->prepare('SELECT Id FROM Languages Where LanguageName = '.$lang);
       $sth->execute();
-      $langId = ($sth->fetch(PDO::FETCH_ASSOC))[0];
+      $langId = ($sth->fetch(PDO::FETCH_ASSOC))['Id'];
     }
     catch(PDOException $e){
       $stmt = $db->prepare("INSERT INTO Languages (LanguageName) VALUES (:languageNameDB)");
@@ -122,8 +122,7 @@ try {
 
 }
 catch(PDOException $e){
-  print('Error : ' . $e->getMessage());
-  print($langsValue);
+  print('Error : ' . $e->getMessage()) . '\n';
   print($langId);
   exit();
 }
