@@ -105,11 +105,9 @@ try {
 
   foreach($langs as $lang)
   {
-    $langId;
-
     try{
-      $sth = $db->query('SELECT Id FROM Languages Where LanguageName = '.$lang);
-      $langId = $sth;
+      $sth = $db->query('SELECT Id FROM Languages Where LanguageName = '.$lang, PDO::FETCH_ASSOC);
+      $langId = $sth["Id"];
     }
     catch(PDOException $e){
       $stmt = $db->prepare("INSERT INTO Languages (LanguageName) VALUES (:languageNameDB)");
@@ -117,7 +115,6 @@ try {
 
       $langId = $db->lastInsertId();
     }
-
     $stmt = $db->prepare("INSERT INTO FormLanguages (FormId, LanguageId) VALUES (:userIdDB, :languageIdDB)");
     $stmt -> execute(['userIdDB'=>$UserId, 'languageIdDB'=>$langId]);
   }
@@ -126,6 +123,7 @@ try {
 catch(PDOException $e){
   print('Error : ' . $e->getMessage());
   print($langsValue);
+  print($langId);
   exit();
 }
 
