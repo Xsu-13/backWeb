@@ -102,7 +102,6 @@ else {
   $langsValue = '';
   if($langs != null && !empty($langs))
   {
-    $langs = array($langs);
     for($i = 0; $i < count($langs); $i++)
     {
       $langsValue .= $langs[$i] . ",";
