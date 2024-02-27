@@ -12,10 +12,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     print('Спасибо, результаты сохранены.');
     exit();
   }
-  // if (!empty($_GET['error'])) {
-  //   // Если есть параметр save, то выводим сообщение пользователю.
-  //   print('Произошла ошибка.');
-  // }
   // Включаем содержимое файла form.php.
   include('form.php');
 
@@ -30,24 +26,32 @@ $fioExp = '/^[\p{Cyrillic}a-zA-Z\s]{3,150}$/u';
 $telExp = "/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/";
 $emailExp = "/[a-zA-Z0-9._-]+@[a-zA-Z0-9._-]+\.[a-zA-Z0-9_-]+/";
 $genderExp = '/^(Male||Female)$/';
+$bioExp = '/^(.*?){10,300}$/';
 
 $fioValue = $_POST['fio'];
 $tel = $_POST['field-tel'];
 $email = $_POST['field-email'];
 $gender = $_POST['gender'];
-$check = $_POST['check-1'];
+$check = !empty($_POST['check-1']);
 $bio = $_POST['bio'];
-$langs = $_POST['favorite-langs'];
+$langs = !empty($_POST['favorite-langs']);
 $date = $_POST['field-date'];
 
 $langsValue = "'";
-
-for($i = 0; $i < count($langs); $i++)
+if(!empty($langs))
 {
-  $langsValue .= $langs[$i] . ",";
-}
+  $langs = array($langs);
+      for($i = 0; $i < count($langs); $i++)
+      {
+        $langsValue .= $langs[$i] . ",";
+      }
 
-$langsValue = substr($langsValue, 0, -1);
+    $langsValue = substr($langsValue, 0, -1);
+}
+else{
+  print('Выберете хотя бы один язык.<br/>');
+  $errors = TRUE;
+}
 $langsValue .= "'";
 
 if (empty($fioValue) || preg_match($fioExp, $fioValue) == 0) {
@@ -70,8 +74,8 @@ if (empty($gender) || preg_match($genderExp, $gender) == 0) {
   $errors = TRUE;
 }
 
-if (empty($langs)) {
-  print('Выберете хотя бы один язык.<br/>');
+if (empty($bio) || preg_match($bioExp, $bio) == 0){
+  print('Напишите что-нибудь о себе.<br/>');
   $errors = TRUE;
 }
 
@@ -93,15 +97,37 @@ $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); // Заменить test на имя БД, совпадает с логином uXXXXX
 
 try {
-  $stmt = $db->prepare("INSERT INTO Form (fio, phone, email, formDate, gender, favoriteLanguages, biography, agreeCheck) VALUES (:fioDB, :telDB, :emailDB, :dateDB, :genderDB, :langsDB, :bioDB, :checkDB)");
-  $stmt -> execute(['fioDB'=>$fioValue, 'telDB'=>$tel, 'emailDB'=>$email,'dateDB'=>$date,'genderDB'=>$gender,'langsDB'=>$langsValue,'bioDB'=>$bio, 'checkDB'=>$check]);
+
+  $stmt = $db->prepare("INSERT INTO Form (Fio, Phone, Email, FormDate, Gender, Biography, AgreeCheck) VALUES (:fioDB, :telDB, :emailDB, :dateDB, :genderDB, :bioDB, :checkDB)");
+  $stmt -> execute(['fioDB'=>$fioValue, 'telDB'=>$tel, 'emailDB'=>$email,'dateDB'=>$date,'genderDB'=>$gender,'bioDB'=>$bio, 'checkDB'=>$check]);
+
+  $UserId = $db->lastInsertId();
+
+  foreach($langs as $lang)
+  {
+    $langId;
+
+    try{
+      $sth = $db->query('SELECT Id FROM Languages Where LanguageName = '.$lang);
+      $langId = $sth;
+    }
+    catch(PDOException $e){
+      $stmt = $db->prepare("INSERT INTO Languages (LanguageName) VALUES (:languageNameDB)");
+      $stmt -> execute(['languageNameDB'=>$lang]);
+
+      $langId = $db->lastInsertId();
+    }
+
+    $stmt = $db->prepare("INSERT INTO FormLanguages (FormId, LanguageId) VALUES (:userIdDB, :languageIdDB)");
+    $stmt -> execute(['userIdDB'=>$UserId, 'languageIdDB'=>$langId]);
+  }
+
 }
 catch(PDOException $e){
   print('Error : ' . $e->getMessage());
   print($langsValue);
   exit();
 }
-
 
 // Делаем перенаправление.
 // Если запись не сохраняется, но ошибок не видно, то можно закомментировать эту строку чтобы увидеть ошибку.

@@ -12,7 +12,6 @@
   </head>
   <body>
     <div class="form">
-    <span>Оставьте свою заявку для публикаций статей</span>
     <form action="" method="POST">
       <label>
         ФИО:
@@ -59,7 +58,7 @@
         <textarea name="bio" <?php if ($errors['bio']) {print 'class="error"';} ?> cols="90" rows="10"><?php print $values['bio']; ?></textarea>
       </label><br />
       <br />
-      <label><input type="checkbox" <?php if ($errors['check-1']) {print 'class="error"';} ?> <?php if($values['check-1'] == "on") print "checked" ?> name="check-1" />
+      <label><input type="checkbox" class="checkbox" <?php if ($errors['check-1']) {print 'class="error"';} ?> <?php if($values['check-1'] == "on") print "checked" ?> name="check-1" />
         с контрактом ознакомлен(а)</label><br />
       <br />
       <input class="button" type="submit" value="Сохранить" />

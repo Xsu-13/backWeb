@@ -11,7 +11,6 @@
 <body>
 
   <div class="form">
-    <span>Оставьте свою заявку для публикаций статей</span>
     <form action="" method="POST">
       <label>
         ФИО:
@@ -40,7 +39,7 @@
       <label>
         Выберете ваши любимые языки программирования:
         <br />
-        <select name="favorite-langs[]" multiple="multiple">
+        <select name="favorite-langs[]" multiple>
           <option value="Pascal">Pascal</option>
           <option value="C++">C++</option>
           <option value="JavaScript">JavaScript</option>
@@ -58,7 +57,7 @@
         <textarea name="bio" cols="90" rows="10">A long time ago, back in the early 1900s...</textarea>
       </label><br />
       <br />
-      <label><input type="checkbox" checked="checked" name="check-1" />
+      <label><input type="checkbox" class="checkbox" checked="checked" name="check-1" />
         с контрактом ознакомлен(а)</label><br />
       <br />
       <input class="button" type="submit" value="Сохранить" />

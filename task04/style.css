@@ -7,12 +7,13 @@ body{
 }
 
 .form{
-    margin-left: 100px;
+    width: 100%;
+    display: flex;
+    justify-content: center;
 }
 
 .form form{
-    margin: 0 auto;
-    margin-top: 30px;
+    margin-top: 10px;
 }
 
 .form span{
@@ -49,4 +50,25 @@ input{
 }
 ::placeholder{
     color:rgb(204, 192, 176)
+}
+
+select{
+    width: 30%;
+    font-size: 16px;
+}
+
+option{
+    padding: 5px;
+}
+
+textarea{
+    padding: 10px;
+    width: 50%;
+    font-size: 16px;
+    border: 1px solid #ccc;
+}
+
+.checkbox{
+    width: 20px;
+    height: 20px;
 }
