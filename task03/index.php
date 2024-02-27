@@ -105,19 +105,17 @@ try {
   $langId;
   foreach($langs as $lang)
   {
-    
-    try{
       $sth = $db->query('SELECT Id FROM Languages Where LanguageName = '.$lang);
       while ($row = $sth->fetch()) {
         $langId = $row['Id'];
       }
-    }
-    catch(PDOException $e){
-      $stmt = $db->prepare("INSERT INTO Languages (LanguageName) VALUES (:languageNameDB)");
-      $stmt -> execute(['languageNameDB'=>$lang]);
+      if($langId == null)
+      {
+        $stmt = $db->prepare("INSERT INTO Languages (LanguageName) VALUES (:languageNameDB)");
+        $stmt -> execute(['languageNameDB'=>$lang]);
 
-      $langId = $db->lastInsertId();
-    }
+        $langId = $db->lastInsertId();
+      }
     $stmt = $db->prepare("INSERT INTO FormLanguages (FormId, LanguageId) VALUES (:userIdDB, :languageIdDB)");
     $stmt -> execute(['userIdDB'=>$UserId, 'languageIdDB'=>$langId]);
   }
