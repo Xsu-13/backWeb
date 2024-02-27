@@ -34,26 +34,15 @@ $email = $_POST['field-email'];
 $gender = $_POST['gender'];
 $check = !empty($_POST['check-1']);
 $bio = $_POST['bio'];
-$langs = !empty($_POST['favorite-langs']);
+$langs = !empty($_POST['favorite-langs'])?$_POST['favorite-langs']:null;
 $date = $_POST['field-date'];
 
-$langsValue = "'";
-if(!empty($langs))
-{
-  $langs = array($langs);
-      for($i = 0; $i < count($langs); $i++)
-      {
-        $langsValue .= $langs[$i] . ",";
-      }
 
-    $langsValue = substr($langsValue, 0, -1);
-}
-else{
+if($langs == null)
+{
   print('Выберете хотя бы один язык.<br/>');
   $errors = TRUE;
 }
-$langsValue .= "'";
-
 if (empty($fioValue) || preg_match($fioExp, $fioValue) == 0) {
   print('Имя должно содержать только буквы и быть не длинее 150 символов.<br/>');
   $errors = TRUE;
@@ -85,9 +74,21 @@ if (empty($check)) {
 }
 
 if ($errors) {
+  print("Langs: \n");
+  if($langs != null)
+  {
+    for($i = 0; $i < count($langs); $i++)
+    {
+      print($langs[$i]. "\n");
+    }
+    
+  }
+ 
   // При наличии ошибок завершаем работу скрипта.
   exit();
 }
+
+
 
 // Сохранение в базу данных.
 
@@ -130,7 +131,8 @@ catch(PDOException $e){
   exit();
 }
 
+
 // Делаем перенаправление.
 // Если запись не сохраняется, но ошибок не видно, то можно закомментировать эту строку чтобы увидеть ошибку.
 // Если ошибок при этом не видно, то необходимо настроить параметр display_errors для PHP.
-header('Location: ?save=1?'.$langsValue);
+header('Location: ?save=1');
