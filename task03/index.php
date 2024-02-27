@@ -73,17 +73,7 @@ if (empty($check)) {
   $errors = TRUE;
 }
 
-if ($errors) {
-  print("Langs: \n");
-  if($langs != null)
-  {
-    for($i = 0; $i < count($langs); $i++)
-    {
-      print($langs[$i]. "\n");
-    }
-    
-  }
- 
+if ($errors) { 
   // При наличии ошибок завершаем работу скрипта.
   exit();
 }
