@@ -98,7 +98,7 @@ $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
 
 try {
 
-  $stmt = $db->prepare("INSERT INTO Form (Fio, Phone, Email, FormDate, Gender, Biography, AgreeCheck) VALUES (:fioDB, :telDB, :emailDB, :dateDB, :genderDB, :bioDB, :checkDB)");
+  $stmt = $db->prepare("INSERT INTO Forms (Fio, Phone, Email, FormDate, Gender, Biography, AgreeCheck) VALUES (:fioDB, :telDB, :emailDB, :dateDB, :genderDB, :bioDB, :checkDB)");
   $stmt -> execute(['fioDB'=>$fioValue, 'telDB'=>$tel, 'emailDB'=>$email,'dateDB'=>$date,'genderDB'=>$gender,'bioDB'=>$bio, 'checkDB'=>$check]);
 
   $UserId = $db->lastInsertId();
