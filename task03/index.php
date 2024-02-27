@@ -105,11 +105,12 @@ try {
   $langId;
   for($i = 0; $i < count($langs); $i++)
   {
+      $langId = null;
       $sth = $db->query('SELECT Id FROM Languages Where LanguageName = '.$langs[$i]);
       while ($row = $sth->fetch()) {
         $langId = $row['Id'];
       }
-      if(empty($langId))
+      if($langId == null)
       {
         $stmt = $db->prepare("INSERT INTO Languages (LanguageName) VALUES (:languageNameDB)");
         $stmt -> execute(['languageNameDB'=>$langs[$i]]);
