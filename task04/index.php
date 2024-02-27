@@ -96,20 +96,8 @@ else {
   $gender = $_POST['gender'];
   $check = !empty($_POST['check-1']);
   $bio = $_POST['bio'];
-  $langs = !empty($_POST['favorite-langs']);
+  $langs = !empty($_POST['favorite-langs'])?$_POST['favorite-langs']:null;
   $date = $_POST['field-date'];
-
-  if(!empty($langs))
-  {
-    $langs = array($langs);
-    $langsValue = '"';
-    for($i = 0; $i < count($langs); $i++)
-    {
-      $langsValue .= $langs[$i] . ",";
-    }
-    $langsValue = substr($langsValue, 0, -1);
-    $langsValue .= '"';
-  }
   
 
   // Проверяем ошибки.
@@ -191,23 +179,44 @@ else {
     setcookie('check_error', '', 100000);
   }
 
-  /*
-  // Сохранение в БД.
-  $user = 'u67344'; 
-  $pass = '7915464'; 
+  $user = 'u67344'; // Заменить на ваш логин uXXXXX
+  $pass = '7915464'; // Заменить на пароль, такой же, как от SSH
   $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
-    [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+  [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); // Заменить test на имя БД, совпадает с логином uXXXXX
 
-  try {
-    $stmt = $db->prepare("INSERT INTO Form (fio, phone, email, formDate, gender, favoriteLanguages, biography, agreeCheck) VALUES (:fioDB, :telDB, :emailDB, :dateDB, :genderDB, :langsDB, :bioDB, :checkDB)");
-    $stmt -> execute(['fioDB'=>$fioValue, 'telDB'=>$tel, 'emailDB'=>$email,'dateDB'=>$date,'genderDB'=>$gender,'langsDB'=>$langsValue,'bioDB'=>$bio, 'checkDB'=>$check]);
+try {
+
+  $stmt = $db->prepare("INSERT INTO Forms (Fio, Phone, Email, FormDate, Gender, Biography, AgreeCheck) VALUES (:fioDB, :telDB, :emailDB, :dateDB, :genderDB, :bioDB, :checkDB)");
+  $stmt -> execute(['fioDB'=>$fioValue, 'telDB'=>$tel, 'emailDB'=>$email,'dateDB'=>$date,'genderDB'=>$gender,'bioDB'=>$bio, 'checkDB'=>$check]);
+
+  $UserId = $db->lastInsertId();
+  $langId;
+  for($i = 0; $i < count($langs); $i++)
+  {
+      $langId = null;
+      $sth = $db->prepare('SELECT Id FROM Languages WHERE LanguageName = :langName');
+      $sth->execute(['langName' => $langs[$i]]); 
+      while ($row = $sth->fetch()) {
+        $langId = $row['Id'];
+      }
+      if($langId == null)
+      {
+        $stmt = $db->prepare("INSERT INTO Languages (LanguageName) VALUES (:languageNameDB)");
+        $stmt -> execute(['languageNameDB'=>$langs[$i]]);
+
+        $langId = $db->lastInsertId();
+      }
+    $stmt = $db->prepare("INSERT INTO FormLanguages (FormId, LanguageId) VALUES (:userIdDB, :languageIdDB)");
+    $stmt -> execute(['userIdDB'=>$UserId, 'languageIdDB'=>$langId]);
   }
-  catch(PDOException $e){
-    print('Error : ' . $e->getMessage());
-    print($langsValue);
-    exit();
-  }
-  */
+
+}
+catch(PDOException $e){
+  print('Error : ' . $e->getMessage());
+  print("\n");
+  print($UserId . " " . $langId);
+  exit();
+}
 
   // Сохраняем куку с признаком успешного сохранения.
   setcookie('save', '1');
