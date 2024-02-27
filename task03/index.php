@@ -105,6 +105,7 @@ try {
 
   foreach($langs as $lang)
   {
+    $langId;
     try{
       $sth = $db->prepare('SELECT Id FROM Languages Where LanguageName = '.$lang);
       $sth->execute();
