@@ -74,15 +74,12 @@ if (!empty($messages)) {
 }
 
 function SelectLang($langs, $value){
-  if(!empty($langs) && $langs != "")
+  $langArray = str_getcsv($langs, ',', '"');
+  for($i = 0; $i < count($langArray); $i++)
   {
-    for($i = 0; $i < count($langs); $i++)
-  {
-     if($langs[$i] == $value)
+     if($langArray[$i] == $value)
        print "selected";
   }
-  }
-  
 }
 // Далее выводим форму отмечая элементы с ошибками классом error
 // и задавая начальные значения элементов ранее сохраненными.

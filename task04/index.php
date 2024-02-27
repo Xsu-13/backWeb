@@ -99,6 +99,18 @@ else {
   $langs = !empty($_POST['favorite-langs'])?$_POST['favorite-langs']:null;
   $date = $_POST['field-date'];
   
+  $langsValue = '';
+  if(!empty($langs))
+  {
+    $langs = array($langs);
+    $langsValue = '"';
+    for($i = 0; $i < count($langs); $i++)
+    {
+      $langsValue .= $langs[$i] . ",";
+    }
+    $langsValue = substr($langsValue, 0, -1);
+    $langsValue .= '"';
+  }
 
   // Проверяем ошибки.
   $errors = FALSE;
@@ -145,7 +157,7 @@ else {
     $errors = TRUE;
   }
   else{
-    setcookie('langs_value', $langs, time() + 30 * 24 * 60 * 60);
+    setcookie('langs_value', $langsValue, time() + 30 * 24 * 60 * 60);
   }
   if (empty($date)) {
     setcookie('date_error', '1', time() + 24 * 60 * 60);
