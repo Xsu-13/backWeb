@@ -109,7 +109,7 @@ try {
       while ($row = $sth->fetch()) {
         $langId = $row['Id'];
       }
-      if($langId == null)
+      if(empty($langId))
       {
         $stmt = $db->prepare("INSERT INTO Languages (LanguageName) VALUES (:languageNameDB)");
         $stmt -> execute(['languageNameDB'=>$lang]);
