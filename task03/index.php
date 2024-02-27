@@ -103,16 +103,16 @@ try {
 
   $UserId = $db->lastInsertId();
   $langId;
-  foreach($langs as $lang)
+  for($i = 0; $i < count($langs); $i++)
   {
-      $sth = $db->query('SELECT Id FROM Languages Where LanguageName = '.$lang);
+      $sth = $db->query('SELECT Id FROM Languages Where LanguageName = '.$langs[$i]);
       while ($row = $sth->fetch()) {
         $langId = $row['Id'];
       }
       if(empty($langId))
       {
         $stmt = $db->prepare("INSERT INTO Languages (LanguageName) VALUES (:languageNameDB)");
-        $stmt -> execute(['languageNameDB'=>$lang]);
+        $stmt -> execute(['languageNameDB'=>$langs[$i]]);
 
         $langId = $db->lastInsertId();
       }
@@ -124,7 +124,7 @@ try {
 catch(PDOException $e){
   print('Error : ' . $e->getMessage());
   print("\n");
-  print($langId);
+  print($UserId . " " . $langId);
   exit();
 }
 
