@@ -102,14 +102,14 @@ try {
   $stmt -> execute(['fioDB'=>$fioValue, 'telDB'=>$tel, 'emailDB'=>$email,'dateDB'=>$date,'genderDB'=>$gender,'bioDB'=>$bio, 'checkDB'=>$check]);
 
   $UserId = $db->lastInsertId();
-
+  $langId;
   foreach($langs as $lang)
   {
-    $langId;
+    
     try{
       $sth = $db->prepare('SELECT Id FROM Languages Where LanguageName = '.$lang);
       $sth->execute();
-      $langId = ($sth->fetch(PDO::FETCH_ASSOC))['Id'];
+      $langId = ($sth->fetch(PDO::FETCH_OBJ))->Id;
     }
     catch(PDOException $e){
       $stmt = $db->prepare("INSERT INTO Languages (LanguageName) VALUES (:languageNameDB)");
@@ -123,7 +123,8 @@ try {
 
 }
 catch(PDOException $e){
-  print('Error : ' . $e->getMessage()) . '\n';
+  print('Error : ' . $e->getMessage());
+  print("\n");
   print($langId);
   exit();
 }
