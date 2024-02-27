@@ -100,7 +100,7 @@ else {
   $date = $_POST['field-date'];
   
   $langsValue = '';
-  if(!empty($langs))
+  if($langs != null)
   {
     $langs = array($langs);
     $langsValue = '"';
@@ -152,7 +152,7 @@ else {
   setcookie('bio_value', $bio, time() + 30 * 24 * 60 * 60);
 
 
-  if (empty($langs)) {
+  if ($langs != null) {
     setcookie('langs_error', '1', time() + 24 * 60 * 60);
     $errors = TRUE;
   }
@@ -191,6 +191,7 @@ else {
     setcookie('check_error', '', 100000);
   }
 
+  
   $user = 'u67344'; // Заменить на ваш логин uXXXXX
   $pass = '7915464'; // Заменить на пароль, такой же, как от SSH
   $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
@@ -229,6 +230,7 @@ catch(PDOException $e){
   print($UserId . " " . $langId);
   exit();
 }
+
 
   // Сохраняем куку с признаком успешного сохранения.
   setcookie('save', '1');
