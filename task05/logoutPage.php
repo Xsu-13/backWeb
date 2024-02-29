@@ -9,9 +9,7 @@
 <body>
     <div class="form">
         <form action="" method="post">
-            <input name="login" />
-            <input name="pass" />
-            <input type="submit" value="Войти" />
+            <input name="Logout" type="submit" value="Выйти" />
         </form>
     </div>
 </body>
