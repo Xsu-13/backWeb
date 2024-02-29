@@ -21,6 +21,7 @@ if ($_COOKIE[session_name()] && session_start()) {
     // Если есть логин в сессии, то пользователь уже авторизован.
     // TODO: Сделать выход (окончание сессии вызовом session_destroy()
     //при нажатии на кнопку Выход).
+
     // Делаем перенаправление на форму.
     header('Location: ./');
     exit();
@@ -30,24 +31,51 @@ if ($_COOKIE[session_name()] && session_start()) {
 // В суперглобальном массиве $_SERVER PHP сохраняет некторые заголовки запроса HTTP
 // и другие сведения о клиненте и сервере, например метод текущего запроса $_SERVER['REQUEST_METHOD'].
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-include("loginPage.php")
-?>
-
-<?php
+include("loginPage.php");
 }
 // Иначе, если запрос был методом POST, т.е. нужно сделать авторизацию с записью логина в сессию.
 else {
   // TODO: Проверть есть ли такой логин и пароль в базе данных.
-  // Выдать сообщение об ошибках.
+  $login = $_POST['login'];
+  $pass = $_POST['pass'];
+  $shapass = sha1($pass);
 
-  if (!$session_started) {
-    session_start();
+  $user = 'u67344';
+  $pass = '7915464';
+  $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
+  [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+
+  $count = null;
+  try{
+    $sth = $db->prepare('SELECT COUNT(Id) As NumberOfUsers FROM Users WHERE Login = (:login), Password = (:password)');
+    $sth->execute(['login' => $login, 'password' => $shapass]);
+    
+    
+    while ($row = $sth->fetch()) {
+      $count = $row['NumberOfUsers'];
+    }
   }
-  // Если все ок, то авторизуем пользователя.
-  $_SESSION['login'] = $_POST['login'];
-  // Записываем ID пользователя.
-  $_SESSION['uid'] = 123;
+  catch(PDOException $e){
+    print('Error : ' . $e->getMessage());
+    exit();
+  }
+  
 
-  // Делаем перенаправление.
-  header('Location: ./');
+  if($count == 0)
+  {
+    // Выдать сообщение об ошибках.
+    print("No such login or incorrect password");
+  }
+  else{
+    if (!$session_started) {
+      session_start();
+    }
+    // Если все ок, то авторизуем пользователя.
+    $_SESSION['login'] = $_POST['login'];
+    // Делаем перенаправление.
+    header('Location: ./');
+  }
+  // Записываем ID пользователя.
+  //$_SESSION['uid'] = 123;
+  
 }
