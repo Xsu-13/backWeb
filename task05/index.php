@@ -272,7 +272,7 @@ else {
     $userLogin = $_SESSION['login'];
     $formId = GetFormIdByLogin($db, $userLogin);
 
-    $stmt = $db->prepare("UPDATE Forms SET Fio = (:fio), Phone = (:phone), Email = (:email), FormDate = (:formDate), Gender = (:gender), Biography = (:biography), AgreeCheck = (:agreeCheck) WHERE Id = (:id)");
+    $stmt = $db->prepare("UPDATE Forms SET Fio = :fio, Phone = :phone, Email = :email, FormDate = :formDate, Gender = :gender, Biography = :biography, AgreeCheck = :agreeCheck WHERE Id = :id");
     $stmt -> execute(['fio'=>$fioValue, 'phone'=>$tel, 'email'=>$email,'formDate'=>$date,'gender'=>$gender,'biography'=>$bio, 'agreeCheck'=>$check, 'id' => $formId]);
 
     $langId;
@@ -292,7 +292,7 @@ else {
           $langId = $db->lastInsertId();
         }
 
-        $stmt = $db->prepare("DELETE FROM FormLanguages WHERE FormId = (:formId)");
+        $stmt = $db->prepare("DELETE FROM FormLanguages WHERE FormId = :formId");
         $stmt -> execute(['formId'=>$formId]);
 
         $stmt = $db->prepare("INSERT INTO FormLanguages (FormId, LanguageId) VALUES (:formId, :languageIdDB)");

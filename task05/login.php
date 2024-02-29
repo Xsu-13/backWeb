@@ -51,7 +51,7 @@ else {
 
   $count = null;
   try{
-    $sth = $db->prepare('SELECT COUNT(Id) As NumberOfUsers FROM Users WHERE Login = (:login), Password = (:password)');
+    $sth = $db->prepare('SELECT COUNT(Id) As NumberOfUsers FROM Users WHERE Login = :login, Password = :password');
     $sth->execute(['login' => $login, 'password' => $shapass]);
     
     
