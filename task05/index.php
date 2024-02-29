@@ -146,6 +146,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     exit();
   }
 
+  setcookie('fio_value', $values['fio'], time() + 30 * 24 * 60 * 60);
+  setcookie('tel_value', $values['field-tel'], time() + 30 * 24 * 60 * 60);
+  setcookie('email_value', $values['field-email'], time() + 30 * 24 * 60 * 60);
+  setcookie('bio_value', $values['bio'], time() + 30 * 24 * 60 * 60);
+  setcookie('check_value', $values['check-1'], time() + 30 * 24 * 60 * 60);
+  setcookie('gender_value', $values['gender'], time() + 30 * 24 * 60 * 60);
+  setcookie('langs_value', $values['favorite-langs'], time() + 30 * 24 * 60 * 60);
+  setcookie('date_value', $values['field-date'], time() + 30 * 24 * 60 * 60);
+
     // и заполнить переменную $values,
     // предварительно санитизовав.
     printf('Вход с логином %s', $_SESSION['login']);
