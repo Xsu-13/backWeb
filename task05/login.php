@@ -40,23 +40,23 @@ include("loginPage.php");
 // Иначе, если запрос был методом POST, т.е. нужно сделать авторизацию с записью логина в сессию.
 else {
   // TODO: Проверть есть ли такой логин и пароль в базе данных.
-  $login = $_POST['login'];
-  $pass = $_POST['pass'];
-  $shapass = sha1($pass);
+  
 
   $user = 'u67344';
   $pass = '7915464';
   $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
-  $count = null;
+  $passDB = null;
+  $login = $_POST['login'];
+  $pass = $_POST['pass'];
+  $shapass = sha1($pass);
   try{
-    $sth = $db->prepare('SELECT COUNT(Id) As NumberOfUsers FROM Users WHERE Login = :login, Password = :password');
-    $sth->execute(['login' => $login, 'password' => $shapass]);
-    
+    $sth = $db->prepare('SELECT Password FROM Users WHERE Login = :login');
+    $sth->execute(['login' => $login]);
     
     while ($row = $sth->fetch()) {
-      $count = $row['NumberOfUsers'];
+      $passDB = $row['Password'];
     }
   }
   catch(PDOException $e){
@@ -65,7 +65,7 @@ else {
   }
   
 
-  if($count == 0)
+  if($passDB == "" || $passDB != $shapass)
   {
     // Выдать сообщение об ошибках.
     print("No such login or incorrect password");
