@@ -285,6 +285,8 @@ else {
     $stmt = $db->prepare("UPDATE Forms SET Fio = :fio, Phone = :phone, Email = :email, FormDate = :formDate, Gender = :gender, Biography = :biography, AgreeCheck = :agreeCheck WHERE Id = :id");
     $stmt -> execute(['fio'=>$fioValue, 'phone'=>$tel, 'email'=>$email,'formDate'=>$date,'gender'=>$gender,'biography'=>$bio, 'agreeCheck'=>$check, 'id' => $formId]);
 
+    $stmt = $db->prepare("DELETE FROM FormLanguages WHERE FormId = :formId");
+    $stmt -> execute(['formId'=>$formId]);
     $langId;
     for($i = 0; $i < count($langs); $i++)
     {
@@ -302,14 +304,9 @@ else {
           $langId = $db->lastInsertId();
         }
 
-        $stmt = $db->prepare("DELETE FROM FormLanguages WHERE FormId = :formId");
-        $stmt -> execute(['formId'=>$formId]);
-
         $stmt = $db->prepare("INSERT INTO FormLanguages (FormId, LanguageId) VALUES (:formId, :languageIdDB)");
         $stmt -> execute(['formId'=>$formId, 'languageIdDB'=>$langId]);
-        print_r($langId);
     }
-    exit();
   }
   else {
     // Генерируем уникальный логин и пароль.
