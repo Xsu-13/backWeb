@@ -193,6 +193,9 @@ else {
     }
   }
 
+  print($langsValue);
+  exit();
+
   // Проверяем ошибки.
   $errors = FALSE;
   if (empty($fioValue) || preg_match($fioExp, $fioValue) == 0) {
