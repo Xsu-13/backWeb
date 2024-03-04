@@ -132,6 +132,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
       while ($row = $sth->fetch()) {
         $langs[$i++] = $row['LanguageName'];
+        print($row['LanguageName'].' ');
       }
     }
     $langsValue = '';
@@ -140,6 +141,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       $langsValue .= $langs[$i] . ",";
     }
     $values['favorite-langs'] = $langsValue;
+    exit();
   }
   catch(PDOException $e){
     print('Error : ' . $e->getMessage());
