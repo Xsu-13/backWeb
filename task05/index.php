@@ -127,6 +127,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $i = 0;
     $langs = [];
     $row = $sth->fetchAll();
+    print_r($row);
+    exit();
     for($i = 0; $i < count($row); $i++) {
       $sth = $db->prepare('SELECT LanguageName FROM Languages WHERE Id = :id');
       $sth->execute(['id' => ($row[$i])['LanguageId']]);
