@@ -131,7 +131,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       $sth->execute(['id' => $row['LanguageId']]);
 
       while ($row = $sth->fetch()) {
-        $langs[$i] = $row['LanguageName'];
+        $langs[$i++] = $row['LanguageName'];
       }
     }
     $langsValue = '';
