@@ -126,7 +126,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $sth->execute(['id' => $formId]);
     $i = 0;
     $langs = [];
-    while ($row = $sth->fetch()) {
+    foreach ($sth->fetch() as $row) {
       $sth = $db->prepare('SELECT LanguageName FROM Languages WHERE Id = :id');
       $sth->execute(['id' => $row['LanguageId']]);
 
