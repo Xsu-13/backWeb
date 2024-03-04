@@ -130,9 +130,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       $sth = $db->prepare('SELECT LanguageName FROM Languages WHERE Id = :id');
       $sth->execute(['id' => $row['LanguageId']]);
 
-      while ($row = $sth->fetch()) {
-        $langs[$i++] = $row['LanguageName'];
-        print($row['LanguageName'].' ');
+      while ($langrow = $sth->fetch()) {
+        $langs[$i++] = $langrow['LanguageName'];
+        print($langrow['LanguageName'].' ');
       }
     }
     $langsValue = '';
