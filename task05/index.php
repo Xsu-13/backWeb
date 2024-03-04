@@ -124,15 +124,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
     $sth = $db->prepare('SELECT LanguageId FROM FormLanguages WHERE FormId = :id');
     $sth->execute(['id' => $formId]);
-    $i = 0;
+    $j = 0;
     $langs = [];
     $row = $sth->fetchAll();
     for($i = 0; $i < count($row); $i++) {
       $sth = $db->prepare('SELECT LanguageName FROM Languages WHERE Id = :id');
       $sth->execute(['id' => ($row[$i])['LanguageId']]);
       while ($langrow = $sth->fetch()) {
-        $langs[$i++] = $langrow['LanguageName'];
-        print($langrow['LanguageName']);
+        $langs[$j++] = $langrow['LanguageName'];
       }
     }
     $langsValue = '';
@@ -141,7 +140,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       $langsValue .= $langs[$i] . ",";
     }
     $values['favorite-langs'] = $langsValue;
-    exit();
   }
   catch(PDOException $e){
     print('Error : ' . $e->getMessage());
