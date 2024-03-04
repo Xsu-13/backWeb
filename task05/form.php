@@ -72,7 +72,10 @@ if (!empty($messages)) {
   }
   print('</div>');
 }
-
+if(true)
+{
+        print('<div>'); print($values['favorite-langs']);print('</div>');
+}
 function SelectLang($langs, $value){
   $langArray = str_getcsv($langs, ',');
   for($i = 0; $i < count($langArray); $i++)

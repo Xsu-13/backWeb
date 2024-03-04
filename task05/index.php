@@ -92,26 +92,26 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
   // Если нет предыдущих ошибок ввода, есть кука сессии, начали сессию и
   // ранее в сессию записан факт успешного логина.
-  if (empty($errors) && !empty($_COOKIE[session_name()]) &&
+  if (!empty($_COOKIE[session_name()]) &&
       session_start() && !empty($_SESSION['login'])) {
     // TODO: загрузить данные пользователя из БД
     $userLogin = $_SESSION['login'];
 
-  $user = 'u67344'; 
-  $pass = '7915464'; 
+  $user = 'u67344';
+  $pass = '7915464';
   $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
   try{
     $formId;
     $sth = $db->prepare('SELECT FormId FROM Users WHERE Login = :login');
-    $sth->execute(['login' => $userLogin]); 
+    $sth->execute(['login' => $userLogin]);
     while ($row = $sth->fetch()) {
       $formId = $row['FormId'];
     }
 
-    $sth = $db->prepare('SELECT (Fio, Phone, Email, FormDate, Gender, Biography, AgreeCheck) FROM Forms WHERE Id = :id');
-    $sth->execute(['id' => $formId]); 
+    $sth = $db->prepare('SELECT Fio, Phone, Email, FormDate, Gender, Biography, AgreeCheck FROM Forms WHERE Id = :id');
+    $sth->execute(['id' => $formId]);
     while ($row = $sth->fetch()) {
       $values['fio'] = $row['Fio'];
       $values['field-tel'] = $row['Phone'];
@@ -122,16 +122,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
       $values['check-1'] = $row['AgreeCheck'];
     }
 
-    $sth = $db->prepare('SELECT (LanguageId) FROM FormLanguages WHERE FormId = :id');
-    $sth->execute(['id' => $formId]); 
+    $sth = $db->prepare('SELECT LanguageId FROM FormLanguages WHERE FormId = :id');
+    $sth->execute(['id' => $formId]);
     $i = 0;
     $langs = [];
     while ($row = $sth->fetch()) {
-      $sth = $db->prepare('SELECT (LanguageName) FROM Languages WHERE Id = :id');
-      $sth->execute(['id' => $row['LanguageId']]); 
-      
+      $sth = $db->prepare('SELECT LanguageName FROM Languages WHERE Id = :id');
+      $sth->execute(['id' => $row['LanguageId']]);
+
       while ($row = $sth->fetch()) {
-        $langs[$i++] = $row['LanguageName'];
+        $langs[$i] = $row['LanguageName'];
       }
     }
     $langsValue = '';
@@ -143,6 +143,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   }
   catch(PDOException $e){
     print('Error : ' . $e->getMessage());
+    print_r($e->getTrace());
     exit();
   }
 
@@ -161,7 +162,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   }
 
   // Включаем содержимое файла form.php.
-  // В нем будут доступны переменные $messages, $errors и $values для вывода 
+  // В нем будут доступны переменные $messages, $errors и $values для вывода
   // сообщений, полей с ранее заполненными данными и признаками ошибок.
   include('form.php');
 }
@@ -182,7 +183,7 @@ else {
   $bio = $_POST['bio'];
   $langs = !empty($_POST['favorite-langs'])?$_POST['favorite-langs']:null;
   $date = $_POST['field-date'];
-  
+
   $langsValue = '';
   if($langs != null && !empty($langs))
   {
@@ -289,7 +290,7 @@ else {
     {
         $langId = null;
         $sth = $db->prepare('SELECT Id FROM Languages WHERE LanguageName = :langName');
-        $sth->execute(['langName' => $langs[$i]]); 
+        $sth->execute(['langName' => $langs[$i]]);
         while ($row = $sth->fetch()) {
           $langId = $row['Id'];
         }
@@ -319,7 +320,7 @@ else {
     setcookie('pass', $pass);
 
     // TODO: Сохранение данных формы, логина и хеш md5() пароля в базу данных.
-    
+
 
     try {
 
@@ -332,7 +333,7 @@ else {
       {
           $langId = null;
           $sth = $db->prepare('SELECT Id FROM Languages WHERE LanguageName = :langName');
-          $sth->execute(['langName' => $langs[$i]]); 
+          $sth->execute(['langName' => $langs[$i]]);
           while ($row = $sth->fetch()) {
             $langId = $row['Id'];
           }
@@ -378,9 +379,9 @@ function GetFormIdByLogin($db, $login)
 {
     $formId = null;
     $sth = $db->prepare('SELECT FormId FROM Users WHERE Login = :login');
-    $sth->execute(['login' => $login]); 
+    $sth->execute(['login' => $login]);
     while ($row = $sth->fetch()) {
       $formId = $row['FormId'];
-    }  
+    }
   return $formId;
 }
