@@ -74,9 +74,17 @@
         <td> <?php echo $user['check-1']; ?></td>
         <td>
         <form action="" method="post"> 
-          <input name="Edit" value="Редактировать" type="submit" onclick="editUser()"/>  | 
+          <input name="Edit" value="Редактировать" type="submit"/>  | 
           <input name="Delete" value="Удалить" type="submit"/> 
-          <input name="Id" value="<?=$user['id']?> " type="hidden"/>
+          <input name="Id" value="<?=$user['id']?>" type="hidden"/>
+          <input name="Fio" value="<?=$user['fio']?>" type="hidden"/>
+          <input name="Field-tel" value="<?=$user['field-tel']?>" type="hidden"/>
+          <input name="Field-email" value="<?=$user['field-email']?>" type="hidden"/>
+          <input name="Field-date" value="<?=$user['field-date']?>" type="hidden"/>
+          <input name="Gender" value="<?=$user['gender']?>" type="hidden"/>
+          <input name="Favorite-langs" value="<?=$user['favorite-langs']?>" type="hidden"/>
+          <input name="Bio" value="<?=$user['bio']?>" type="hidden"/>
+          <input name="Check-1" value="<?=$user['check-1']?>" type="hidden"/>
         </form>
       </td>
   </tr>

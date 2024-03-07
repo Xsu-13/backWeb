@@ -52,11 +52,23 @@ if (isset($_POST))
 { 
   if(isset($_POST["Delete"])){
 
+
     //DeleteUser($_POST["Id"]);
     //header('Location: ./');
     print_r($_POST["Id"]);
   } 
   if(isset($_POST["Edit"])){
+
+    setcookie('id', $_POST["Id"], time() + 30 * 24 * 60 * 60);
+    setcookie('fio_value', $_POST["Fio"], time() + 30 * 24 * 60 * 60);
+    setcookie('tel_value', $_POST["Field-tel"], time() + 30 * 24 * 60 * 60);
+    setcookie('email_value', $_POST["Field-email"], time() + 30 * 24 * 60 * 60);
+    setcookie('bio_value', $_POST["Bio"], time() + 30 * 24 * 60 * 60);
+    setcookie('check_value', $_POST["Check-1"], time() + 30 * 24 * 60 * 60);
+    setcookie('gender_value', $_POST["Gender"], time() + 30 * 24 * 60 * 60);
+    setcookie('langs_value', $_POST["Favorite-langs"], time() + 30 * 24 * 60 * 60);
+    setcookie('date_value', $_POST["Field-date"], time() + 30 * 24 * 60 * 60);
+
     header('Location: ./editUser.php');
   } 
 }
@@ -87,7 +99,7 @@ function GetUsers()
   $values['field-email'] = "hdsj@jkjs.com";
   $values['gender'] = "Female";
   $values['field-date'] = "12.34.2004";
-  $values['favorite-langs'] = "Python";
+  $values['favorite-langs'] = "PHP";
   $values['bio'] = "бубубу";
   $values['check-1'] = "1";
 
@@ -101,9 +113,9 @@ function GetUsers()
   $values['field-email'] = "hdsj@xsu.com";
   $values['gender'] = "Male";
   $values['field-date'] = "12.12.2012";
-  $values['favorite-langs'] = "Java,Pascal";
+  $values['favorite-langs'] = "Pascal,Scala";
   $values['bio'] = "блпблпблп";
-  $values['check-1'] = "1";
+  $values['check-1'] = "0";
 
   $users[1] = $values;
   /*
@@ -167,6 +179,23 @@ function DeleteUser($id)
   try{
     $sth = $db->prepare('DELETE FROM Forms WHERE FormId = :id');
     $sth->execute(['id' => $id]);
+  }
+  catch(PDOException $e){
+    print_r($e->getTrace());
+    exit();
+  }
+}
+
+function GetLanguageStats()
+{
+  $user = 'u67344';
+  $pass = '7915464';
+  $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
+  [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+
+  try{
+    $sth = $db->prepare('DELETE FROM Forms WHERE FormId = :id');
+    $sth->execute();
   }
   catch(PDOException $e){
     print_r($e->getTrace());
