@@ -4,31 +4,175 @@
  * Задача 6. Реализовать вход администратора с использованием
  * HTTP-авторизации для просмотра и удаления результатов.
  **/
-header('Content-Type: text/html; charset=UTF-8');
-if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-include("adminPage.php");
-exit();
-}
+
 
 // Пример HTTP-аутентификации.
 // PHP хранит логин и пароль в суперглобальном массиве $_SERVER.
 // Подробнее см. стр. 26 и 99 в учебном пособии Веб-программирование и веб-сервисы.
+
 /*
+$user = 'u67344';
+$pass = '7915464';
+$db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
+  [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+
+  $sth = $db->prepare('SELECT Login, Password FROM Admin');
+  $sth->execute();
+
+  $adminLogin;
+  $adminPass;
+  while ($row = $sth->fetch()) {
+    $adminLogin = $row["Login"];
+    $adminPass = $row["Password"];
+  }
+  */
+
 if (empty($_SERVER['PHP_AUTH_USER']) ||
     empty($_SERVER['PHP_AUTH_PW']) ||
     $_SERVER['PHP_AUTH_USER'] != 'admin' ||
-    md5($_SERVER['PHP_AUTH_PW']) != md5('123')) {
+    sha1($_SERVER['PHP_AUTH_PW']) != sha1('123')) {
   header('HTTP/1.1 401 Unanthorized');
   header('WWW-Authenticate: Basic realm="My site"');
   print('<h1>401 Требуется авторизация</h1>');
   exit();
 }
-
-print('Вы успешно авторизовались и видите защищенные паролем данные.');
+/*
+if (empty($_SERVER['PHP_AUTH_USER']) ||
+    empty($_SERVER['PHP_AUTH_PW']) ||
+    $_SERVER['PHP_AUTH_USER'] != $adminLogin ||
+    sha1($_SERVER['PHP_AUTH_PW']) != $adminPass) {
+  header('HTTP/1.1 401 Unanthorized');
+  header('WWW-Authenticate: Basic realm="My site"');
+  print('<h1>401 Требуется авторизация</h1>');
+  exit();
+}
 */
 
-// *********
-// Здесь нужно прочитать отправленные ранее пользователями данные и вывести в таблицу.
-// Реализовать просмотр и удаление всех данных.
-// *********
+if (isset($_POST))
+{ 
+  if(isset($_POST["Delete"])){
+
+    //DeleteUser($_POST["Id"]);
+    //header('Location: ./');
+    print_r($_POST["Id"]);
+  } 
+  if(isset($_POST["Edit"])){
+    header('Location: ./editUser.php');
+  } 
+}
+
+
+
+
+
+if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+  print('Вы успешно авторизовались и видите защищенные паролем данные.');
+  $users = GetUsers();
+
+  include("adminPage.php");
+}
+else{
+  
+}
+
+
+function GetUsers()
+{
+  
+  $users = array();
+  $values = array();
+  $values['id'] = "0";
+  $values['fio'] = "Hhhh";
+  $values['field-tel'] = "6787821";
+  $values['field-email'] = "hdsj@jkjs.com";
+  $values['gender'] = "Female";
+  $values['field-date'] = "12.34.2004";
+  $values['favorite-langs'] = "Python";
+  $values['bio'] = "бубубу";
+  $values['check-1'] = "1";
+
+
+  $users[0] = $values;
+
+  $values = array();
+  $values['id'] = "1";
+  $values['fio'] = "dfsdfs";
+  $values['field-tel'] = "5553535";
+  $values['field-email'] = "hdsj@xsu.com";
+  $values['gender'] = "Male";
+  $values['field-date'] = "12.12.2012";
+  $values['favorite-langs'] = "Java,Pascal";
+  $values['bio'] = "блпблпблп";
+  $values['check-1'] = "1";
+
+  $users[1] = $values;
+  /*
+  $user = 'u67344';
+  $pass = '7915464';
+  $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
+  [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+
+  try{
+      $sth = $db->prepare('SELECT FormId, Fio, Phone, Email, FormDate, Gender, Biography, AgreeCheck FROM Forms');
+      $sth->execute();
+      $k = 0;
+      $values = array();
+      while ($row = $sth->fetch()) {
+        $values['fio'] = $row['Fio'];
+        $values['field-tel'] = $row['Phone'];
+        $values['field-email'] = $row['Email'];
+        $values['gender'] = $row['Gender'];
+        $values['field-date'] = $row['FormDate'];
+        $values['bio'] = $row['Biography'];
+        $values['check-1'] = $row['AgreeCheck'];
+        $formId = $row['FormId'];
+        $sth = $db->prepare('SELECT LanguageId FROM FormLanguages WHERE FormId = :id');
+        $sth->execute(['id' => $formId]);
+        $j = 0;
+        $langs = [];
+        $row = $sth->fetchAll();
+        for($i = 0; $i < count($row); $i++) {
+          $sth = $db->prepare('SELECT LanguageName FROM Languages WHERE Id = :id');
+          $sth->execute(['id' => ($row[$i])['LanguageId']]);
+          while ($langrow = $sth->fetch()) {
+            $langs[$j++] = $langrow['LanguageName'];
+          }
+        }
+        $langsValue = '';
+        for($i = 0; $i < count($langs); $i++)
+        {
+          $langsValue .= $langs[$i] . ",";
+        }
+        $values['favorite-langs'] = $langsValue;
+        $users[$k++] = $values;
+      }
+  }
+  catch(PDOException $e){
+    print('Error : ' . $e->getMessage());
+    print_r($e->getTrace());
+    exit();
+  }
+  */
+
+  return $users;
+}
+
+function DeleteUser($id)
+{
+  $user = 'u67344';
+  $pass = '7915464';
+  $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
+  [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+
+  try{
+    $sth = $db->prepare('DELETE FROM Forms WHERE FormId = :id');
+    $sth->execute(['id' => $id]);
+  }
+  catch(PDOException $e){
+    print_r($e->getTrace());
+    exit();
+  }
+}
+
+
 ?>
