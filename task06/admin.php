@@ -51,11 +51,8 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
 if (isset($_POST))
 { 
   if(isset($_POST["Delete"])){
-
-
-    //DeleteUser($_POST["Id"]);
-    //header('Location: ./');
-    print_r($_POST["Id"]);
+    DeleteUser($_POST["Id"]);
+    header('Location: ./');
   } 
   if(isset($_POST["Edit"])){
 
@@ -80,6 +77,8 @@ if (isset($_POST))
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   print('Вы успешно авторизовались и видите защищенные паролем данные.');
   $users = GetUsers();
+  $result = GetLanguageStats();
+  $sum = LanguageSum($result);
 
   include("adminPage.php");
 }
@@ -91,6 +90,7 @@ else{
 function GetUsers()
 {
   
+  /*
   $users = array();
   $values = array();
   $values['id'] = "0";
@@ -118,7 +118,8 @@ function GetUsers()
   $values['check-1'] = "0";
 
   $users[1] = $values;
-  /*
+  */
+  
   $user = 'u67344';
   $pass = '7915464';
   $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
@@ -164,7 +165,7 @@ function GetUsers()
     print_r($e->getTrace());
     exit();
   }
-  */
+  
 
   return $users;
 }
@@ -194,13 +195,29 @@ function GetLanguageStats()
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
   try{
-    $sth = $db->prepare('DELETE FROM Forms WHERE FormId = :id');
+    $sth = $db->prepare('SELECT LanguageName, COUNT(*) AS LanguageCount FROM FormLanguages JOIN Languages ON FormLanguages.LanguageId = Languages.Iв GROUP BY LanguageName ORDER BY LanguageCount DESC');
     $sth->execute();
+    $result = array();
+    while ($row = $sth->fetch()) {
+      $result[$row["LanguageName"]]= $row['LanguageCount'];
+    }
   }
   catch(PDOException $e){
     print_r($e->getTrace());
     exit();
   }
+
+  return $result;
+}
+
+function LanguageSum($arr)
+{
+  $sum = 0;
+  foreach($arr as $count)
+  {
+    $sum += $count;
+  }
+  return $sum;
 }
 
 

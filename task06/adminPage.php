@@ -40,6 +40,31 @@
     td{
       padding: 0 20px;
     }
+
+    .column{
+      width: 20px;
+      background-color: #aaa;
+      margin: 10px 20px;
+    }
+    .stat{
+      width: 80%;
+      display: flex;
+      flex-direction: row;
+      margin-top: 30px;
+      height: 500px;
+    }
+
+    .line{
+        display: flex;
+        flex-direction: column;
+        justify-content: end;
+        text-align: center;
+        align-items: center;
+    }
+    <?php 
+    foreach ($result as $name => $count) :?>
+    <?php print(".".$name."{ height:".$count*100/$sum."%;}");?>
+  <?php endforeach;?>
   </style>
 </head>
 <body>
@@ -91,5 +116,15 @@
 <?php endforeach;?>
   </tbody>
 </table>
+<div class="stat">
+<?php 
+  foreach ($result as $name => $count) :?>
+  <div class="line">
+    <div class="column <?php print $name?>"></div>
+    <p><?=$name?></p>
+    <div><?=$count?></div>
+  </div>
+<?php endforeach;?>
+</div>
 </body>
 </html>

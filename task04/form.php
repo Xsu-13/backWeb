@@ -42,7 +42,6 @@
         <br />
         <select name="favorite-langs[]" <?php if ($errors['favorite-langs']) {print 'class="error"';} ?> multiple="multiple">
           <option <?php SelectLang($values['favorite-langs'], "Pascal") ?> value="Pascal">Pascal</option>
-          <option <?php SelectLang($values['favorite-langs'], "C++") ?> value="C++">C++</option>
           <option <?php SelectLang($values['favorite-langs'], "JavaScript") ?> value="JavaScript">JavaScript</option>
           <option <?php SelectLang($values['favorite-langs'], "PHP") ?> value="PHP">PHP</option>
           <option <?php SelectLang($values['favorite-langs'], "Python") ?> value="Python">Python</option>
