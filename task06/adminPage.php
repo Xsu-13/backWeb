@@ -110,8 +110,8 @@
         <td> <?php echo $user['check-1']; ?></td>
         <td>
         <form action="" method="post"> 
-          <input class="btn btn-reset" name="Edit" value="Редактировать" type="submit"/>  | 
-          <input class="btn btn-reset" name="Delete" value="Удалить" type="submit"/> 
+          <button class="btn btn-reset" name="Edit" value="Редактировать" type="submit">Редактировать</button>  | 
+          <button class="btn btn-reset" name="Delete" value="Удалить" type="submit">Удалить</button> 
           <input name="Id" value="<?=$user['id']?>" type="hidden"/>
           <input name="Fio" value="<?=$user['fio']?>" type="hidden"/>
           <input name="Field-tel" value="<?=$user['field-tel']?>" type="hidden"/>
