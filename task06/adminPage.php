@@ -67,6 +67,11 @@
       background-color: transparent;
       cursor: pointer;
     }
+    .tur {
+      width: 107px;
+      height: 42px;
+      margin-right: 40px;
+    }
     .btn {
       border-radius: 10px;
       border: 1px solid rgba(204, 153, 51, 1);
@@ -111,8 +116,8 @@
         <td> <?php echo $user['check-1']; ?></td>
         <td>
         <form action="" method="post"> 
-          <button class="btn btn-reset" name="Edit" value="Редактировать" type="submit">Редактировать</button>  | 
-          <button class="btn btn-reset" name="Delete" value="Удалить" type="submit">Удалить</button> 
+          <button class="btn tur btn-reset" name="Edit" value="Редактировать" type="submit">Редактировать</button>  | 
+          <button class="btn tur btn-reset" name="Delete" value="Удалить" type="submit">Удалить</button> 
           <input name="Id" value="<?=$user['id']?>" type="hidden"/>
           <input name="Fio" value="<?=$user['fio']?>" type="hidden"/>
           <input name="Field-tel" value="<?=$user['field-tel']?>" type="hidden"/>
