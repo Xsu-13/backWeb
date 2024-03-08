@@ -87,24 +87,24 @@ function GetUsers()
       $k = 0;
       $values = array();
       $row = $sth->fetchAll();
-      for($i = 0; $i < count($row); $i++) {
-        $values['fio'] = $row[$i]['Fio'];
-        $values['field-tel'] = $row[$i]['Phone'];
-        $values['field-email'] = $row[$i]['Email'];
-        $values['gender'] = $row[$i]['Gender'];
-        $values['field-date'] = $row[$i]['FormDate'];
-        $values['bio'] = $row[$i]['Biography']; 
-        $values['check-1'] = $row[$i]['AgreeCheck'];
-        $values['id'] = $row[$i]['Id'];
-        $formId = $row[$i]['Id'];
+      for($h = 0; $h < count($row); $h++) {
+        $values['fio'] = $row[$h]['Fio'];
+        $values['field-tel'] = $row[$h]['Phone'];
+        $values['field-email'] = $row[$h]['Email'];
+        $values['gender'] = $row[$h]['Gender'];
+        $values['field-date'] = $row[$h]['FormDate'];
+        $values['bio'] = $row[$h]['Biography']; 
+        $values['check-1'] = $row[$h]['AgreeCheck'];
+        $values['id'] = $row[$h]['Id'];
+        $formId = $row[$h]['Id'];
         $sth = $db->prepare('SELECT LanguageId FROM FormLanguages WHERE FormId = :id');
         $sth->execute(['id' => $formId]);
         $j = 0;
         $langs = [];
-        $row = $sth->fetchAll();
-        for($i = 0; $i < count($row); $i++) {
+        $rowlang = $sth->fetchAll();
+        for($i = 0; $i < count($rowlang); $i++) {
           $sth = $db->prepare('SELECT LanguageName FROM Languages WHERE Id = :id');
-          $sth->execute(['id' => ($row[$i])['LanguageId']]);
+          $sth->execute(['id' => ($rowlang[$i])['LanguageId']]);
           while ($langrow = $sth->fetch()) {
             $langs[$j++] = $langrow['LanguageName'];
           }
