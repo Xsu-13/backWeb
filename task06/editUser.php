@@ -14,9 +14,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   } 
 
   if(isset($_POST["Edit"])){
-    SaveUser();
-    header('Location: ./admin.php');
-    exit();
+    $g = SaveUser();
+    print($g);
+    //header('Location: ./admin.php');
+    //exit();
   }
 }
 
@@ -30,6 +31,7 @@ function SaveUser()
 
     $formId = GetFormIdById($db, $_COOKIE["id"]);
 
+    /*
     $stmt = $db->prepare("UPDATE Forms SET Fio = :fio, Phone = :phone, Email = :email, FormDate = :formDate, Gender = :gender, Biography = :biography, AgreeCheck = :agreeCheck WHERE Id = :id");
     $stmt -> execute(['fio'=>$_POST["editFio"], 'phone'=>$_POST["editPhone"], 'email'=>$_POST["editEmail"],'formDate'=>$_POST["editFormDate"],'gender'=>$_POST["gender"],'biography'=>$_POST["editBiography"], 'agreeCheck'=>$_POST["editAgreeCheck"], 'id' => $formId]);
 
@@ -57,6 +59,8 @@ function SaveUser()
         $stmt = $db->prepare("INSERT INTO FormLanguages (FormId, LanguageId) VALUES (:formId, :languageIdDB)");
         $stmt -> execute(['formId'=>$formId, 'languageIdDB'=>$langId]);
     }
+    */
+    return $formId;
     
 }
 
