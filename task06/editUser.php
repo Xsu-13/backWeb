@@ -14,10 +14,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   } 
 
   if(isset($_POST["Edit"])){
-    $g = SaveUser();
-    print($g);
-    //header('Location: ./admin.php');
-    //exit();
+    SaveUser();
+    header('Location: ./admin.php');
+    exit();
   }
 }
 
@@ -29,9 +28,8 @@ function SaveUser()
   $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
-    $formId = GetFormIdById($db, $_COOKIE["id"]);
+    $formId = $_COOKIE["id"];
 
-    /*
     $stmt = $db->prepare("UPDATE Forms SET Fio = :fio, Phone = :phone, Email = :email, FormDate = :formDate, Gender = :gender, Biography = :biography, AgreeCheck = :agreeCheck WHERE Id = :id");
     $stmt -> execute(['fio'=>$_POST["editFio"], 'phone'=>$_POST["editPhone"], 'email'=>$_POST["editEmail"],'formDate'=>$_POST["editFormDate"],'gender'=>$_POST["gender"],'biography'=>$_POST["editBiography"], 'agreeCheck'=>$_POST["editAgreeCheck"], 'id' => $formId]);
 
@@ -59,19 +57,6 @@ function SaveUser()
         $stmt = $db->prepare("INSERT INTO FormLanguages (FormId, LanguageId) VALUES (:formId, :languageIdDB)");
         $stmt -> execute(['formId'=>$formId, 'languageIdDB'=>$langId]);
     }
-    */
-    return $formId;
     
-}
-
-function GetFormIdById($db, $id)
-{
-    $formId = null;
-    $sth = $db->prepare('SELECT FormId FROM Users WHERE Id = :id');
-    $sth->execute(['id' => $id]);
-    while ($row = $sth->fetch()) {
-      $formId = $row['FormId'];
-    }
-  return $formId;
 }
 ?>
