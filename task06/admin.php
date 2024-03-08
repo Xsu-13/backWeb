@@ -136,7 +136,7 @@ function DeleteUser($id)
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
   try{
-    $sth = $db->prepare('DELETE FROM Forms WHERE FormId = :id');
+    $sth = $db->prepare('DELETE FROM Forms WHERE Id = :id');
     $sth->execute(['id' => $id]);
   }
   catch(PDOException $e){

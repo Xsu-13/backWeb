@@ -75,7 +75,6 @@
         <br />
         <select name="favorite-langs[]" multiple="multiple">
           <option <?php SelectLang($langs, "Pascal") ?> value="Pascal">Pascal</option>
-          <option <?php SelectLang($langs, "C++") ?> value="C++">C++</option>
           <option <?php SelectLang($langs, "JavaScript") ?> value="JavaScript">JavaScript</option>
           <option <?php SelectLang($langs, "PHP") ?> value="PHP">PHP</option>
           <option <?php SelectLang($langs, "Python") ?> value="Python">Python</option>
