@@ -97,7 +97,7 @@ function GetUsers()
       $sth->execute();
       $k = 0;
       $values = array();
-      while ($row = $sth->fetch()) {
+      while ($row = $sth->fetchAll()) {
         $values['fio'] = $row['Fio'];
         $values['field-tel'] = $row['Phone'];
         $values['field-email'] = $row['Email'];
