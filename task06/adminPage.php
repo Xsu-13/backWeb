@@ -62,14 +62,10 @@
         align-items: center;
     }
     .btn-reset {
-      padding: 0;
+      padding: 10px;
       border: none;
       background-color: transparent;
       cursor: pointer;
-    }
-    .tur {
-      width: 77px;
-      height: 32px;
     }
     .btn {
       border-radius: 10px;
@@ -115,8 +111,8 @@
         <td> <?php echo $user['check-1']; ?></td>
         <td>
         <form action="" method="post"> 
-          <button class="btn tur btn-reset" name="Edit" value="Редактировать" type="submit">Редактировать</button>  | 
-          <button class="btn tur btn-reset" name="Delete" value="Удалить" type="submit">Удалить</button> 
+          <button class="btn tur btn-reset" name="Edit" type="submit">Редактировать</button>  | 
+          <button class="btn tur btn-reset" name="Delete"  type="submit">Удалить</button> 
           <input name="Id" value="<?=$user['id']?>" type="hidden"/>
           <input name="Fio" value="<?=$user['fio']?>" type="hidden"/>
           <input name="Field-tel" value="<?=$user['field-tel']?>" type="hidden"/>
