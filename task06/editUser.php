@@ -3,6 +3,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   print('Страничка редактирования.');
   $langs = $_COOKIE['langs_value'];
   $id = $_COOKIE["id"];
+
+  include("editUserPage.php");
+}
+
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
   if(isset($_POST["Close"])){
     header('Location: ./admin.php');
     exit();
@@ -13,9 +18,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     header('Location: ./admin.php');
     exit();
   }
-
-  include("editUserPage.php");
 }
+
 
 function SaveUser()
 {

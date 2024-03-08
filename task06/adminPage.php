@@ -5,37 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>User Data Table</title>
   <style>
-    /* Стили таблицы остаются такими же */
-
-    /* Стили модального окна */
-    .modal {
-      position: fixed;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background-color: #f2f2f2;
-      padding: 20px;
-      z-index: 1;
-    }
-
-    .modal-content {
-      width: 80%;
-      margin: auto;
-    }
-
-    .close {
-      color: #aaa;
-      float: right;
-      font-size: 28px;
-      font-weight: bold;
-    }
-
-    .close:hover,
-    .close:focus {
-      color: black;
-      text-decoration: none;
-      cursor: pointer;
-    }
 
     td{
       padding: 0 20px;
@@ -50,8 +19,7 @@
       width: 80%;
       display: flex;
       flex-direction: row;
-      margin-top: 5px;
-      height: 500px;
+      height: 400px;
     }
 
     .line{
