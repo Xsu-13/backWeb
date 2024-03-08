@@ -51,7 +51,7 @@ if (isset($_POST))
     setcookie('tel_value', $_POST["Field-tel"], time() + 30 * 24 * 60 * 60);
     setcookie('email_value', $_POST["Field-email"], time() + 30 * 24 * 60 * 60);
     setcookie('bio_value', $_POST["Bio"], time() + 30 * 24 * 60 * 60);
-    setcookie('check_value', $_POST["Check-1"], time() + 30 * 24 * 60 * 60);
+    setcookie('check_value', !empty($_POST["Check-1"]), time() + 30 * 24 * 60 * 60);
     setcookie('gender_value', $_POST["Gender"], time() + 30 * 24 * 60 * 60);
     setcookie('langs_value', $_POST["Favorite-langs"], time() + 30 * 24 * 60 * 60);
     setcookie('date_value', $_POST["Field-date"], time() + 30 * 24 * 60 * 60);
