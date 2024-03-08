@@ -42,7 +42,7 @@ if (isset($_POST))
 { 
   if(isset($_POST["Delete"])){
     DeleteUser($_POST["Id"]);
-    header('Location: /');
+    header('Location: ./admin.php');
   } 
   if(isset($_POST["Edit"])){
 
