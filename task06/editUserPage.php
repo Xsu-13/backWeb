@@ -92,7 +92,7 @@
 
       <br/>
       <label for="editAgreeCheck">Согласие:</label>
-      <input type="checkbox" class="checkbox" id="editAgreeCheck" <?php if($_COOKIE['check_value'] == 'on'||$_COOKIE['check_value'] == 1) print "checked" ?> name="editAgreeCheck"><br>
+      <input type="checkbox" class="checkbox" id="editAgreeCheck" <?php if($_COOKIE['check_value'] == 'on') print "checked" ?> name="editAgreeCheck"><br>
 
       <input class="save-button" type="submit" value="Сохранить" name="Edit">
     </form>
