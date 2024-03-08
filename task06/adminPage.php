@@ -68,9 +68,8 @@
       cursor: pointer;
     }
     .tur {
-      width: 107px;
-      height: 42px;
-      margin-right: 40px;
+      width: 77px;
+      height: 32px;
     }
     .btn {
       border-radius: 10px;
