@@ -64,7 +64,7 @@ function GetFormIdById($db, $id)
 {
     $formId = null;
     $sth = $db->prepare('SELECT FormId FROM Users WHERE Id = :id');
-    $sth->execute(['login' => $id]);
+    $sth->execute(['id' => $id]);
     while ($row = $sth->fetch()) {
       $formId = $row['FormId'];
     }
