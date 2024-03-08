@@ -72,6 +72,10 @@
       border: 1px solid rgba(204, 153, 51, 1);
       color: rgba(204, 153, 51, 1);
     }
+    .btn:hover{
+      border: 1px solid rgba(234, 175, 46, 1);
+      color: rgba(234, 175, 46, 1);
+    }
     
     <?php 
     foreach ($result as $name => $count) :?>
