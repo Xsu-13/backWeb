@@ -30,8 +30,9 @@ function SaveUser()
 
     $formId = $_COOKIE["id"];
 
+    $agree = !empty($_POST["editAgreeCheck"]);
     $stmt = $db->prepare("UPDATE Forms SET Fio = :fio, Phone = :phone, Email = :email, FormDate = :formDate, Gender = :gender, Biography = :biography, AgreeCheck = :agreeCheck WHERE Id = :id");
-    $stmt -> execute(['fio'=>$_POST["editFio"], 'phone'=>$_POST["editPhone"], 'email'=>$_POST["editEmail"],'formDate'=>$_POST["editFormDate"],'gender'=>$_POST["gender"],'biography'=>$_POST["editBiography"], 'agreeCheck'=>$_POST["editAgreeCheck"], 'id' => $formId]);
+    $stmt -> execute(['fio'=>$_POST["editFio"], 'phone'=>$_POST["editPhone"], 'email'=>$_POST["editEmail"],'formDate'=>$_POST["editFormDate"],'gender'=>$_POST["gender"],'biography'=>$_POST["editBiography"], 'agreeCheck'=>$agree, 'id' => $formId]);
 
     $stmt = $db->prepare("DELETE FROM FormLanguages WHERE FormId = :formId");
     $stmt -> execute(['formId'=>$formId]);
