@@ -100,6 +100,7 @@ function db_pager_query() {
 }
 
 function db_array() {
+  global $db;
   $args = func_get_args();
   $key = array_shift($args);
   $query = array_shift($args);

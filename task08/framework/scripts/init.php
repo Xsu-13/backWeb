@@ -137,6 +137,13 @@ function redirect($l = NULL) {
   return array('headers' => array('Location' => $location));
 }
 
+function home() {
+  return array(
+    'headers' => array('HTTP/1.1 200'),
+    'entity' => theme('home'),
+  );
+}
+
 // Возвращает 403.
 function access_denied() {
   return array(

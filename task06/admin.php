@@ -26,17 +26,6 @@ $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
     $adminPass = $row["Password"];
   }
   
-/*
-if (empty($_SERVER['PHP_AUTH_USER']) ||
-    empty($_SERVER['PHP_AUTH_PW']) ||
-    $_SERVER['PHP_AUTH_USER'] != 'admin' ||
-    sha1($_SERVER['PHP_AUTH_PW']) != sha1('123')) {
-  header('HTTP/1.1 401 Unanthorized');
-  header('WWW-Authenticate: Basic realm="My site"');
-  print('<h1>401 Требуется авторизация</h1>');
-  exit();
-}
-*/
 
 if (empty($_SERVER['PHP_AUTH_USER']) ||
     empty($_SERVER['PHP_AUTH_PW']) ||
@@ -81,7 +70,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   include("adminPage.php");
 }
 else{
-  
+  include("adminPage.php");
 }
 
 
@@ -97,16 +86,17 @@ function GetUsers()
       $sth->execute();
       $k = 0;
       $values = array();
-      while ($row = $sth->fetch()) {
-        $values['fio'] = $row['Fio'];
-        $values['field-tel'] = $row['Phone'];
-        $values['field-email'] = $row['Email'];
-        $values['gender'] = $row['Gender'];
-        $values['field-date'] = $row['FormDate'];
-        $values['bio'] = $row['Biography']; 
-        $values['check-1'] = $row['AgreeCheck'];
-        $values['id'] = $row['Id'];
-        $formId = $row['Id'];
+      $row = $sth->fetchAll();
+      for($i = 0; $i < count($row); $i++) {
+        $values['fio'] = $row[$i]['Fio'];
+        $values['field-tel'] = $row[$i]['Phone'];
+        $values['field-email'] = $row[$i]['Email'];
+        $values['gender'] = $row[$i]['Gender'];
+        $values['field-date'] = $row[$i]['FormDate'];
+        $values['bio'] = $row[$i]['Biography']; 
+        $values['check-1'] = $row[$i]['AgreeCheck'];
+        $values['id'] = $row[$i]['Id'];
+        $formId = $row[$i]['Id'];
         $sth = $db->prepare('SELECT LanguageId FROM FormLanguages WHERE FormId = :id');
         $sth->execute(['id' => $formId]);
         $j = 0;

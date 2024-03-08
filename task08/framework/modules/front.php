@@ -3,13 +3,14 @@
 // Обработчик запросов методом GET.
 function front_get($request) {
   // Пример ответа веб-сервиса.
-  return array('headers' => array('Content-Type' => 'application/xml'), 'entity' => '<document />');
+  //return array('headers' => array('Content-Type' => 'application/xml'), 'entity' => '<document/>');
   // Пример возврата контента.
-  return '123';
+  //return '123';
   // Пример запрета доступа.
-  return access_denied();
+  //return access_denied();
   // Пример возврата ресурс не найден.
-  return not_found();
+  //return not_found();
+  return home();
 }
 
 // Обработчик запросов методом POST.
