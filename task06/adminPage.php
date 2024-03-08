@@ -43,14 +43,14 @@
 
     .column{
       width: 20px;
-      background-color: #aaa;
+      background-color: rgba(234, 175, 46, 1);
       margin: 10px 20px;
     }
     .stat{
       width: 80%;
       display: flex;
       flex-direction: row;
-      margin-top: 30px;
+      margin-top: 5px;
       height: 500px;
     }
 
