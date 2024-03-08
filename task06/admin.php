@@ -134,7 +134,7 @@ function GetUsers()
         $values['field-email'] = $row['Email'];
         $values['gender'] = $row['Gender'];
         $values['field-date'] = $row['FormDate'];
-        $values['bio'] = $row['Biography'];
+        $values['bio'] = $row['Biography']; 
         $values['check-1'] = $row['AgreeCheck'];
         $formId = $row['Id'];
         $sth = $db->prepare('SELECT LanguageId FROM FormLanguages WHERE FormId = :id');
@@ -193,7 +193,7 @@ function GetLanguageStats()
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
   try{
-    $sth = $db->prepare('SELECT LanguageName, COUNT(*) AS LanguageCount FROM FormLanguages JOIN Languages ON FormLanguages.LanguageId = Languages.Iв GROUP BY LanguageName ORDER BY LanguageCount DESC');
+    $sth = $db->prepare('SELECT LanguageName, COUNT(*) AS LanguageCount FROM FormLanguages JOIN Languages ON FormLanguages.LanguageId = Languages.Id GROUP BY LanguageName ORDER BY LanguageCount DESC');
     $sth->execute();
     $result = array();
     while ($row = $sth->fetch()) {
