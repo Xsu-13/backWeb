@@ -61,17 +61,18 @@
         text-align: center;
         align-items: center;
     }
-    .btn {
-      border-radius: 10px;
-      border: 1px solid rgba(204, 153, 51, 1);
-      color: rgba(204, 153, 51, 1);
-    }
     .btn-reset {
       padding: 0;
       border: none;
       background-color: transparent;
       cursor: pointer;
     }
+    .btn {
+      border-radius: 10px;
+      border: 1px solid rgba(204, 153, 51, 1);
+      color: rgba(204, 153, 51, 1);
+    }
+    
     <?php 
     foreach ($result as $name => $count) :?>
     <?php print(".".$name."{ height:".$count*100/$sum."%;}");?>
