@@ -87,37 +87,6 @@ else{
 
 function GetUsers()
 {
-  
-  /*
-  $users = array();
-  $values = array();
-  $values['id'] = "0";
-  $values['fio'] = "Hhhh";
-  $values['field-tel'] = "6787821";
-  $values['field-email'] = "hdsj@jkjs.com";
-  $values['gender'] = "Female";
-  $values['field-date'] = "12.34.2004";
-  $values['favorite-langs'] = "PHP";
-  $values['bio'] = "бубубу";
-  $values['check-1'] = "1";
-
-
-  $users[0] = $values;
-
-  $values = array();
-  $values['id'] = "1";
-  $values['fio'] = "dfsdfs";
-  $values['field-tel'] = "5553535";
-  $values['field-email'] = "hdsj@xsu.com";
-  $values['gender'] = "Male";
-  $values['field-date'] = "12.12.2012";
-  $values['favorite-langs'] = "Pascal,Scala";
-  $values['bio'] = "блпблпблп";
-  $values['check-1'] = "0";
-
-  $users[1] = $values;
-  */
-  
   $user = 'u67344';
   $pass = '7915464';
   $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
@@ -136,6 +105,7 @@ function GetUsers()
         $values['field-date'] = $row['FormDate'];
         $values['bio'] = $row['Biography']; 
         $values['check-1'] = $row['AgreeCheck'];
+        $values['id'] = $row['Id'];
         $formId = $row['Id'];
         $sth = $db->prepare('SELECT LanguageId FROM FormLanguages WHERE FormId = :id');
         $sth->execute(['id' => $formId]);
