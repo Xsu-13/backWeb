@@ -10,7 +10,7 @@
 // PHP хранит логин и пароль в суперглобальном массиве $_SERVER.
 // Подробнее см. стр. 26 и 99 в учебном пособии Веб-программирование и веб-сервисы.
 
-/*
+
 $user = 'u67344';
 $pass = '7915464';
 $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
@@ -25,8 +25,8 @@ $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
     $adminLogin = $row["Login"];
     $adminPass = $row["Password"];
   }
-  */
-
+  
+/*
 if (empty($_SERVER['PHP_AUTH_USER']) ||
     empty($_SERVER['PHP_AUTH_PW']) ||
     $_SERVER['PHP_AUTH_USER'] != 'admin' ||
@@ -36,7 +36,8 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
   print('<h1>401 Требуется авторизация</h1>');
   exit();
 }
-/*
+*/
+
 if (empty($_SERVER['PHP_AUTH_USER']) ||
     empty($_SERVER['PHP_AUTH_PW']) ||
     $_SERVER['PHP_AUTH_USER'] != $adminLogin ||
@@ -46,7 +47,7 @@ if (empty($_SERVER['PHP_AUTH_USER']) ||
   print('<h1>401 Требуется авторизация</h1>');
   exit();
 }
-*/
+
 
 if (isset($_POST))
 { 
@@ -69,9 +70,6 @@ if (isset($_POST))
     header('Location: ./editUser.php');
   } 
 }
-
-
-
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -126,7 +124,7 @@ function GetUsers()
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
   try{
-      $sth = $db->prepare('SELECT FormId, Fio, Phone, Email, FormDate, Gender, Biography, AgreeCheck FROM Forms');
+      $sth = $db->prepare('SELECT Id, Fio, Phone, Email, FormDate, Gender, Biography, AgreeCheck FROM Forms');
       $sth->execute();
       $k = 0;
       $values = array();
@@ -138,7 +136,7 @@ function GetUsers()
         $values['field-date'] = $row['FormDate'];
         $values['bio'] = $row['Biography'];
         $values['check-1'] = $row['AgreeCheck'];
-        $formId = $row['FormId'];
+        $formId = $row['Id'];
         $sth = $db->prepare('SELECT LanguageId FROM FormLanguages WHERE FormId = :id');
         $sth->execute(['id' => $formId]);
         $j = 0;
