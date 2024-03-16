@@ -35,9 +35,9 @@ if (session_start() && !empty($_COOKIE[session_name()])) {
 // В суперглобальном массиве $_SERVER PHP сохраняет некторые заголовки запроса HTTP
 // и другие сведения о клиненте и сервере, например метод текущего запроса $_SERVER['REQUEST_METHOD'].
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-  include("loginPage.php");
   $val = GenerateRandomString();
   setcookie('csrf_token', $val, time() + 30 * 24 * 60 * 60);
+  include("loginPage.php");
 }
 // Иначе, если запрос был методом POST, т.е. нужно сделать авторизацию с записью логина в сессию.
 else {

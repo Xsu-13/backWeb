@@ -61,7 +61,7 @@
       <label><input type="checkbox" class="checkbox" <?php if ($errors['check-1']) {print 'class="error"';} ?> <?php if($values['check-1'] == 1) print "checked" ?> name="check-1" />
         с контрактом ознакомлен(а)</label><br />
       <br />
-      <input type="hidden" name="csrf_form_token" value="<?php echo $_COOKIE['csrf_form_token']; ?>">
+      <input type="hidden" name="csrf_form_token" value="<?=$val?>">
       <input class="button" type="submit" value="Сохранить" />
     </form>
     <?php
