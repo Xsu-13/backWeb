@@ -36,12 +36,13 @@ if (session_start() && !empty($_COOKIE[session_name()])) {
 // и другие сведения о клиненте и сервере, например метод текущего запроса $_SERVER['REQUEST_METHOD'].
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
   include("loginPage.php");
-  $_SESSION['csrf_token'] = GenerateRandomString();
+  $val = GenerateRandomString();
+  setcookie('csrf_token', $val, time() + 30 * 24 * 60 * 60);
 }
 // Иначе, если запрос был методом POST, т.е. нужно сделать авторизацию с записью логина в сессию.
 else {
   
-  if($_POST['csrf_token'] != $_SESSION['csrf_token'])
+  if($_POST['csrf_token'] != $_COOKIE['csrf_token'])
   {
     print("csrf_attack");
     exit();

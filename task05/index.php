@@ -161,7 +161,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     printf('Вход с логином %s', $_SESSION['login']);
   }
 
-  $_SESSION['csrf_form_token'] = GenerateRandomString();
+  $val = GenerateRandomString();
+  setcookie('csrf_form_token', $val, time() + 30 * 24 * 60 * 60);
   // Включаем содержимое файла form.php.
   // В нем будут доступны переменные $messages, $errors и $values для вывода
   // сообщений, полей с ранее заполненными данными и признаками ошибок.
@@ -170,7 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 else {
 
-  if($_POST['csrf_form_token'] != $_SESSION['csrf_form_token'])
+  if($_POST['csrf_form_token'] != $_COOKIE['csrf_form_token'])
   {
     print("csrf attack");
     exit();
