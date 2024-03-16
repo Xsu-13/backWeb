@@ -2,6 +2,7 @@
   <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'">
     <style>
 /* Сообщения об ошибках и поля с ошибками выводим с красным бордюром. */
 .error {
@@ -60,6 +61,7 @@
       <label><input type="checkbox" class="checkbox" <?php if ($errors['check-1']) {print 'class="error"';} ?> <?php if($values['check-1'] == 1) print "checked" ?> name="check-1" />
         с контрактом ознакомлен(а)</label><br />
       <br />
+      <input type="hidden" name="csrf_form_token" value="<?php echo $_SESSION['csrf_form_token']; ?>">
       <input class="button" type="submit" value="Сохранить" />
     </form>
     <?php

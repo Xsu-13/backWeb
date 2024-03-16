@@ -161,6 +161,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     printf('Вход с логином %s', $_SESSION['login']);
   }
 
+  $_SESSION['csrf_form_token'] = GenerateRandomString();
   // Включаем содержимое файла form.php.
   // В нем будут доступны переменные $messages, $errors и $values для вывода
   // сообщений, полей с ранее заполненными данными и признаками ошибок.
@@ -168,6 +169,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 }
 // Иначе, если запрос был методом POST, т.е. нужно проверить данные и сохранить их в XML-файл.
 else {
+
+  if($_POST['csrf_form_token'] != $_SESSION['csrf_form_token'])
+  {
+    print("csrf attack");
+    exit();
+  }
+
   // Проверяем ошибки.
   $fioExp = '/^[\p{Cyrillic}a-zA-Z\s]{3,150}$/u';
   $telExp = "/^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$/";
@@ -175,14 +183,14 @@ else {
   $genderExp = '/^(Male||Female)$/';
   $bioExp = '/^(.*?){10,300}$/';
 
-  $fioValue = $_POST['fio'];
-  $tel = $_POST['field-tel'];
-  $email = $_POST['field-email'];
-  $gender = $_POST['gender'];
-  $check = !empty($_POST['check-1']);
-  $bio = $_POST['bio'];
+  $fioValue = htmlspecialchars($_POST['fio'], ENT_QUOTES, 'UTF-8');
+  $tel = htmlspecialchars($_POST['field-tel'], ENT_QUOTES, 'UTF-8');
+  $email = htmlspecialchars($_POST['field-email'], ENT_QUOTES, 'UTF-8');
+  $gender = htmlspecialchars($_POST['gender'], ENT_QUOTES, 'UTF-8');
+  $check = !empty(htmlspecialchars($_POST['check-1'], ENT_QUOTES, 'UTF-8'));
+  $bio = htmlspecialchars($_POST['bio'], ENT_QUOTES, 'UTF-8');
   $langs = !empty($_POST['favorite-langs'])?$_POST['favorite-langs']:null;
-  $date = $_POST['field-date'];
+  $date = htmlspecialchars($_POST['field-date'], ENT_QUOTES, 'UTF-8');
 
   $langsValue = '';
   if($langs != null && !empty($langs))

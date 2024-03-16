@@ -11,6 +11,7 @@
         <form action="" method="post">
             <input name="login" />
             <input name="pass" />
+            <input type="hidden" name="csrf_token" value="<?php echo $_SESSION['csrf_token']; ?>">
             <input type="submit" value="Войти" />
         </form>
     </div>

@@ -35,21 +35,27 @@ if (session_start() && !empty($_COOKIE[session_name()])) {
 // В суперглобальном массиве $_SERVER PHP сохраняет некторые заголовки запроса HTTP
 // и другие сведения о клиненте и сервере, например метод текущего запроса $_SERVER['REQUEST_METHOD'].
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-include("loginPage.php");
+  include("loginPage.php");
+  $_SESSION['csrf_token'] = GenerateRandomString();
 }
 // Иначе, если запрос был методом POST, т.е. нужно сделать авторизацию с записью логина в сессию.
 else {
-  // TODO: Проверть есть ли такой логин и пароль в базе данных.
   
-
+  if($_POST['csrf_token'] != $_SESSION['csrf_token'])
+  {
+    print("csrf_attack");
+    exit();
+  }
+  
+  // TODO: Проверть есть ли такой логин и пароль в базе данных.
   $user = 'u67344';
   $pass = '7915464';
   $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
   $passDB = null;
-  $login = $_POST['login'];
-  $pass = $_POST['pass'];
+  $login = htmlspecialchars($_POST['login'], ENT_QUOTES, 'UTF-8');
+  $pass = htmlspecialchars($_POST['pass'], ENT_QUOTES, 'UTF-8');
   $shapass = sha1($pass);
   try{
     $sth = $db->prepare('SELECT Password FROM Users WHERE Login = :login');
@@ -82,4 +88,13 @@ else {
   // Записываем ID пользователя.
   //$_SESSION['uid'] = 123;
   
+}
+
+function GenerateRandomString($length = 8) {
+  $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+  $str = '';
+  for ($i = 0; $i < $length; $i++) {
+      $str .= $characters[rand(0, strlen($characters) - 1)];
+  }
+  return $str;
 }
