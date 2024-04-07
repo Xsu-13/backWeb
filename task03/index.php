@@ -81,9 +81,10 @@ if ($errors) {
 
 
 // Сохранение в базу данных.
-
-$user = 'u67344'; // Заменить на ваш логин uXXXXX
-$pass = '7915464'; // Заменить на пароль, такой же, как от SSH
+include("global.php");
+ 
+$user = $GLOBALS['sqlLogin']; 
+$pass = $GLOBALS['sqlPass']; 
 $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
   [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]); // Заменить test на имя БД, совпадает с логином uXXXXX
 
