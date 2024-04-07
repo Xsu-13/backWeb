@@ -18,6 +18,6 @@ li {margin-bottom: 0.3em;}
 
 <?php
 foreach ($c['#content'] as $content) {
-  echo $content;
+  echo $content.' ';
 }
 ?>

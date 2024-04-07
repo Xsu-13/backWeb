@@ -10,7 +10,10 @@ function front_get($request) {
   //return access_denied();
   // Пример возврата ресурс не найден.
   //return not_found();
-  return home();
+  $c = array();
+  $c['#content'] = ['1', '2', '3'];
+
+  return theme("page", $c);
 }
 
 // Обработчик запросов методом POST.
