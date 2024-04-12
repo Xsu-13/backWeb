@@ -8,6 +8,7 @@
 </head>
 <script>
     var type = "film";
+    SetInvisible();
     ChangeTable(type);
     var filmsTable = document.getElementById("films");
     var clientsTable = document.getElementById("clients");
@@ -76,6 +77,7 @@
             <th>Имя</th>
             <th>Телефон</th>
             <th>Почта</th>
+            <th>Действия</th>
         </tr>
     </thead>
     <tbody>
@@ -101,6 +103,7 @@
             <th>Имя</th>
             <th>Телефон</th>
             <th>Почта</th>
+            <th>Действия</th>
         </tr>
     </thead>
     <tbody>
