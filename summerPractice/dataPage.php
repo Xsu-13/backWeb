@@ -9,9 +9,9 @@
 <body>
 <div class="navbar">
     <ul>
-        <li><button onclick="<?php $type='film'; include("./dataPage.php");?>">Фильмы</button></li>
-        <li><button onclick="<?php $type='client'; include("./dataPage.php");?>">Клиенты</button></li>
-        <li><button onclick="<?php $type='librarian'; include("./dataPage.php");?>">Библиотекари</button></li>
+        <li><button onclick="<?php $type='film'; header("Location: ./dataPage.php");?>">Фильмы</button></li>
+        <li><button onclick="<?php $type='client'; include("Location: ./dataPage.php");?>">Клиенты</button></li>
+        <li><button onclick="<?php $type='librarian'; include("Location: ./dataPage.php");?>">Библиотекари</button></li>
     </ul>
 </div>
 <?php if ($type = "film"): ?>
