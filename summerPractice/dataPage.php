@@ -6,16 +6,41 @@
     <link rel="stylesheet" href="dataStyle.css">
     <title>Административная панель</title>
 </head>
+<script>
+    var type = "film";
+    ChangeTable(type);
+    var filmsTable = document.getElementById("films");
+    var clientsTable = document.getElementById("clients");
+    var librariansTable = document.getElementById("librarians");
+
+    function ChangeTable(t)
+    {
+        SetInvisible();
+        if(t == "film")
+            filmsTable.style.visibility = true;
+        else if(t == "client")
+            clientsTable.style.visibility = true;
+        else
+            librariansTable.style.visibility = true;
+
+    }
+
+    function SetInvisible()
+    {
+        filmsTable.style.visibility = false;
+        clientsTable.style.visibility = false;
+        librariansTable.style.visibility = false;
+    }
+</script>
 <body>
 <div class="navbar">
     <ul>
-        <li><button onclick="<?php $type='film'; header("Location: ./dataPage.php");?>">Фильмы</button></li>
-        <li><button onclick="<?php $type='client'; header("Location: ./dataPage.php");?>">Клиенты</button></li>
-        <li><button onclick="<?php $type='librarian'; header("Location: ./dataPage.php");?>">Библиотекари</button></li>
+        <li><button onclick="ChangeTable('film')">Фильмы</button></li>
+        <li><button onclick="ChangeTable('client')">Клиенты</button></li>
+        <li><button onclick="ChangeTable('librarian')">Библиотекари</button></li>
     </ul>
 </div>
-<?php if ($type = "film"): ?>
-    <table class="film-table">
+<table class="film-table" id="films">
     <thead>
         <tr>
             <th>Название</th>
@@ -45,8 +70,7 @@
         <?php endforeach; ?>
     </tbody>
 </table>
-<?php elseif($type = "librarian"): ?>
-    <table class="film-table">
+<table class="film-table" id="librarians">
     <thead>
         <tr>
             <th>Имя</th>
@@ -71,8 +95,7 @@
         <?php endforeach; ?>
     </tbody>
 </table>
-<?php elseif($type = "client"): ?>
-    <table class="film-table">
+<table class="film-table" id="clients">
     <thead>
         <tr>
             <th>Имя</th>
@@ -97,6 +120,4 @@
         <?php endforeach; ?>
     </tbody>
 </table>
-<?php endif; ?>
-
 </body>
