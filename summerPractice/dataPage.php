@@ -6,35 +6,6 @@
     <link rel="stylesheet" href="dataStyle.css">
     <title>Административная панель</title>
 </head>
-<script>
-    var type = "film";
-    document.addEventListener("DOMContentLoaded", (event) => {
-        var filmsTable = document.getElementById("films");
-        var clientsTable = document.getElementById("clients");
-        var librariansTable = document.getElementById("librarians");
-    });
-    
-    SetInvisible();
-    ChangeTable(type);
-
-    function ChangeTable(t)
-    {
-        SetInvisible();
-        if(t == "film")
-            filmsTable.style.visibility = true;
-        else if(t == "client")
-            clientsTable.style.visibility = true;
-        else
-            librariansTable.style.visibility = true;
-    }
-
-    function SetInvisible()
-    {
-        filmsTable.style.visibility = false;
-        clientsTable.style.visibility = false;
-        librariansTable.style.visibility = false;
-    }
-</script>
 <body>
 <div class="navbar">
     <ul>
@@ -125,4 +96,31 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+<script>
+    var type = "film";
+        var filmsTable = document.getElementById("films");
+        var clientsTable = document.getElementById("clients");
+        var librariansTable = document.getElementById("librarians");
+    
+    SetInvisible();
+    ChangeTable(type);
+
+    function ChangeTable(t)
+    {
+        SetInvisible();
+        if(t == "film")
+            filmsTable.style.visibility = true;
+        else if(t == "client")
+            clientsTable.style.visibility = true;
+        else
+            librariansTable.style.visibility = true;
+    }
+
+    function SetInvisible()
+    {
+        filmsTable.style.visibility = false;
+        clientsTable.style.visibility = false;
+        librariansTable.style.visibility = false;
+    }
+</script>
 </body>
