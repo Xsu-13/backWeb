@@ -17,14 +17,27 @@
     {
         try{
             $sth = $db->prepare('SELECT * FROM films');
-            $result = array();
+            $films = array();
             $result = $sth->execute();
+            $row = $sth->fetchAll();
+            for($h = 0; $h < count($row); $h++) {
+                $result = array();
+                $result['fio'] = $row[$h]['Fio'];
+                $result['field-tel'] = $row[$h]['Phone'];
+                $result['field-email'] = $row[$h]['Email'];
+                $result['gender'] = $row[$h]['Gender'];
+                $result['field-date'] = $row[$h]['FormDate'];
+                $result['bio'] = $row[$h]['Biography']; 
+                $result['check-1'] = $row[$h]['AgreeCheck'];
+                $result['id'] = $row[$h]['Id'];
+                $films[$h] = $result;
+            }
           }
           catch(PDOException $e){
             print_r($e->getTrace());
             exit();
           }
-          return $result;
+          return $films;
     }
 
     function DeleteFilm($db, $id)
