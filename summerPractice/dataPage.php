@@ -8,11 +8,12 @@
 </head>
 <script>
     var type = "film";
-    SetInvisible();
-    ChangeTable(type);
     var filmsTable = document.getElementById("films");
     var clientsTable = document.getElementById("clients");
     var librariansTable = document.getElementById("librarians");
+    SetInvisible();
+    ChangeTable(type);
+    
 
     function ChangeTable(t)
     {
