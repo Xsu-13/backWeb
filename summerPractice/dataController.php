@@ -8,7 +8,11 @@
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $type = "film";
         $films = array();
+        $clients = array();
+        $librarians = array();
         $films = GetFilms($db);
+        $clients = GetClients($db);
+        $librarians = GetLibrarians($db);
         include("dataPage.php");
       }
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -56,6 +60,50 @@
             exit();
           }
           return $films;
+    }
+    function GetClients($db)
+    {
+        try{
+            $sth = $db->prepare('SELECT * FROM clients');
+            $clients = array();
+            $result = $sth->execute();
+            $row = $sth->fetchAll();
+            for($h = 0; $h < count($row); $h++) {
+                $result = array();
+                $result['client_id'] = $row[$h]['client_id'];
+                $result['name'] = $row[$h]['name'];
+                $result['phone'] = $row[$h]['phone'];
+                $result['email'] = $row[$h]['email'];
+                $clients[$h] = $result;
+            }
+          }
+          catch(PDOException $e){
+            print_r($e->getTrace());
+            exit();
+          }
+          return $clients;
+    }
+    function GetLibrarians($db)
+    {
+        try{
+            $sth = $db->prepare('SELECT * FROM librarians');
+            $librarians = array();
+            $result = $sth->execute();
+            $row = $sth->fetchAll();
+            for($h = 0; $h < count($row); $h++) {
+                $result = array();
+                $result['librarian_id'] = $row[$h]['librarian_id'];
+                $result['name'] = $row[$h]['name'];
+                $result['phone'] = $row[$h]['phone'];
+                $result['email'] = $row[$h]['email'];
+                $librarians[$h] = $result;
+            }
+          }
+          catch(PDOException $e){
+            print_r($e->getTrace());
+            exit();
+          }
+          return $librarians;
     }
 
     function DeleteFilm($db, $id)
