@@ -9,9 +9,9 @@
 <body>
 <div class="navbar">
     <ul>
-        <li><button onclick="ChangeTable('film')">Фильмы</button></li>
-        <li><button onclick="ChangeTable('client')">Клиенты</button></li>
-        <li><button onclick="ChangeTable('librarian')">Библиотекари</button></li>
+        <li><button onclick="<?php $type='film'; include("./dataPage.php");?>">Фильмы</button></li>
+        <li><button onclick="<?php $type='client'; include("./dataPage.php");?>">Клиенты</button></li>
+        <li><button onclick="<?php $type='librarian'; include("./dataPage.php");?>">Библиотекари</button></li>
     </ul>
 </div>
 <?php if ($type = "film"): ?>
@@ -100,9 +100,3 @@
 <?php endif; ?>
 
 </body>
-<?php
-    function ChangeTable($t)
-    {
-        $type = $t;
-    }
-?>
