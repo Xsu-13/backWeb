@@ -14,6 +14,7 @@
         if(isset($_POST["Delete"])){
             DeleteFilm($db, $_POST["film_id"]);
           } 
+          header('Location: ./dataController.php');
     }
 
     function GetFilms($db)
