@@ -15,6 +15,16 @@
           header('Location: ./dataController.php');
           exit();
         }
+        if(isset($_POST["AddLibrarian"])){
+          SaveLibrarien($db);
+          header('Location: ./dataController.php');
+          exit();
+        }
+        if(isset($_POST["AddFilm"])){
+          SaveFilm($db);
+          header('Location: ./dataController.php');
+          exit();
+        }
       }
     
     function SaveClient($db)

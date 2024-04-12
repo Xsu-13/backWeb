@@ -41,7 +41,7 @@
                     <label for="librarian_phone">Телефон:</label>
                     <input type="text" id="librarian_phone" name="librarian_phone" required>
                 </div>
-                <input type="submit" value="Добавить библиотекаря">
+                <input type="submit" value="Добавить библиотекаря" name="AddLibrarian">
             </form>
         </div>
     </div>
@@ -63,7 +63,7 @@
             <label for="description">Описание:</label>
             <textarea id="description" name="description" required></textarea>
     
-            <input type="submit" value="Добавить">
+            <input type="submit" value="Добавить фильм" name="AddFilm">
         </form>
     </div>
 </body>
