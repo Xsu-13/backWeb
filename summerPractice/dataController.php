@@ -17,6 +17,7 @@
           } 
           
         if(isset($_POST["Edit"])){
+            $currentFilm = array();
             $currentFilm = GetFilmById($db, $id);
             include('editFilm.php');
           } 
