@@ -10,20 +10,21 @@
 <div class="film-container">
         <h2>Изменить фильм</h2>
         <form action="" method="POST">
+            <input name="film_id" value="<?php echo $film['film_id']; ?>" type="hidden" />
             <label for="title">Название:</label>
-            <input type="text" id="title" name="title" required>
+            <input type="text" id="title" name="title" value="<?php echo $film['title']; ?>" required>
     
             <label for="director">Режиссёр:</label>
-            <input type="text" id="director" name="director" required>
+            <input type="text" id="director" name="director" value="<?php echo $film['director']; ?>" required>
     
             <label for="year">Год выпуска:</label>
-            <input type="number" id="year" name="year" required>
+            <input type="number" id="year" name="year" value="<?php echo $film['year']; ?>" required>
     
             <label for="genre">Жанр:</label>
-            <input type="text" id="genre" name="genre" required>
+            <input type="text" id="genre" name="genre" value="<?php echo $film['genre']; ?>" required>
     
             <label for="description">Описание:</label>
-            <textarea id="description" name="description" required></textarea>
+            <textarea id="description" name="description" required><?php echo $currentFilm["description"]?></textarea>
     
             <input type="submit" value="Изменить" name="UpdateFilm">
         </form>

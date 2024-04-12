@@ -13,8 +13,14 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(isset($_POST["Delete"])){
             DeleteFilm($db, $_POST["film_id"]);
+            header('Location: ./dataController.php');
           } 
-          header('Location: ./dataController.php');
+          
+        if(isset($_POST["Edit"])){
+            $currentFilm = GetFilmById($db, $id);
+            include('editFilm.php');
+          } 
+          
     }
 
     function GetFilms($db)
@@ -54,5 +60,22 @@
             print_r($e->getTrace());
             exit();
           }
+    }
+
+    function GetFilmById($db, $id)
+    {
+        $result = array();
+        $sth = $db->prepare('SELECT * FROM films WHERE film_id = :id');
+        $sth->execute(["id" => $id]);
+            while($row = $sth->fetch()) {
+                $result = array();
+                $result['film_id'] = $row['film_id'];
+                $result['title'] = $row['title'];
+                $result['director'] = $row['director'];
+                $result['year'] = $row['year'];
+                $result['genre'] = $row['genre'];
+                $result['description'] = $row['description']; 
+            }
+        return $result;
     }
 ?>
