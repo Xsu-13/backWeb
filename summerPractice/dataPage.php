@@ -114,18 +114,18 @@
     {
         SetInvisible();
         if(t == "film")
-            filmsTable.style.display = block;
+            filmsTable.style.display = "block";
         else if(t == "client")
-            clientsTable.style.display = block;
+            clientsTable.style.display = "block";
         else
-            librariansTable.style.display = block;
+            librariansTable.style.display = "block";
     }
 
     function SetInvisible()
     {
-        filmsTable.style.display = none;
-        clientsTable.style.display = none;
-        librariansTable.style.display = none;
+        filmsTable.style.display = "none";
+        clientsTable.style.display = "none";
+        librariansTable.style.display = "none";
     }
 </script>
 </body>
