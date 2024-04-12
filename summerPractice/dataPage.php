@@ -98,10 +98,13 @@
 </table>
 <script>
         var type = "film";
-        var filmsTable = document.getElementById("films");
-        var clientsTable = document.getElementById("clients");
-        var librariansTable = document.getElementById("librarians");
+        var filmsTable; 
+        var clientsTable; 
+        var librariansTable;
         document.addEventListener("DOMContentLoaded", (event) => {
+            filmsTable = document.getElementById("films");
+            clientsTable = document.getElementById("clients");
+            librariansTable = document.getElementById("librarians");
             SetInvisible();
             ChangeTable(type);
         });
