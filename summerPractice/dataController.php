@@ -6,17 +6,26 @@
     [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+        $type = "film";
         $films = array();
         $films = GetFilms($db);
-        include("dataPage.php");
+        include("films.php");
       }
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if(isset($_POST["Delete"])){
+        if(isset($_POST["DeleteFilm"])){
             DeleteFilm($db, $_POST["film_id"]);
             header('Location: ./dataController.php');
           } 
+        if(isset($_POST["DeleteClient"])){
+            DeleteClient($db, $_POST["client_id"]);
+            header('Location: ./dataController.php');
+          } 
+        if(isset($_POST["DeleteLibrarian"])){
+            DeleteLibrarian($db, $_POST["librarian_id"]);
+            header('Location: ./dataController.php');
+          } 
           
-        if(isset($_POST["Edit"])){
+        if(isset($_POST["EditFilm"])){
             $currentFilm = array();
             $currentFilm = GetFilmById($db, $id);
             include('editFilm.php');
@@ -55,6 +64,34 @@
             $sth = $db->prepare('DELETE FROM films WHERE film_id = :id');
             $sth->execute(['id' => $id]);
             $sth = $db->prepare('DELETE FROM issue_log WHERE film_id = :id');
+            $sth->execute(['id' => $id]);
+          }
+          catch(PDOException $e){
+            print_r($e->getTrace());
+            exit();
+          }
+    }
+
+    function DeleteClient($db, $id)
+    {
+        try{
+            $sth = $db->prepare('DELETE FROM clients WHERE client_id = :id');
+            $sth->execute(['id' => $id]);
+            $sth = $db->prepare('DELETE FROM issue_log WHERE client_id = :id');
+            $sth->execute(['id' => $id]);
+          }
+          catch(PDOException $e){
+            print_r($e->getTrace());
+            exit();
+          }
+    }
+
+    function DeleteLibrarian($db, $id)
+    {
+        try{
+            $sth = $db->prepare('DELETE FROM librarian WHERE librarian_id = :id');
+            $sth->execute(['id' => $id]);
+            $sth = $db->prepare('DELETE FROM issue_log WHERE librarian_id = :id');
             $sth->execute(['id' => $id]);
           }
           catch(PDOException $e){
