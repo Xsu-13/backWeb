@@ -13,10 +13,12 @@
     var librariansTable = document.getElementById("librarians");
     SetInvisible();
     ChangeTable(type);
-    
 
     function ChangeTable(t)
     {
+        var filmsTable = document.getElementById("films");
+        var clientsTable = document.getElementById("clients");
+        var librariansTable = document.getElementById("librarians");
         SetInvisible();
         if(t == "film")
             filmsTable.style.visibility = true;
@@ -24,11 +26,13 @@
             clientsTable.style.visibility = true;
         else
             librariansTable.style.visibility = true;
-
     }
 
     function SetInvisible()
     {
+        var filmsTable = document.getElementById("films");
+        var clientsTable = document.getElementById("clients");
+        var librariansTable = document.getElementById("librarians");
         filmsTable.style.visibility = false;
         clientsTable.style.visibility = false;
         librariansTable.style.visibility = false;
