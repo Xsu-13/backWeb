@@ -22,14 +22,12 @@
             $row = $sth->fetchAll();
             for($h = 0; $h < count($row); $h++) {
                 $result = array();
-                $result['fio'] = $row[$h]['Fio'];
-                $result['field-tel'] = $row[$h]['Phone'];
-                $result['field-email'] = $row[$h]['Email'];
-                $result['gender'] = $row[$h]['Gender'];
-                $result['field-date'] = $row[$h]['FormDate'];
-                $result['bio'] = $row[$h]['Biography']; 
-                $result['check-1'] = $row[$h]['AgreeCheck'];
-                $result['id'] = $row[$h]['Id'];
+                $result['film_id'] = $row[$h]['film_id'];
+                $result['title'] = $row[$h]['title'];
+                $result['director'] = $row[$h]['director'];
+                $result['year'] = $row[$h]['year'];
+                $result['genre'] = $row[$h]['genre'];
+                $result['description'] = $row[$h]['description']; 
                 $films[$h] = $result;
             }
           }
