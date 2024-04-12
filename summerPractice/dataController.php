@@ -8,10 +8,13 @@
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $films = array();
         $films = GetFilms($db);
-        //$films = [["title"=> "dhshd", "film_id"=>"1","director"=>"kjdshj", "year"=>"2003", "genre"=>"dsjhjds", "description" => "djskjjkdsg"],["film_id"=>"2","title"=> "dddddddddd", "director"=>"kjdshj", "year"=>"2003", "genre"=>"dsjhjds", "description" => "hhhhhhhh"]];
         include("dataPage.php");
       }
-
+    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if(isset($_POST["Delete"])){
+            DeleteFilm($db, $_POST["film_id"]);
+          } 
+    }
 
     function GetFilms($db)
     {
