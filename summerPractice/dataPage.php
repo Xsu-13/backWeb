@@ -30,7 +30,7 @@
                 <form action="" method="post">
                     <button class="btn edit-btn" name="Edit" type="submit">Редактировать</button>
                     <button class="btn delete-btn" name="Delete" type="submit">Удалить</button>
-                    <input name="Id" value="<?php echo $film['film_id']; ?>" type="hidden" />
+                    <input name="film_id" value="<?php echo $film['film_id']; ?>" type="hidden" />
                 </form>
             </td>
         </tr>
