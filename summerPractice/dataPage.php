@@ -97,30 +97,32 @@
     </tbody>
 </table>
 <script>
-    var type = "film";
+        var type = "film";
         var filmsTable = document.getElementById("films");
         var clientsTable = document.getElementById("clients");
         var librariansTable = document.getElementById("librarians");
+        document.addEventListener("DOMContentLoaded", (event) => {
+            SetInvisible();
+            ChangeTable(type);
+        });
     
-    SetInvisible();
-    ChangeTable(type);
 
     function ChangeTable(t)
     {
         SetInvisible();
         if(t == "film")
-            filmsTable.style.visibility = true;
+            filmsTable.style.display = block;
         else if(t == "client")
-            clientsTable.style.visibility = true;
+            clientsTable.style.display = block;
         else
-            librariansTable.style.visibility = true;
+            librariansTable.style.display = block;
     }
 
     function SetInvisible()
     {
-        filmsTable.style.visibility = false;
-        clientsTable.style.visibility = false;
-        librariansTable.style.visibility = false;
+        filmsTable.style.display = none;
+        clientsTable.style.display = none;
+        librariansTable.style.display = none;
     }
 </script>
 </body>
