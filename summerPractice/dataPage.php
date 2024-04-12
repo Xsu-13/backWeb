@@ -10,8 +10,8 @@
 <div class="navbar">
     <ul>
         <li><button onclick="<?php $type='film'; header("Location: ./dataPage.php");?>">Фильмы</button></li>
-        <li><button onclick="<?php $type='client'; include("Location: ./dataPage.php");?>">Клиенты</button></li>
-        <li><button onclick="<?php $type='librarian'; include("Location: ./dataPage.php");?>">Библиотекари</button></li>
+        <li><button onclick="<?php $type='client'; header("Location: ./dataPage.php");?>">Клиенты</button></li>
+        <li><button onclick="<?php $type='librarian'; header("Location: ./dataPage.php");?>">Библиотекари</button></li>
     </ul>
 </div>
 <?php if ($type = "film"): ?>
