@@ -7,5 +7,11 @@
     <title>Административная панель</title>
 </head>
 <body>
+    <?php
+        foreach($films as $film)
+        {
+            print($film["title"]);
+        }
+    ?>
     Saved
 </body>

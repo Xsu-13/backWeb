@@ -35,7 +35,7 @@
     {
       try{
         $stmt = $db->prepare("INSERT INTO librarians (name, email, phone) VALUES (:namedb, :emaildb, :phonedb)");
-        $stmt -> execute(['namedb'=>$_POST["client_name"], 'emaildb'=>$_POST["client_email"], 'phonedb'=>$_POST["client_phone"]]);
+        $stmt -> execute(['namedb'=>$_POST["librarian_name"], 'emaildb'=>$_POST["librarian_email"], 'phonedb'=>$_POST["librarian_phone"]]);
       }
       catch(PDOException $e){
         print('Error : ' . $e->getMessage());
@@ -47,8 +47,8 @@
     function SaveFilm($db)
     {
       try{
-        $stmt = $db->prepare("INSERT INTO librarians (name, email, phone) VALUES (:namedb, :emaildb, :phonedb)");
-        $stmt -> execute(['namedb'=>$_POST["client_name"], 'emaildb'=>$_POST["client_email"], 'phonedb'=>$_POST["client_phone"]]);
+        $stmt = $db->prepare("INSERT INTO films (title, director, year, genre, description) VALUES (:titledb, :directordb, :yeardb, :genredb, :descriptiondb)");
+        $stmt -> execute(['titledb'=>$_POST["title"], 'directordb'=>$_POST["director"], 'yeardb'=>$_POST["year"], 'genredb'=>$_POST["genre"], 'descriptiondb'=>$_POST["description"]]);
       }
       catch(PDOException $e){
         print('Error : ' . $e->getMessage());
