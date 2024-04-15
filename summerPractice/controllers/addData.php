@@ -1,4 +1,7 @@
 <?php 
+
+    include("../database/databaseService.php");
+
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         include("addDataPage.php");
       }
