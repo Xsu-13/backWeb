@@ -31,7 +31,7 @@
           
         if(isset($_POST["EditFilm"])){
             $currentFilm = array();
-            $currentFilm = GetFilmById($db, $id);
+            $currentFilm = GetFilmById($db, $_POST["film_id"]);
             include('editFilm.php');
           } 
           
