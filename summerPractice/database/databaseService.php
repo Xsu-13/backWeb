@@ -4,9 +4,9 @@
 function getDb()
 {
     include("global.php");
-    $user = $GLOBALS['sqlLogin']; 
-    $pass = $GLOBALS['sqlPass']; 
-    $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
+    global $sqlLogin; 
+    global $sqlPass; 
+    $db = new PDO('mysql:host=localhost;dbname=u67344', $sqlLogin, $sqlPass,
         [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
     return $db;
