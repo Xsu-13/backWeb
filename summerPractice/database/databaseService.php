@@ -3,7 +3,7 @@
 
 function getDb()
 {
-    include("../global.php");
+    include("global.php");
     $user = $GLOBALS['sqlLogin']; 
     $pass = $GLOBALS['sqlPass']; 
     $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
