@@ -1,40 +1,60 @@
-<?php 
-    
-    $user = 'u67344'; 
-    $pass = '7915464'; 
-    $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
-    [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+<?php
+$user = 'u67344'; 
+$pass = '7915464'; 
+$db = null;
 
-    if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-        $type = "film";
-        $films = array();
-        $clients = array();
-        $librarians = array();
-        $films = GetFilms($db);
-        $clients = GetClients($db);
-        $librarians = GetLibrarians($db);
-        include("dataPage.php");
+function getDb()
+{
+    if($GLOBALS['db'] == null)
+    {
+        include("global.php");
+        $user = $GLOBALS['sqlLogin']; 
+        $pass = $GLOBALS['sqlPass']; 
+        $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
+        [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
+    }
+
+    return $db;
+}
+
+function SaveClient($db)
+    {
+      
+      try{
+        $stmt = $db->prepare("INSERT INTO clients (name, email, phone) VALUES (:namedb, :emaildb, :phonedb)");
+        $stmt -> execute(['namedb'=>$_POST["client_name"], 'emaildb'=>$_POST["client_email"], 'phonedb'=>$_POST["client_phone"]]);
       }
-    if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if(isset($_POST["DeleteFilm"])){
-            DeleteFilm($db, $_POST["film_id"]);
-            header('Location: ./dataController.php');
-          } 
-        if(isset($_POST["DeleteClient"])){
-            DeleteClient($db, $_POST["client_id"]);
-            header('Location: ./dataController.php');
-          } 
-        if(isset($_POST["DeleteLibrarian"])){
-            DeleteLibrarian($db, $_POST["librarian_id"]);
-            header('Location: ./dataController.php');
-          } 
-          
-        if(isset($_POST["EditFilm"])){
-            $currentFilm = array();
-            $currentFilm = GetFilmById($db, $_POST["film_id"]);
-            include('editFilm.php');
-          } 
-          
+      catch(PDOException $e){
+        print('Error : ' . $e->getMessage());
+        print_r($e->getTrace());
+      }
+      
+    }
+
+    function SaveLibrarien($db)
+    {
+      try{
+        $stmt = $db->prepare("INSERT INTO librarians (name, email, phone) VALUES (:namedb, :emaildb, :phonedb)");
+        $stmt -> execute(['namedb'=>$_POST["librarian_name"], 'emaildb'=>$_POST["librarian_email"], 'phonedb'=>$_POST["librarian_phone"]]);
+      }
+      catch(PDOException $e){
+        print('Error : ' . $e->getMessage());
+        print_r($e->getTrace());
+      }
+        
+    }
+
+    function SaveFilm($db)
+    {
+      try{
+        $stmt = $db->prepare("INSERT INTO films (title, director, year, genre, description) VALUES (:titledb, :directordb, :yeardb, :genredb, :descriptiondb)");
+        $stmt -> execute(['titledb'=>$_POST["title"], 'directordb'=>$_POST["director"], 'yeardb'=>$_POST["year"], 'genredb'=>$_POST["genre"], 'descriptiondb'=>$_POST["description"]]);
+      }
+      catch(PDOException $e){
+        print('Error : ' . $e->getMessage());
+        print_r($e->getTrace());
+      }
+        
     }
 
     function GetFilms($db)
@@ -161,6 +181,36 @@
                 $result['year'] = $row['year'];
                 $result['genre'] = $row['genre'];
                 $result['description'] = $row['description']; 
+            }
+        return $result;
+    }
+
+    function GetClientById($db, $id)
+    {
+        $result = array();
+        $sth = $db->prepare('SELECT * FROM clients WHERE client_id = :id');
+        $sth->execute(["id" => $id]);
+            while($row = $sth->fetch()) {
+                $result = array();
+                $result['client_id'] = $row['client_id'];
+                $result['name'] = $row['name'];
+                $result['email'] = $row['email'];
+                $result['phone'] = $row['phone'];
+            }
+        return $result;
+    }
+
+    function GetLibrarianById($db, $id)
+    {
+        $result = array();
+        $sth = $db->prepare('SELECT * FROM librarians WHERE librarian_id = :id');
+        $sth->execute(["id" => $id]);
+            while($row = $sth->fetch()) {
+                $result = array();
+                $result['librarian_id'] = $row['librarian_id'];
+                $result['name'] = $row['name'];
+                $result['email'] = $row['email'];
+                $result['phone'] = $row['phone'];
             }
         return $result;
     }
