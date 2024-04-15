@@ -1,5 +1,6 @@
 <?php 
     include("../database/databaseService.php");
+    $db = getDb();
 
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         $type = "film";
@@ -12,8 +13,6 @@
         include("dataTablePage.php");
       }
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-
-        $db = getDb();
 
         if(isset($_POST["DeleteFilm"])){
             DeleteFilm($db, $_POST["film_id"]);
