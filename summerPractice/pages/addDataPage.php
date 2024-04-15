@@ -10,7 +10,7 @@
     <div class="container">
         <div class="block">
             <h2>Добавить клиента</h2>
-            <form action="adminEditorController.php" method="POST">
+            <form action="" method="POST">
                 <div class="form-group">
                     <label for="client_name">Имя:</label>
                     <input type="text" id="client_name" name="client_name" required>
