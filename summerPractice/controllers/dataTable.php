@@ -1,8 +1,8 @@
 <?php 
     include("../database/databaseService.php");
-    global $sqlLogin; 
-    global $sqlPass; 
-    $db = new PDO('mysql:host=localhost;dbname=u67344', $sqlLogin, $sqlPass,
+    $user = 'u67344'; 
+    $pass = '7915464'; 
+    $db = new PDO('mysql:host=localhost;dbname=u67344', $user, $pass,
     [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
