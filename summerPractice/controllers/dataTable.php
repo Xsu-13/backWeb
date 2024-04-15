@@ -48,6 +48,24 @@
             $currentLibrarian = GetLibrarianById($db, $_POST["librarian_id"]);
             include('../pages/editLibrarian.php');
           } 
+
+          if(isset($_POST["UpdateLibrarian"])){
+            UpdateLibrarian($db, $_POST["librarian_id"], $_POST["librarian_name"], $_POST["librarian_email"], $_POST["librarian_phone"]);
+            header('Location: ./dataTable.php');
+            exit();
+          } 
+
+          if(isset($_POST["UpdateClient"])){
+            UpdateClient($db, $_POST["client_id"],  $_POST["client_name"], $_POST["client_email"], $_POST["client_phone"]);
+            header('Location: ./dataTable.php');
+            exit();
+          } 
+
+          if(isset($_POST["UpdateFilm"])){
+            UpdateFilm($db, $_POST["film_id"],  $_POST["film_title"], $_POST["film_director"], $_POST["film_year"], $_POST["film_genre"], $_POST["film_description"]);
+            header('Location: ./dataTable.php');
+            exit();
+          } 
           
     }
 ?>

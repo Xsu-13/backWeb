@@ -197,4 +197,22 @@ function SaveClient($db)
             }
         return $result;
     }
+
+    function UpdateFilm($db, $id, $title, $director, $year, $genre, $description)
+    {
+        $stmt = $db->prepare("UPDATE films SET title = :title, director = :director, year = :year, genre = :genre, description = :description WHERE film_id = :id");
+        $stmt -> execute(['title'=>$title, 'director'=>$director, 'year'=>$year,'genre'=>$genre,'description'=>$description, 'id'=>$id]);
+    }
+
+    function UpdateClient($db, $id, $name, $email, $phone)
+    {
+        $stmt = $db->prepare("UPDATE clients SET name = :name, email = :email, phone = :phone WHERE client_id = :id");
+        $stmt -> execute(['name'=>$name, 'email'=>$email, 'phone'=>$phone, 'id'=>$id]);
+    }
+
+    function UpdateLibrarian($db, $id, $name, $email, $phone)
+    {
+        $stmt = $db->prepare("UPDATE librarians SET name = :name, email = :email, phone = :phone WHERE librarian_id = :id");
+        $stmt -> execute(['name'=>$name, 'email'=>$email, 'phone'=>$phone, 'id'=>$id]);
+    }
 ?>
