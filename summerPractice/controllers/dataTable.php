@@ -13,7 +13,7 @@
         $films = GetFilms($db);
         $clients = GetClients($db);
         $librarians = GetLibrarians($db);
-        include("dataTablePage.php");
+        include("../pages/dataTablePage.php");
       }
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(isset($_POST["DeleteFilm"])){
