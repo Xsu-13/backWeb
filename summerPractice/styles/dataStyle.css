@@ -37,6 +37,14 @@
     color: white;
 }
 
+.add-btn {
+    background-color: #af9211;
+    color: white;
+    position: relative;
+    left: 0;
+    text-decoration: none;
+}
+
 body{
     padding: 50px;
 }

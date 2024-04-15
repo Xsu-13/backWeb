@@ -13,6 +13,9 @@
         <li><button onclick="ChangeTable('client')">Клиенты</button></li>
         <li><button onclick="ChangeTable('librarian')">Библиотекари</button></li>
     </ul>
+    <a href='../controllers/addData.php' class="btn add-btn">
+        Добавить
+    </a>
 </div>
 <table class="film-table" id="films">
     <thead>
