@@ -1,9 +1,11 @@
 <?php 
     include("../database/databaseService.php");
-    
+    global $sqlLogin; 
+    global $sqlPass; 
+    $db = new PDO('mysql:host=localhost;dbname=u67344', $sqlLogin, $sqlPass,
+    [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-        $db = getDb();
         $type = "film";
         $films = array();
         $clients = array();
@@ -14,8 +16,6 @@
         include("dataTablePage.php");
       }
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        $db = getDb();
-        
         if(isset($_POST["DeleteFilm"])){
             DeleteFilm($db, $_POST["film_id"]);
             header('Location: ./dataTable.php');

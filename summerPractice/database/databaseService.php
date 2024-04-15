@@ -1,17 +1,5 @@
 <?php
 
-function getDb()
-{
-    include("global.php");
-    global $sqlLogin; 
-    global $sqlPass; 
-    print($sqlLogin . " " . $sqlPass);
-    $db = new PDO('mysql:host=localhost;dbname=u67344', $sqlLogin, $sqlPass,
-    [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
-
-    return $db;
-}
-
 function SaveClient($db)
     {
       
