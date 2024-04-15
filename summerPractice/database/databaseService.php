@@ -1,6 +1,4 @@
 <?php
-$user = 'u67344'; 
-$pass = '7915464'; 
 $db = null;
 
 function getDb()
