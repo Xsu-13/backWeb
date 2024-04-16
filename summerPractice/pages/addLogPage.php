@@ -78,10 +78,16 @@
             </tbody>
         </table>
     </div>
+    <form action="" method="post">
+        <input name="clientActive_id" value=<script>print("'"+clientId+"'")</script> type="hidden" />
+        <input name="librarianActive_id" value=<script>print("'"+librarianId+"'")</script> type="hidden" />
+        <input name="filmActive_id" value=<script>print("'"+filmId+"'")</script> type="hidden" />
+        <input type="submit" class="filter-btn" value="Фильтровать">
+    </form>
 
 <script>
     var rows = document.querySelectorAll("#clients tr");
-
+    var clientId = "";
     // Добавляем обработчик события к каждой строке
     rows.forEach(function(row) {
         row.addEventListener("click", function() {
@@ -89,14 +95,14 @@
             rows.forEach(function(row){row.classList.remove("selected")});
             var selectedRow = document.querySelector(".selected");
 
-
+            clientId = selectedRow.getElementsByTagName("input").value;
             // Выделяем выбранную строку
             this.classList.add("selected");
         });
     });
 
     var rows1 = document.querySelectorAll("#librarians tr");
-
+    var librarianId = "";
     // Добавляем обработчик события к каждой строке
     rows1.forEach(function(row) {
         row.addEventListener("click", function() {
@@ -104,14 +110,14 @@
             rows1.forEach(function(row){row.classList.remove("selected")});
             var selectedRow = document.querySelector(".selected");
 
-
+            librarianId = selectedRow.getElementsByTagName("input").value;
             // Выделяем выбранную строку
             this.classList.add("selected");
         });
     });
 
     var rows2 = document.querySelectorAll("#films tr");
-
+    var filmId = "";
     // Добавляем обработчик события к каждой строке
     rows2.forEach(function(row) {
         row.addEventListener("click", function() {
@@ -119,7 +125,7 @@
             rows2.forEach(function(row){row.classList.remove("selected")});
             var selectedRow = document.querySelector(".selected");
 
-
+            filmId = selectedRow.getElementsByTagName("input").value;
             // Выделяем выбранную строку
             this.classList.add("selected");
         });
