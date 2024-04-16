@@ -26,13 +26,7 @@
             <td><?php echo $film['year']; ?></td>
             <td><?php echo $film['genre']; ?></td>
             <td><?php echo $film['description']; ?></td>
-            <td>
-                <form action="" method="post">
-                    <button class="btn edit-btn" name="EditFilm" type="submit">Редактировать</button>
-                    <button class="btn delete-btn" name="DeleteFilm" type="submit">Удалить</button>
-                    <input name="film_id" value="<?php echo $film['film_id']; ?>" type="hidden" />
-                </form>
-            </td>
+            <input name="film_id" value="<?php echo $film['film_id']; ?>" type="hidden" />
         </tr>
         <?php endforeach; ?>
     </tbody>
@@ -52,13 +46,7 @@
             <td><?php echo $librarian['name']; ?></td>
             <td><?php echo $librarian['phone']; ?></td>
             <td><?php echo $librarian['email']; ?></td>
-            <td>
-                <form action="" method="post">
-                    <button class="btn edit-btn" name="EditLibrarian" type="submit">Редактировать</button>
-                    <button class="btn delete-btn" name="DeleteLibrarian" type="submit">Удалить</button>
-                    <input name="librarian_id" value="<?php echo $librarian['librarian_id']; ?>" type="hidden" />
-                </form>
-            </td>
+            <input name="librarian_id" value="<?php echo $librarian['librarian_id']; ?>" type="hidden" />
         </tr>
         <?php endforeach; ?>
     </tbody>
@@ -78,13 +66,7 @@
             <td><?php echo $client['name']; ?></td>
             <td><?php echo $client['phone']; ?></td>
             <td><?php echo $client['email']; ?></td>
-            <td>
-                <form action="" method="post">
-                    <button class="btn edit-btn" name="EditClient" type="submit">Редактировать</button>
-                    <button class="btn delete-btn" name="DeleteClient" type="submit">Удалить</button>
-                    <input name="client_id" value="<?php echo $client['client_id']; ?>" type="hidden" />
-                </form>
-            </td>
+            <input name="client_id" value="<?php echo $client['client_id']; ?>" type="hidden" />
         </tr>
         <?php endforeach; ?>
     </tbody>

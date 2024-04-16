@@ -91,3 +91,7 @@ body{
     display: flex;
     flex-direction: column;
 }
+
+.column-body table{
+    width: 33%;
+}
