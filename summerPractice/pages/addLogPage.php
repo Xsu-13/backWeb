@@ -98,7 +98,7 @@
             var selectedRow = document.querySelector(".selected");
             if(selectedRow != null)
             {
-                var clientId = selectedRow.lastElementChild().value;
+                var clientId = selectedRow.querySelector("#input-id").value;
                 clientInput.value = clientId;
             }
                 
@@ -118,7 +118,7 @@
             var selectedRow = document.querySelector(".selected");
             if(selectedRow != null)
             {
-                var librarianId = selectedRow.lastElementChild().value;
+                var librarianId = selectedRow.querySelector("#input-id").value;
                 librarianInput.value = librarianId;
             }
             
@@ -138,7 +138,7 @@
             var selectedRow = document.querySelector(".selected");
             if(selectedRow != null)
             {
-                var filmId = selectedRow.lastElementChild().value;
+                var filmId = selectedRow.querySelector("#input-id").value;
                 filmInput.value = filmId;
             }
                 
