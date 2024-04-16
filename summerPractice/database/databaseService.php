@@ -152,9 +152,9 @@ function SaveClient($db)
     function DeleteFilm($db, $id)
     {
         try{
-            $sth = $db->prepare('DELETE FROM films WHERE film_id = :id');
-            $sth->execute(['id' => $id]);
             $sth = $db->prepare('DELETE FROM issue_log WHERE film_id = :id');
+            $sth->execute(['id' => $id]);
+            $sth = $db->prepare('DELETE FROM films WHERE film_id = :id');
             $sth->execute(['id' => $id]);
           }
           catch(PDOException $e){
@@ -166,9 +166,9 @@ function SaveClient($db)
     function DeleteClient($db, $id)
     {
         try{
-            $sth = $db->prepare('DELETE FROM clients WHERE client_id = :id');
-            $sth->execute(['id' => $id]);
             $sth = $db->prepare('DELETE FROM issue_log WHERE client_id = :id');
+            $sth->execute(['id' => $id]);
+            $sth = $db->prepare('DELETE FROM clients WHERE client_id = :id');
             $sth->execute(['id' => $id]);
           }
           catch(PDOException $e){
@@ -180,9 +180,9 @@ function SaveClient($db)
     function DeleteLibrarian($db, $id)
     {
         try{
-            $sth = $db->prepare('DELETE FROM librarian WHERE librarian_id = :id');
-            $sth->execute(['id' => $id]);
             $sth = $db->prepare('DELETE FROM issue_log WHERE librarian_id = :id');
+            $sth->execute(['id' => $id]);
+            $sth = $db->prepare('DELETE FROM librarian WHERE librarian_id = :id');
             $sth->execute(['id' => $id]);
           }
           catch(PDOException $e){
