@@ -113,12 +113,12 @@
     <tbody>
         <?php foreach ($logs as $log) : ?>
         <tr class="item_row">
-            <td><?php echo $log['i.issue_date']; ?></td>
-            <td><?php echo $log['i.return_date']; ?></td>
-            <td><?php echo $log['i.return_status']; ?></td>
-            <td><?php echo $log['f.title']; ?></td>
-            <td><?php echo $log['c.name']; ?></td>
-            <td><?php echo $log['l.name']; ?></td>
+            <td><?php echo $log['issue_date']; ?></td>
+            <td><?php echo $log['return_date']; ?></td>
+            <td><?php echo $log['return_status']; ?></td>
+            <td><?php echo $log['title']; ?></td>
+            <td><?php echo $log['clientName']; ?></td>
+            <td><?php echo $log['libName']; ?></td>
             <td>
                 <form action="" method="post">
                     <input name="client_id" value="<?php echo $log['i.issue_id']; ?>" type="hidden" />

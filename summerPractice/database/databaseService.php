@@ -126,19 +126,19 @@ function SaveClient($db)
     function GetLogs($db)
     {
       try{
-        $sth = $db->prepare('SELECT * FROM issue_log i Join films c On i.film_id=c.film_id Join librarians l On i.librarian_id=l.librarian_id Join clients c On i.client_id=c.client');
+        $sth = $db->prepare('SELECT issue_id, issue_date, return_date, return_status, title, c.name as clientName, l.name as libName FROM issue_log i Join films f On i.film_id=f.film_id Join librarians l On i.librarian_id=l.librarian_id Join clients c On i.client_id=c.client_id');
         $logs = array();
         $result = $sth->execute();
         $row = $sth->fetchAll();
         for($h = 0; $h < count($row); $h++) {
             $result = array();
-            $result['i.issue_id'] = $row[$h]['i.issue_id'];
-            $result['i.issue_date'] = $row[$h]['i.issue_date'];
-            $result['i.return_date'] = $row[$h]['i.return_date'];
-            $result['i.return_status'] = $row[$h]['i.return_status'];
-            $result['f.title'] = $row[$h]['f.title'];
-            $result['c.name'] = $row[$h]['c.name'];
-            $result['l.name'] = $row[$h]['l.name'];
+            $result['issue_id'] = $row[$h]['issue_id'];
+            $result['issue_date'] = $row[$h]['issue_date'];
+            $result['return_date'] = $row[$h]['return_date'];
+            $result['return_status'] = $row[$h]['return_status'];
+            $result['title'] = $row[$h]['title'];
+            $result['clientName'] = $row[$h]['clientName'];
+            $result['libName'] = $row[$h]['libName'];
             $logs[$h] = $result;
         }
       }
