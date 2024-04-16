@@ -95,16 +95,10 @@
         row.addEventListener("click", function() {
             // Снимаем выделение с предыдущей выбранной строки
             rows.forEach(function(row){row.classList.remove("selected")});
-            var selectedRow = document.querySelector(".selected");
-            if(selectedRow != null)
-            {
-                var clientId = selectedRow.querySelector("#input-id").value;
-                clientInput.value = clientId;
-            }
-                
-
             // Выделяем выбранную строку
             this.classList.add("selected");
+            var clientId = row.querySelector("#input-id").value;
+            clientInput.value = clientId;
         });
     });
 
@@ -115,16 +109,10 @@
         row.addEventListener("click", function() {
             // Снимаем выделение с предыдущей выбранной строки
             rows1.forEach(function(row){row.classList.remove("selected")});
-            var selectedRow = document.querySelector(".selected");
-            if(selectedRow != null)
-            {
-                var librarianId = selectedRow.querySelector("#input-id").value;
-                librarianInput.value = librarianId;
-            }
-            
-
             // Выделяем выбранную строку
             this.classList.add("selected");
+            var librarianId = row.querySelector("#input-id").value;
+            librarianInput.value = librarianId;
         });
     });
 
@@ -135,16 +123,10 @@
         row.addEventListener("click", function() {
             // Снимаем выделение с предыдущей выбранной строки
             rows2.forEach(function(row){row.classList.remove("selected")});
-            var selectedRow = document.querySelector(".selected");
-            if(selectedRow != null)
-            {
-                var filmId = selectedRow.querySelector("#input-id").value;
-                filmInput.value = filmId;
-            }
-                
-            
             // Выделяем выбранную строку
             this.classList.add("selected");
+            var filmId = row.querySelector("#input-id").value;
+            filmInput.value = filmId;
         });
     });
 </script>
