@@ -124,6 +124,9 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+<form action="" method="post">
+<button class="btn add-btn" name="AddLog" type="submit">Добавить запись</button>
+</form>
 <script>
         var type = "film";
         var filmsTable; 

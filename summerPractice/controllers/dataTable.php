@@ -67,6 +67,11 @@
             header('Location: ./dataTable.php');
             exit();
           } 
+
+          if(isset($_POST["AddLog"])){
+            header('Location: ./addLog.php');
+            exit();
+          } 
           
     }
 ?>
