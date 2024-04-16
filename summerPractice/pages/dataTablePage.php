@@ -119,11 +119,7 @@
             <td><?php echo $log['title']; ?></td>
             <td><?php echo $log['clientName']; ?></td>
             <td><?php echo $log['libName']; ?></td>
-            <td>
-                <form action="" method="post">
-                    <input name="log_id" value="<?php echo $log['issue_id']; ?>" type="hidden" />
-                </form>
-            </td>
+            <input name="log_id" value="<?php echo $log['issue_id']; ?>" type="hidden" />
         </tr>
         <?php endforeach; ?>
     </tbody>
