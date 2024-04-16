@@ -89,7 +89,7 @@
 
 <script>
     var rows = document.querySelectorAll("#clients tr");
-    var clientInput = document.querySelectorAll("#clientActive_id");
+    var clientInput = document.querySelector("#clientActive_id");
     // Добавляем обработчик события к каждой строке
     rows.forEach(function(row) {
         row.addEventListener("click", function() {
@@ -109,7 +109,7 @@
     });
 
     var rows1 = document.querySelectorAll("#librarians tr");
-    var librarianInput = document.querySelectorAll("#librarianActive_id");
+    var librarianInput = document.querySelector("#librarianActive_id");
     // Добавляем обработчик события к каждой строке
     rows1.forEach(function(row) {
         row.addEventListener("click", function() {
@@ -129,7 +129,7 @@
     });
 
     var rows2 = document.querySelectorAll("#films tr");
-    var filmInput = document.querySelectorAll("#filmActive_id");
+    var filmInput = document.querySelector("#filmActive_id");
     // Добавляем обработчик события к каждой строке
     rows2.forEach(function(row) {
         row.addEventListener("click", function() {
