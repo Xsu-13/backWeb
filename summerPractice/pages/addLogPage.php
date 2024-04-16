@@ -7,67 +7,77 @@
     <title>Document</title>
 </head>
 <body class="column-body">
-<table class="film-table" id="films">
-    <thead>
-        <tr>
-            <th>Название</th>
-            <th>Режиссёр</th>
-            <th>Год выпуска</th>
-            <th>Жанр</th>
-            <th>Описание</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($films as $film) : ?>
-        <tr class="item_row">
-            <td><?php echo $film['title']; ?></td>
-            <td><?php echo $film['director']; ?></td>
-            <td><?php echo $film['year']; ?></td>
-            <td><?php echo $film['genre']; ?></td>
-            <td><?php echo $film['description']; ?></td>
-            <input name="film_id" value="<?php echo $film['film_id']; ?>" type="hidden" />
-        </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
-<table class="film-table" id="librarians">
-    <thead>
-        <tr>
-            <th>Имя</th>
-            <th>Телефон</th>
-            <th>Почта</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($librarians as $librarian) : ?>
-        <tr class="item_row">
-            <td><?php echo $librarian['name']; ?></td>
-            <td><?php echo $librarian['phone']; ?></td>
-            <td><?php echo $librarian['email']; ?></td>
-            <input name="librarian_id" value="<?php echo $librarian['librarian_id']; ?>" type="hidden" />
-        </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
-<table class="film-table" id="clients">
-    <thead>
-        <tr>
-            <th>Имя</th>
-            <th>Телефон</th>
-            <th>Почта</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($clients as $client) : ?>
-        <tr class="item_row">
-            <td><?php echo $client['name']; ?></td>
-            <td><?php echo $client['phone']; ?></td>
-            <td><?php echo $client['email']; ?></td>
-            <input name="client_id" value="<?php echo $client['client_id']; ?>" type="hidden" />
-        </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
+    <div class="column">
+        <h2>Фильм</h2>
+        <table class="film-table" id="films">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Режиссёр</th>
+                    <th>Год выпуска</th>
+                    <th>Жанр</th>
+                    <th>Описание</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($films as $film) : ?>
+                <tr class="item_row">
+                    <td><?php echo $film['title']; ?></td>
+                    <td><?php echo $film['director']; ?></td>
+                    <td><?php echo $film['year']; ?></td>
+                    <td><?php echo $film['genre']; ?></td>
+                    <td><?php echo $film['description']; ?></td>
+                    <input name="film_id" value="<?php echo $film['film_id']; ?>" type="hidden" />
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <div class="column">
+        <h2>Библиотекари</h2>
+        <table class="film-table" id="librarians">
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Телефон</th>
+                    <th>Почта</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($librarians as $librarian) : ?>
+                <tr class="item_row">
+                    <td><?php echo $librarian['name']; ?></td>
+                    <td><?php echo $librarian['phone']; ?></td>
+                    <td><?php echo $librarian['email']; ?></td>
+                    <input name="librarian_id" value="<?php echo $librarian['librarian_id']; ?>" type="hidden" />
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
+    <div class="column">
+        <h2>Клиенты</h2>
+        <table class="film-table" id="clients">
+            <h2></h2>
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Телефон</th>
+                    <th>Почта</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php foreach ($clients as $client) : ?>
+                <tr class="item_row">
+                    <td><?php echo $client['name']; ?></td>
+                    <td><?php echo $client['phone']; ?></td>
+                    <td><?php echo $client['email']; ?></td>
+                    <input name="client_id" value="<?php echo $client['client_id']; ?>" type="hidden" />
+                </tr>
+                <?php endforeach; ?>
+            </tbody>
+        </table>
+    </div>
 
 <script>
     var rows = document.querySelectorAll("#clients tr");

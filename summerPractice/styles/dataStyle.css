@@ -89,9 +89,14 @@ body{
 
 .column-body{
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
 }
 
-.column-body table{
+.column{
     width: 33%;
+    margin: 0 10px;
+}
+
+.item_row:nth-child(even){
+    background-color: white;
 }
