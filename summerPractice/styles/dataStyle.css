@@ -46,6 +46,11 @@
     text-decoration: none;
 }
 
+.addLog-btn{
+    background-color: #af9211;
+    color: white;
+}
+
 body{
     padding: 50px;
 }
