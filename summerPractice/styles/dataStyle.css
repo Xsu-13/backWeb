@@ -86,3 +86,8 @@ body{
 .selected {
     background-color: rgba(204, 204, 62, 0.568);
   }
+
+.column-body{
+    display: flex;
+    flex-direction: column;
+}

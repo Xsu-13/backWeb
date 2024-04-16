@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="../styles/dataStyle.css">
     <title>Document</title>
 </head>
-<body>
+<body class="column-body">
 <table class="film-table" id="films">
     <thead>
         <tr>
