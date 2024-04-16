@@ -85,12 +85,12 @@
         <input class="log-date" name="issue_date" type="date">
         <label for="">Дата возврата</label>
         <input class="log-date" name="return_date" type="date">
-        <input type="checkbox" class="custom-checkbox" id="happy" name="happy" value="yes">
+        <input type="checkbox" class="custom-checkbox" id="happy" name="return_status">
         <label for="happy">Возвращен</label>
         <input id="clientActive_id" name="clientActive_id" value="" type="hidden" />
         <input id="librarianActive_id" name="librarianActive_id" value="" type="hidden" />
         <input id="filmActive_id" name="filmActive_id" value="" type="hidden" />
-        <input type="submit" class="filter-btn" value="Фильтровать">
+        <input type="submit" name="AddLog" class="filter-btn" value="Сохранить">
     </form>
 
 <script>

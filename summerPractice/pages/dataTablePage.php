@@ -99,6 +99,35 @@
         <?php endforeach; ?>
     </tbody>
 </table>
+<table class="film-table" id="logs">
+    <thead>
+        <tr>
+            <th>Дата аренды</th>
+            <th>Дата возврата</th>
+            <th>Статус возвращения</th>
+            <th>Название фильма</th>
+            <th>Имя клиента</th>
+            <th>Имя библиотекоря</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($logs as $log) : ?>
+        <tr class="item_row">
+            <td><?php echo $log['i.issue_date']; ?></td>
+            <td><?php echo $log['i.return_date']; ?></td>
+            <td><?php echo $log['i.return_status']; ?></td>
+            <td><?php echo $log['f.title']; ?></td>
+            <td><?php echo $log['c.name']; ?></td>
+            <td><?php echo $log['l.name']; ?></td>
+            <td>
+                <form action="" method="post">
+                    <input name="client_id" value="<?php echo $log['i.issue_id']; ?>" type="hidden" />
+                </form>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
 <script>
         var type = "film";
         var filmsTable; 

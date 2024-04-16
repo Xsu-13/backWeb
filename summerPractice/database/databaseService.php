@@ -40,6 +40,20 @@ function SaveClient($db)
         
     }
 
+    function SaveLog($db)
+    {
+      $status = $_POST["return_status"]=1?"возвращен":"не возвращен";
+      try{
+        $stmt = $db->prepare("INSERT INTO issue_log (film_id, client_id, librarian_id, issue_date, return_date, return_status) VALUES (:film_id, :client_id, :librarian_id, :issue_date, :return_date, :return_status)");
+        $stmt -> execute(['film_id'=>$_POST["filmActive_id"], 'client_id'=>$_POST["clientActive_id"], 'librarian_id'=>$_POST["librarianActive_id"], 'issue_date'=>$_POST["issue_date"], 'return_date'=>$_POST["return_date"], 'return_status'=>$status]);
+      }
+      catch(PDOException $e){
+        print('Error : ' . $e->getMessage());
+        print_r($e->getTrace());
+      }
+        
+    }
+
     function GetFilms($db)
     {
         try{
@@ -107,6 +121,32 @@ function SaveClient($db)
             exit();
           }
           return $librarians;
+    }
+
+    function GetLogs($db)
+    {
+      try{
+        $sth = $db->prepare('SELECT * FROM issue_log i Join films c On i.film_id=c.film_id Join librarians l On i.librarian_id=l.librarian_id Join clients c On i.client_id=c.client');
+        $logs = array();
+        $result = $sth->execute();
+        $row = $sth->fetchAll();
+        for($h = 0; $h < count($row); $h++) {
+            $result = array();
+            $result['i.issue_id'] = $row[$h]['i.issue_id'];
+            $result['i.issue_date'] = $row[$h]['i.issue_date'];
+            $result['i.return_date'] = $row[$h]['i.return_date'];
+            $result['i.return_status'] = $row[$h]['i.return_status'];
+            $result['f.title'] = $row[$h]['f.title'];
+            $result['c.name'] = $row[$h]['c.name'];
+            $result['l.name'] = $row[$h]['l.name'];
+            $logs[$h] = $result;
+        }
+      }
+      catch(PDOException $e){
+        print_r($e->getTrace());
+        exit();
+      }
+      return $logs;
     }
 
     function DeleteFilm($db, $id)

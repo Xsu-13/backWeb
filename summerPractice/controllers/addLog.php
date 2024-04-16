@@ -15,4 +15,11 @@
         $librarians = GetLibrarians($db);
         include("../pages/addLogPage.php");
       }
+      if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+        if(isset($_POST["AddLog"])){
+          SaveLog($db);
+          header('Location: ./dataTable.php');
+          exit();
+        }
+      }
 ?>

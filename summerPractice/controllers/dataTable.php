@@ -13,6 +13,7 @@
         $films = GetFilms($db);
         $clients = GetClients($db);
         $librarians = GetLibrarians($db);
+        $logs = GetLogs($db);
         include("../pages/dataTablePage.php");
       }
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
