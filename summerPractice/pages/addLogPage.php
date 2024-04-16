@@ -78,54 +78,57 @@
             </tbody>
         </table>
     </div>
-    <form action="" method="post">
-        <input name="clientActive_id" value=<script>print("'"+clientId+"'")</script> type="hidden" />
-        <input name="librarianActive_id" value=<script>print("'"+librarianId+"'")</script> type="hidden" />
-        <input name="filmActive_id" value=<script>print("'"+filmId+"'")</script> type="hidden" />
+    <form class="filter-form" action="" method="post">
+        <input id="clientActive_id" name="clientActive_id" value="" type="hidden" />
+        <input id="librarianActive_id" name="librarianActive_id" value="" type="hidden" />
+        <input id="filmActive_id" name="filmActive_id" value="" type="hidden" />
         <input type="submit" class="filter-btn" value="Фильтровать">
     </form>
 
 <script>
     var rows = document.querySelectorAll("#clients tr");
-    var clientId = "";
+    var clientInput = document.querySelectorAll("#clientActive_id");
     // Добавляем обработчик события к каждой строке
     rows.forEach(function(row) {
         row.addEventListener("click", function() {
             // Снимаем выделение с предыдущей выбранной строки
             rows.forEach(function(row){row.classList.remove("selected")});
             var selectedRow = document.querySelector(".selected");
+            var clientId = selectedRow.getElementsByTagName("input").value;
+            clientInput.value = clientId;
 
-            clientId = selectedRow.getElementsByTagName("input").value;
             // Выделяем выбранную строку
             this.classList.add("selected");
         });
     });
 
     var rows1 = document.querySelectorAll("#librarians tr");
-    var librarianId = "";
+    var librarianInput = document.querySelectorAll("#librarianActive_id");
     // Добавляем обработчик события к каждой строке
     rows1.forEach(function(row) {
         row.addEventListener("click", function() {
             // Снимаем выделение с предыдущей выбранной строки
             rows1.forEach(function(row){row.classList.remove("selected")});
             var selectedRow = document.querySelector(".selected");
+            var librarianId = selectedRow.getElementsByTagName("input").value;
+            librarianInput.value = librarianId;
 
-            librarianId = selectedRow.getElementsByTagName("input").value;
             // Выделяем выбранную строку
             this.classList.add("selected");
         });
     });
 
     var rows2 = document.querySelectorAll("#films tr");
-    var filmId = "";
+    var filmInput = document.querySelectorAll("#filmActive_id");
     // Добавляем обработчик события к каждой строке
     rows2.forEach(function(row) {
         row.addEventListener("click", function() {
             // Снимаем выделение с предыдущей выбранной строки
             rows2.forEach(function(row){row.classList.remove("selected")});
             var selectedRow = document.querySelector(".selected");
-
-            filmId = selectedRow.getElementsByTagName("input").value;
+            var filmId = selectedRow.getElementsByTagName("input").value;
+            filmInput.value = filmId;
+            
             // Выделяем выбранную строку
             this.classList.add("selected");
         });
