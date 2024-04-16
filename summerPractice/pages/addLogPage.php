@@ -6,7 +6,8 @@
     <link rel="stylesheet" href="../styles/dataStyle.css">
     <title>Document</title>
 </head>
-<body class="column-body">
+<body>
+    <div class="column-body">
     <div class="column">
         <h2>Фильм</h2>
         <table class="film-table" id="films">
@@ -27,7 +28,7 @@
                     <td><?php echo $film['year']; ?></td>
                     <td><?php echo $film['genre']; ?></td>
                     <td><?php echo $film['description']; ?></td>
-                    <input name="film_id" value="<?php echo $film['film_id']; ?>" type="hidden" />
+                    <input id="input-id" name="film_id" value="<?php echo $film['film_id']; ?>" type="hidden" />
                 </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -49,7 +50,7 @@
                     <td><?php echo $librarian['name']; ?></td>
                     <td><?php echo $librarian['phone']; ?></td>
                     <td><?php echo $librarian['email']; ?></td>
-                    <input name="librarian_id" value="<?php echo $librarian['librarian_id']; ?>" type="hidden" />
+                    <input id="input-id" name="librarian_id" value="<?php echo $librarian['librarian_id']; ?>" type="hidden" />
                 </tr>
                 <?php endforeach; ?>
             </tbody>
@@ -72,12 +73,13 @@
                     <td><?php echo $client['name']; ?></td>
                     <td><?php echo $client['phone']; ?></td>
                     <td><?php echo $client['email']; ?></td>
-                    <input name="client_id" value="<?php echo $client['client_id']; ?>" type="hidden" />
+                    <input id="input-id" name="client_id" value="<?php echo $client['client_id']; ?>" type="hidden" />
                 </tr>
                 <?php endforeach; ?>
             </tbody>
         </table>
     </div>
+</div>
     <form class="filter-form" action="" method="post">
         <input id="clientActive_id" name="clientActive_id" value="" type="hidden" />
         <input id="librarianActive_id" name="librarianActive_id" value="" type="hidden" />
@@ -94,8 +96,12 @@
             // Снимаем выделение с предыдущей выбранной строки
             rows.forEach(function(row){row.classList.remove("selected")});
             var selectedRow = document.querySelector(".selected");
-            var clientId = selectedRow.getElementsByTagName("input").value;
-            clientInput.value = clientId;
+            if(selectedRow != null)
+            {
+                var clientId = selectedRow.querySelectorAll("#input-id").value;
+                clientInput.value = clientId;
+            }
+                
 
             // Выделяем выбранную строку
             this.classList.add("selected");
@@ -110,8 +116,12 @@
             // Снимаем выделение с предыдущей выбранной строки
             rows1.forEach(function(row){row.classList.remove("selected")});
             var selectedRow = document.querySelector(".selected");
-            var librarianId = selectedRow.getElementsByTagName("input").value;
-            librarianInput.value = librarianId;
+            if(selectedRow != null)
+            {
+                var librarianId = selectedRow.querySelectorAll("#input-id").value;
+                librarianInput.value = librarianId;
+            }
+            
 
             // Выделяем выбранную строку
             this.classList.add("selected");
@@ -126,8 +136,12 @@
             // Снимаем выделение с предыдущей выбранной строки
             rows2.forEach(function(row){row.classList.remove("selected")});
             var selectedRow = document.querySelector(".selected");
-            var filmId = selectedRow.getElementsByTagName("input").value;
-            filmInput.value = filmId;
+            if(selectedRow != null)
+            {
+                var filmId = selectedRow.querySelectorAll("#input-id").value;
+                filmInput.value = filmId;
+            }
+                
             
             // Выделяем выбранную строку
             this.classList.add("selected");
