@@ -98,11 +98,11 @@ body{
 }
 
 .item_row:nth-child(even).selected{
-    background-color: rgba(204, 204, 62, 0.568);
+    background-color: rgba(0, 123, 255, 0.25);
 }
 
 .selected {
-    background-color: rgba(204, 204, 62, 0.568);
+    background-color: rgba(0, 123, 255, 0.25);
   }
 
 .filter-btn{
@@ -116,7 +116,11 @@ body{
 }
 
 .filter-form{
-    width: 100%;
+    width: 20%;
+    display: flex;
+    flex-direction: column;
+    margin-top: 40px;
+    font-size: 1.1em;
 }
 
 .log-date{
@@ -126,6 +130,7 @@ body{
   border: 1px solid #ccc;
   border-radius: 4px;
   font-size: 14px;
+  margin-bottom: 10px;
 }
 
 .custom-checkbox {
