@@ -121,7 +121,7 @@
             <td><?php echo $log['libName']; ?></td>
             <td>
                 <form action="" method="post">
-                    <input name="client_id" value="<?php echo $log['i.issue_id']; ?>" type="hidden" />
+                    <input name="log_id" value="<?php echo $log['issue_id']; ?>" type="hidden" />
                 </form>
             </td>
         </tr>
