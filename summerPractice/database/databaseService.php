@@ -182,7 +182,7 @@ function SaveClient($db)
         try{
             $sth = $db->prepare('DELETE FROM issue_log WHERE librarian_id = :id');
             $sth->execute(['id' => $id]);
-            $sth = $db->prepare('DELETE FROM librarian WHERE librarian_id = :id');
+            $sth = $db->prepare('DELETE FROM librarians WHERE librarian_id = :id');
             $sth->execute(['id' => $id]);
           }
           catch(PDOException $e){
