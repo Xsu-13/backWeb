@@ -13,7 +13,7 @@
             <label for="dish_title">Название:</label>
             <input type="text" id="dish_title" name="dish_title" required>
     
-            <label for="dish_price">Год выпуска:</label>
+            <label for="dish_price">Цена:</label>
             <input type="number" id="dish_price" name="dish_price" required>
     
             <label for="dish_description">Описание:</label>
@@ -21,34 +21,19 @@
 
             <fieldset>
             <legend>Выберите Меню:</legend>
-
-            <div>
-                <input type="radio" id="huey" name="menu" value="huey"/>
-                <label for="huey">Huey</label>
-            </div>
-
-            <div>
-                <input type="radio" id="dewey" name="drone" value="dewey" />
-                <label for="dewey">Dewey</label>
-            </div>
-
-            <div>
-                <input type="radio" id="louie" name="drone" value="louie" />
-                <label for="louie">Louie</label>
-            </div>
-            </fieldset>
-
-            <label for="menu">Выберите блюдо:</label>
-            <select name="menu" id="menu">
             <?php foreach ($menuForDish as $dish) :?>
-                <option value="<?php $dish["menu_id"]?>"><?php $dish["menu_title"]?></option>";
+                <option value="<?php $dish["menu_id"]?>"><?php $dish["menu_title"]?></option>
+            <div>
+                <input type="radio" name="menu" value="<?php $dish["menu_id"]?>" />
+                <label for="<?php $dish["menu_title"]?>"><?php $dish["menu_title"]?></label>
+            </div>
             <?php endforeach;?>
-            </select>
+            </fieldset>
 
             <label for="products">Выберите продукты:</label>
             <select name="products" id="products" multiple>
             <?php foreach ($productsForDish as $dish) :?>
-                <option value="<?php $dish["product_id"]?>"><?php $dish["product_title"]?></option>";
+                <option value="<?php $dish["product_id"]?>"><?php $dish["product_title"]?></option>
             <?php endforeach;?>
             </select>
     
