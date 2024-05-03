@@ -89,3 +89,7 @@ input[type="submit"]:hover {
     background-color: #f0f0f0;
     cursor: pointer;
 }
+
+fieldset{
+    margin-bottom: 10px;
+}
