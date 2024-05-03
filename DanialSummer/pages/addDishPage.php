@@ -23,8 +23,8 @@
             <legend>Выберите Меню:</legend>
             <?php foreach ($menuForDish as $dish) :?>
             <div>
-                <input type="radio" name="menu" value="<?php $dish["menu_id"]?>" />
-                <label for="<?php $dish["title"]?>"><?php $dish["title"]?></label>
+                <input type="radio" name="menu" value="<?php echo $dish["menu_id"];?>" />
+                <label for="<?php echo $dish["title"];?>"><?php echo $dish["title"];?></label>
             </div>
             <?php endforeach;?>
             </fieldset>
