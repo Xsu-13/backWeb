@@ -40,20 +40,16 @@
 
             <label for="menu">Выберите блюдо:</label>
             <select name="menu" id="menu">
-            <?php
-                foreach($menuForDish as $dish) {
-                    echo "<option value=\"$dish[\"id\"]\">$dish[\"title\"]</option>";
-                }
-            ?>
+            <?php foreach ($menuForDish as $dish) :?>
+                <option value="<?php $dish["menu_id"]?>"><?php $dish["menu_title"]?></option>";
+            <?php endforeach;?>
             </select>
 
             <label for="products">Выберите продукты:</label>
             <select name="products" id="products" multiple>
-            <?php
-                foreach($productsForDish as $dish) {
-                    echo "<option value=\"$dish[\"id\"]\">$dish[\"title\"]</option>";
-                }
-            ?>
+            <?php foreach ($productsForDish as $dish) :?>
+                <option value="<?php $dish["product_id"]?>"><?php $dish["product_title"]?></option>";
+            <?php endforeach;?>
             </select>
     
             <input type="submit" value="Добавить" name="AddDish">
