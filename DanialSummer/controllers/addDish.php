@@ -7,6 +7,8 @@
     [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
+        $menuForDish = array();
+        $productsForDish = array();
         $menuForDish = GetMenu($db);
         $productsForDish = GetProducts($db);
         include("../pages/addDishPage.php");
