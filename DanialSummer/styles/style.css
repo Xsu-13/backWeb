@@ -50,6 +50,7 @@ textarea {
 }
 
 input[type="submit"] {
+    margin-top: 10px;
     background-color: #007bff;
     color: #fff;
     border: none;
