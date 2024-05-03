@@ -41,7 +41,7 @@ function SaveProduct($db)
     function SaveMenu($db)
     {
       try{
-        $stmt = $db->prepare("INSERT INTO Menu (title) VALUES (:titledb)");
+        $stmt = $db->prepare("INSERT INTO Menu (Title) VALUES (:titledb)");
         $stmt -> execute(['titledb'=>$_POST["menu_title"]]);
       }
       catch(PDOException $e){
@@ -172,47 +172,14 @@ function SaveProduct($db)
       return $orders;
     }
 
-    function DeleteProduct($db, $id)
-    {
-        try{
-            $sth = $db->prepare('DELETE FROM issue_log WHERE film_id = :id');
-            $sth->execute(['id' => $id]);
-
-            $sth = $db->prepare('DELETE FROM films WHERE film_id = :id');
-            $sth->execute(['id' => $id]);
-            
-          }
-          catch(PDOException $e){
-            print_r($e->getTrace());
-            exit();
-          }
-    }
-
-    function DeleteMenu($db, $id)
-    {
-        try{
-            $sth = $db->prepare('DELETE FROM issue_log WHERE client_id = :id');
-            $sth->execute(['id' => $id]);
-
-            $sth = $db->prepare('DELETE FROM clients WHERE client_id = :id');
-            $sth->execute(['id' => $id]);
-            
-          }
-          catch(PDOException $e){
-            print_r($e->getTrace());
-            exit();
-          }
-    }
-
     function DeleteDish($db, $id)
     {
         try{
-            $sth = $db->prepare('DELETE FROM issue_log WHERE librarian_id = :id');
+            $sth = $db->prepare('DELETE FROM OrderJournal WHERE DishID = :id');
             $sth->execute(['id' => $id]);
 
-            $sth = $db->prepare('DELETE FROM librarian WHERE librarian_id = :id');
+            $sth = $db->prepare('DELETE FROM Dishes WHERE DishID = :id');
             $sth->execute(['id' => $id]);
-            
           }
           catch(PDOException $e){
             print_r($e->getTrace());
@@ -223,16 +190,12 @@ function SaveProduct($db)
     function GetProductById($db, $id)
     {
         $result = array();
-        $sth = $db->prepare('SELECT * FROM films WHERE film_id = :id');
+        $sth = $db->prepare('SELECT * FROM Products WHERE ProductID = :id');
         $sth->execute(["id" => $id]);
             while($row = $sth->fetch()) {
                 $result = array();
-                $result['film_id'] = $row['film_id'];
-                $result['title'] = $row['title'];
-                $result['director'] = $row['director'];
-                $result['year'] = $row['year'];
-                $result['genre'] = $row['genre'];
-                $result['description'] = $row['description']; 
+                $result['product_id'] = $row['ProductID'];
+                $result['product_title'] = $row['Title'];
             }
         return $result;
     }
@@ -240,14 +203,12 @@ function SaveProduct($db)
     function GetMenuById($db, $id)
     {
         $result = array();
-        $sth = $db->prepare('SELECT * FROM clients WHERE client_id = :id');
+        $sth = $db->prepare('SELECT * FROM Menu WHERE MenuID = :id');
         $sth->execute(["id" => $id]);
             while($row = $sth->fetch()) {
                 $result = array();
-                $result['client_id'] = $row['client_id'];
-                $result['name'] = $row['name'];
-                $result['email'] = $row['email'];
-                $result['phone'] = $row['phone'];
+                $result['menu_id'] = $row['MenuID'];
+                $result['menu_title'] = $row['Title'];
             }
         return $result;
     }
@@ -255,7 +216,7 @@ function SaveProduct($db)
     function GetDishById($db, $id)
     {
         $result = array();
-        $sth = $db->prepare('SELECT * FROM librarians WHERE librarian_id = :id');
+        $sth = $db->prepare('SELECT * FROM Dishes WHERE librarian_id = :id');
         $sth->execute(["id" => $id]);
             while($row = $sth->fetch()) {
                 $result = array();
@@ -269,20 +230,29 @@ function SaveProduct($db)
 
     function UpdateProduct($db, $id, $title)
     {
-        $stmt = $db->prepare("UPDATE films SET title = :title, director = :director, year = :year, genre = :genre, description = :description WHERE film_id = :id");
-        $stmt -> execute(['title'=>$title, 'director'=>$director, 'year'=>$year,'genre'=>$genre,'description'=>$description, 'id'=>$id]);
+      $stmt = $db->prepare("UPDATE Products SET Title = :name WHERE ProductID = :id");
+      $stmt -> execute(['name'=>$title, 'id'=>$id]);
     }
 
-    function UpdateDish($db, $id, $name, $email, $phone)
+    function UpdateDish($db, $id, $title, $description, $price, $menuID, $products)
     {
-        $stmt = $db->prepare("UPDATE clients SET name = :name, email = :email, phone = :phone WHERE client_id = :id");
-        $stmt -> execute(['name'=>$name, 'email'=>$email, 'phone'=>$phone, 'id'=>$id]);
+        $stmt = $db->prepare("UPDATE Dishes SET Title = :name, Description = :description, Price = :price, MenuID = :menuId WHERE DishID = :id");
+        $stmt -> execute(['name'=>$title, 'description'=>$description, 'price'=>$price, 'menuId'=>$menuID, 'id'=>$id]);
+
+        $stmt = $db->prepare("DELETE FROM DishProducts WHERE DishID = :id");
+        $stmt -> execute(['id'=>$id]);
+
+        for($i = 0; $i < count($products); $i++)
+        {
+          $stmt = $db->prepare("INSERT INTO DishProducts (DishId, ProductId) VALUES (:dishdb, :productdb)");
+          $stmt -> execute(['dishdb'=>$id, 'productdb'=>$products[$i]]);
+        }
     }
 
     function UpdateMenu($db, $id, $title)
     {
-        $stmt = $db->prepare("UPDATE librarians SET name = :name, email = :email, phone = :phone WHERE librarian_id = :id");
-        $stmt -> execute(['name'=>$name, 'email'=>$email, 'phone'=>$phone, 'id'=>$id]);
+        $stmt = $db->prepare("UPDATE Menu SET Title = :name WHERE MenuID = :id");
+        $stmt -> execute(['name'=>$title, 'id'=>$id]);
     }
 
     function GetMenuIDByName($db, $name)

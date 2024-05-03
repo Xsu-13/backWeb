@@ -20,10 +20,10 @@
             <textarea id="dish_description" name="dish_description" required></textarea>
 
             <fieldset>
-            <legend>Select a maintenance drone:</legend>
+            <legend>Выберите Меню:</legend>
 
             <div>
-                <input type="radio" id="huey" name="drone" value="huey" checked />
+                <input type="radio" id="huey" name="menu" value="huey"/>
                 <label for="huey">Huey</label>
             </div>
 
