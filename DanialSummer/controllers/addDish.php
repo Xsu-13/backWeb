@@ -12,6 +12,7 @@
         $menuForDish = GetMenu($db);
         $productsForDish = GetProducts($db);
         include("../pages/addDishPage.php");
+        print_r($menuForDish);
       }
       
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
