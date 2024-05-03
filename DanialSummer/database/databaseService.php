@@ -74,7 +74,7 @@ function SaveProduct($db)
             for($h = 0; $h < count($row); $h++) {
                 $result = array();
                 $result['product_id'] = $row[$h]['ProductID'];
-                $result['title'] = $row[$h]['title'];
+                $result['title'] = $row[$h]['Title'];
                 $products[$h] = $result;
             }
           }
@@ -137,7 +137,7 @@ function SaveProduct($db)
             for($h = 0; $h < count($row); $h++) {
                 $result = array();
                 $result['menu_id'] = $row[$h]['MenuID'];
-                $result['title'] = $row[$h]['title'];
+                $result['title'] = $row[$h]['Title'];
                 $menu[$h] = $result;
             }
           }
