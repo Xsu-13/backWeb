@@ -122,7 +122,7 @@ function SaveProduct($db)
 
                 $result['products'] = substr($productsValue, 0, -2);
 
-                $dishes[$h++] = $result;
+                $dishes[$k++] = $result;
             }
 
           }
