@@ -6,19 +6,14 @@
     [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-        $type = "film";
-        $films = array();
-        $clients = array();
-        $librarians = array();
-        $films = GetFilms($db);
-        $clients = GetClients($db);
-        $librarians = GetLibrarians($db);
+        $dishesForOrder = array();
+        $dishesForOrder = GetDishes($db);
         include("../pages/addLogPage.php");
       }
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(isset($_POST["AddLog"])){
-          SaveLog($db);
-          header('Location: ./dataTable.php');
+          SaveOrder($db);
+          //header('Location: ./dataTable.php');
           exit();
         }
       }

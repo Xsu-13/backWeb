@@ -53,9 +53,10 @@ function SaveProduct($db)
 
     function SaveOrder($db, $dishes)
     {
+      $orderTime = time();
       try{
         $stmt = $db->prepare("INSERT INTO OrderJournal (dish_id, quantity, orderTime) VALUES (:dish_id, :quantity, :orderTime)");
-        $stmt -> execute(['dish_id'=>$_POST["dish_id"], 'quantity'=>$_POST["quantity"], 'orderTime'=>$_POST["orderTime"]]);
+        $stmt -> execute(['dish_id'=>$_POST["dish_id"], 'quantity'=>$_POST["quantity"], 'orderTime'=>$orderTime]);
       }
       catch(PDOException $e){
         print('Error : ' . $e->getMessage());
@@ -216,15 +217,23 @@ function SaveProduct($db)
     function GetDishById($db, $id)
     {
         $result = array();
-        $sth = $db->prepare('SELECT * FROM Dishes WHERE librarian_id = :id');
+        $sth = $db->prepare('SELECT * FROM Dishes WHERE DishID = :id');
         $sth->execute(["id" => $id]);
             while($row = $sth->fetch()) {
                 $result = array();
-                $result['librarian_id'] = $row['librarian_id'];
-                $result['name'] = $row['name'];
-                $result['email'] = $row['email'];
-                $result['phone'] = $row['phone'];
+                $result['dish_id'] = $row['DishID'];
+                $result['dish_title'] = $row['Title'];
+                $result['dish_description'] = $row['Description'];
+                $result['dish_price'] = $row['Price'];
+                $result['dish_menuId'] = $row['MenuID'];
             }
+
+            $sth = $db->prepare('SELECT * FROM DishProducts WHERE DishID = :id');
+            $sth->execute(['id' => $result['dish_id']]);
+            $products = [];
+            $products = $sth->fetchAll();
+            $result["dish_products"] = $products;
+
         return $result;
     }
 
