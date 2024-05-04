@@ -48,9 +48,7 @@
             </form>
         </div>
     </div>
-</body>
-</html>
-<?php
+    <?php
     function checkProduct($p)
     {
         if(in_array($currentDish["dish_products"], $p))
@@ -63,3 +61,5 @@
             echo checked;
     }
 ?>
+</body>
+</html>
