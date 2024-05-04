@@ -39,6 +39,8 @@
           } 
 
         if(isset($_POST["EditDish"])){
+            $menus = GetMenu($db);
+            $products = GetProducts($db);
             $currentDish = array();
             $currentDish = GetDishById($db, $_POST["dish_id"]);
             include('../pages/editDish.php');
@@ -51,8 +53,6 @@
           } 
 
           if(isset($_POST["UpdateDish"])){
-            $menus = GetMenu($db);
-            $products = GetProducts($db);
             UpdateDish($db, $_POST["dish_id"],  $_POST["dish_title"], $_POST["dish_description"], $_POST["dish_price"], $_POST["dish_menuId"], $_POST["dish_products"]);
             header('Location: ./dataTable.php');
             exit();
