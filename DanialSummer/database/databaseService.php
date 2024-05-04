@@ -53,7 +53,7 @@ function SaveProduct($db)
 
     function SaveOrder($db)
     {
-      $orderTime = time();
+      $orderTime = date ('Y-m-d H:i:s', time());
       try{
         $stmt = $db->prepare("INSERT INTO OrderJournal (DishID, Quantity, OrderTime) VALUES (:dish_id, :quantity, :orderTime)");
         $stmt -> execute(['dish_id'=>$_POST["dish_id"], 'quantity'=>$_POST["quantity"], 'orderTime'=>$orderTime]);
