@@ -108,10 +108,10 @@ function SaveProduct($db)
                 $sth->execute(['id' => $result['dish_id']]);
                 $j = 0;
                 $products = [];
-                $row = $sth->fetchAll();
-                for($i = 0; $i < count($row); $i++) {
+                $row1 = $sth->fetchAll();
+                for($i = 0; $i < count($row1); $i++) {
                   $sth = $db->prepare('SELECT Title FROM Products WHERE ProductID = :id');
-                  $sth->execute(['id' => ($row[$i])['ProductID']]);
+                  $sth->execute(['id' => ($row1[$i])['ProductID']]);
                   while ($productrow = $sth->fetch()) {
                     $products[$j++] = $productrow['Title'];
                   }
@@ -123,8 +123,6 @@ function SaveProduct($db)
                 }
 
                 $result['products'] = substr($productsValue, 0, -2);
-                print_r($result);
-
                 $dishes[$k++] = $result;
             }
 
@@ -133,7 +131,6 @@ function SaveProduct($db)
             print_r($e->getTrace());
             exit();
           }
-          print_r($dishes);
           return $dishes;
     }
     function GetMenu($db)
