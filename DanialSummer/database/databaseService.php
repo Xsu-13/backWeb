@@ -93,8 +93,9 @@ function SaveProduct($db)
             $k = 0;
             $sth->execute();
             $row = $sth->fetchAll();
-            print(count($row));
+            
             for($h = 0; $h < count($row); $h++) {
+              
                 $result = array();
                 $result['dish_id'] = $row[$h]['DishID'];
                 $result['title'] = $row[$h]['dishTitle'];
@@ -122,6 +123,7 @@ function SaveProduct($db)
                 }
 
                 $result['products'] = substr($productsValue, 0, -2);
+                print_r($result);
 
                 $dishes[$k++] = $result;
             }
@@ -131,6 +133,7 @@ function SaveProduct($db)
             print_r($e->getTrace());
             exit();
           }
+          print_r($dishes);
           return $dishes;
     }
     function GetMenu($db)
