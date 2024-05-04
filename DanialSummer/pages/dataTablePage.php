@@ -27,7 +27,7 @@
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($menu as $m) : ?>
+        <?php foreach ($menus as $m) : ?>
         <tr class="item_row">
             <td><?php echo $m['title']; ?></td>
             <td>
