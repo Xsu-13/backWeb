@@ -91,7 +91,7 @@ function SaveProduct($db)
         try{
             $sth = $db->prepare('SELECT DishID, d.Title as dishTitle, Description, Price, m.Title as menuTitle, d.MenuID as MenuID FROM Dishes d Join Menu m on d.MenuID = m.MenuID');
             $k = 0;
-            $result = $sth->execute();
+            $sth->execute();
             $row = $sth->fetchAll();
             for($h = 0; $h < count($row); $h++) {
                 $result = array();
