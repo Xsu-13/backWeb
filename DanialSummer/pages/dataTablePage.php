@@ -112,9 +112,6 @@
         </tr>
         <?php endforeach; ?>
     </tbody>
-<form action="" method="post">
-    <button class="btn addLog-btn" name="AddOrder" type="submit">Добавить запись</button>
-</form>
 </table>
 
 <script>
