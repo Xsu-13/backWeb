@@ -15,7 +15,7 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(isset($_POST["AddMenu"])){
           SaveMenu($db);
-          //header('Location: ./dataTable.php');
+          header('Location: ./dataTable.php');
           exit();
         }
       }

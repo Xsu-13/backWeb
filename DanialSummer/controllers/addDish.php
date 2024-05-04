@@ -19,7 +19,7 @@
           $products = array();
           $products = $_POST["products"];
           SaveDish($db, $products);
-          //header('Location: ./dataTable.php');
+          header('Location: ./dataTable.php');
           exit();
         }
       }
