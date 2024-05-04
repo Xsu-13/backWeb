@@ -109,7 +109,7 @@ function SaveProduct($db)
                 for($i = 0; $i < count($row); $i++) {
                   $sth = $db->prepare('SELECT Title FROM Products WHERE ProductID = :id');
                   $sth->execute(['id' => ($row[$i])['ProductID']]);
-                  while ($productgrow = $sth->fetch()) {
+                  while ($productrow = $sth->fetch()) {
                     $products[$j++] = $productrow['Title'];
                   }
                 }
