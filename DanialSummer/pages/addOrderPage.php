@@ -18,7 +18,7 @@
             <?php foreach ($dishForOrder as $dish) :?>
             <div>
                 <label for="<?php echo $dish["title"];?>">
-                <input type="radio" name="order_dishId" value="<?php echo $dish["dish_id"];?>" />
+                <input type="radio" name="dish_id" value="<?php echo $dish["dish_id"];?>" />
                 <?php echo $dish["title"];?>
                 </label>
             </div>
