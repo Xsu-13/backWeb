@@ -6,8 +6,8 @@
     [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-        $dishesForOrder = array();
-        $dishesForOrder = GetDishes($db);
+        $disheForOrder = array();
+        $disheForOrder = GetDishes($db);
         include("../pages/addOrderPage.php");
       }
       if ($_SERVER['REQUEST_METHOD'] == 'POST') {
