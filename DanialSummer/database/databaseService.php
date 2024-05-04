@@ -55,7 +55,7 @@ function SaveProduct($db)
     {
       $orderTime = time();
       try{
-        $stmt = $db->prepare("INSERT INTO OrderJournal (dish_id, quantity, orderTime) VALUES (:dish_id, :quantity, :orderTime)");
+        $stmt = $db->prepare("INSERT INTO OrderJournal (DishID, Quantity, OrderTime) VALUES (:dish_id, :quantity, :orderTime)");
         $stmt -> execute(['dish_id'=>$_POST["dish_id"], 'quantity'=>$_POST["quantity"], 'orderTime'=>$orderTime]);
       }
       catch(PDOException $e){
