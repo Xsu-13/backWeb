@@ -24,7 +24,7 @@
             <?php foreach ($menuForDish as $dish) :?>
             <div>
                 <label for="<?php echo $dish["title"];?>">
-                <input type="radio" name="menu" value="<?php echo $dish["menu_id"];?>" />
+                <input type="radio" name="dish_menuId" value="<?php echo $dish["menu_id"];?>" />
                 <?php echo $dish["title"];?>
                 </label>
             </div>
