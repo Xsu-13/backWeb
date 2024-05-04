@@ -6,70 +6,64 @@
     [PDO::ATTR_PERSISTENT => true, PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION]);
 
     if ($_SERVER['REQUEST_METHOD'] == 'GET') {
-        $type = "film";
-        $films = array();
-        $clients = array();
-        $librarians = array();
-        $films = GetFilms($db);
-        $clients = GetClients($db);
-        $librarians = GetLibrarians($db);
-        $logs = GetLogs($db);
+        $type = "menus";
+        $menus = array();
+        $products = array();
+        $dishes = array();
+        $orders = array();
+
+        $menus = GetMenu($db);
+        $products = GetProducts($db);
+        $dishes = GetDishes($db);
+        $orders = GetOrders($db);
+
         include("../pages/dataTablePage.php");
       }
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-        if(isset($_POST["DeleteFilm"])){
-            DeleteFilm($db, $_POST["film_id"]);
-            header('Location: ./dataTable.php');
-          } 
 
-        if(isset($_POST["DeleteClient"])){
-            DeleteClient($db, $_POST["client_id"]);
-            header('Location: ./dataTable.php');
-          } 
-
-        if(isset($_POST["DeleteLibrarian"])){
+        if(isset($_POST["DeleteDish"])){
             DeleteLibrarian($db, $_POST["librarian_id"]);
             header('Location: ./dataTable.php');
           } 
           
-        if(isset($_POST["EditFilm"])){
-            $currentFilm = array();
-            $currentFilm = GetFilmById($db, $_POST["film_id"]);
-            include('../pages/editFilm.php');
+        if(isset($_POST["EditProduct"])){
+            $currentProduct = array();
+            $currentProduct = GetProductById($db, $_POST["product_id"]);
+            include('../pages/editProduct.php');
           } 
 
-        if(isset($_POST["EditClient"])){
-            $currentClient = array();
-            $currentClient = GetClientById($db, $_POST["client_id"]);
-            include('../pages/editClient.php');
+        if(isset($_POST["EditMenu"])){
+            $currentMenu = array();
+            $currentMenu = GetMenuById($db, $_POST["menu_id"]);
+            include('../pages/editMenu.php');
           } 
 
-        if(isset($_POST["EditLibrarian"])){
-            $currentLibrarian = array();
-            $currentLibrarian = GetLibrarianById($db, $_POST["librarian_id"]);
-            include('../pages/editLibrarian.php');
+        if(isset($_POST["EditDish"])){
+            $currentDish = array();
+            $currentDish = GetDishById($db, $_POST["dish_id"]);
+            include('../pages/editDish.php');
           } 
 
-          if(isset($_POST["UpdateLibrarian"])){
-            UpdateLibrarian($db, $_POST["librarian_id"], $_POST["librarian_name"], $_POST["librarian_email"], $_POST["librarian_phone"]);
+          if(isset($_POST["UpdateProduct"])){
+            UpdateProduct($db, $_POST["product_id"], $_POST["product_title"]);
             header('Location: ./dataTable.php');
             exit();
           } 
 
-          if(isset($_POST["UpdateClient"])){
-            UpdateClient($db, $_POST["client_id"],  $_POST["client_name"], $_POST["client_email"], $_POST["client_phone"]);
+          if(isset($_POST["UpdateDish"])){
+            UpdateDish($db, $_POST["dish_id"],  $_POST["dish_title"], $_POST["dish_description"], $_POST["dish_price"], $_POST["dish_menuId"], $_POST["dish_products"]);
             header('Location: ./dataTable.php');
             exit();
           } 
 
-          if(isset($_POST["UpdateFilm"])){
-            UpdateFilm($db, $_POST["film_id"],  $_POST["film_title"], $_POST["film_director"], $_POST["film_year"], $_POST["film_genre"], $_POST["film_description"]);
+          if(isset($_POST["UpdateMenu"])){
+            UpdateMenu($db, $_POST["menu_id"],  $_POST["menu_title"]);
             header('Location: ./dataTable.php');
             exit();
           } 
 
-          if(isset($_POST["AddLog"])){
-            header('Location: ./addLog.php');
+          if(isset($_POST["AddOrder"])){
+            header('Location: ./addOrder.php');
             exit();
           } 
           

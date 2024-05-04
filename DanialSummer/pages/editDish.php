@@ -9,22 +9,42 @@
 <body>
 <div class="container">
         <div class="block">
-            <h2>Изменить библиотекаря</h2>
+            <h2>Изменить блюдо</h2>
             <form action="" method="POST">
                 <div class="form-group">
-                <input name="librarian_id" value="<?php echo $currentLibrarian['librarian_id']; ?>" type="hidden" />
-                    <label for="librarian_name">Имя:</label>
-                    <input type="text" id="librarian_name" name="librarian_name" value="<?php echo $currentLibrarian['name']; ?>" required>
+                <input name="dish_id" value="<?php echo $currentDish['dish_id']; ?>" type="hidden" />
+                    <label for="dish_title">Название:</label>
+                    <input type="text" id="dish_title" name="dish_title" value="<?php echo $currentDish['title']; ?>" required>
                 </div>
                 <div class="form-group">
-                    <label for="librarian_email">Email:</label>
-                    <input type="email" id="librarian_email" name="librarian_email" value="<?php echo $currentLibrarian['email']; ?>" required>
+                    <label for="dish_price">Цена:</label>
+                    <input type="number" id="dish_price" name="dish_price" value="<?php echo $currentDish['price']; ?>" required>
                 </div>
                 <div class="form-group">
-                    <label for="librarian_phone">Телефон:</label>
-                    <input type="text" id="librarian_phone" name="librarian_phone" value="<?php echo $currentLibrarian['phone']; ?>" required>
+                    <label for="dish_description">Описание:</label>
+                    <input type="text" id="dish_description" name="dish_description" value="<?php echo $currentDish['description']; ?>" required>
                 </div>
-                <input type="submit" value="Изменить" name="UpdateLibrarian">
+
+                <fieldset>
+                <legend>Выберите Меню:</legend>
+                <?php foreach ($menuForDish as $dish) :?>
+                <div>
+                    <label for="<?php echo $dish["title"];?>">
+                    <input type="radio" name="dish_menuId" value="<?php echo $dish["menu_id"];?>" />
+                    <?php echo $dish["title"];?>
+                    </label>
+                </div>
+                <?php endforeach;?>
+                </fieldset>
+
+                <label for="products">Выберите продукты:</label>
+                <select name="products[]" id="products" multiple>
+                <?php foreach ($productsForDish as $dish) :?>
+                    <option value="<?php echo $dish["product_id"]?>"><?php echo $dish["title"]?></option>
+                <?php endforeach;?>
+                </select>
+
+                <input type="submit" value="Изменить" name="UpdateDish">
             </form>
         </div>
     </div>

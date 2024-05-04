@@ -9,13 +9,15 @@
 <body>
 <div class="navbar">
     <ul>
-        <li><button onclick="ChangeTable('film')">Фильмы</button></li>
-        <li><button onclick="ChangeTable('client')">Клиенты</button></li>
-        <li><button onclick="ChangeTable('librarian')">Библиотекари</button></li>
+        <li><button onclick="ChangeTable('menus')">Меню</button></li>
+        <li><button onclick="ChangeTable('products')">Продукты</button></li>
+        <li><button onclick="ChangeTable('dishes')">Блюда</button></li>
+        <li><button onclick="ChangeTable('orders')">Журнал заказов</button></li>
     </ul>
-    <a href='../controllers/addData.php' class="btn add-btn">
-        Добавить
-    </a>
+    <a href='../controllers/addMenu.php' id="MenuBtn" class="btn add-btn"> Добавить</a>
+    <a href='../controllers/addProduct.php' id="ProductBtn" class="btn add-btn"> Добавить</a>
+    <a href='../controllers/addDish.php' id="DishBtn" class="btn add-btn"> Добавить</a>
+    <a href='../controllers/addOrder.php' id="OrderBtn" class="btn add-btn"> Добавить</a>
 </div>
 <table class="table" id="menus">
     <thead>
@@ -89,43 +91,48 @@
         <?php endforeach; ?>
     </tbody>
 </table>
-<table class="table" id="logs">
+<table class="table" id="orders">
     <thead>
         <tr>
-            <th>Дата аренды</th>
-            <th>Дата возврата</th>
-            <th>Статус возвращения</th>
-            <th>Название фильма</th>
-            <th>Имя клиента</th>
-            <th>Имя библиотекоря</th>
+            <th>Время заказа</th>
+            <th>Название меню</th>
+            <th>Название продукта</th>
+            <th>Количество</th>
+            <th>Общая цена</th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($logs as $log) : ?>
+        <?php foreach ($orders as $o) : ?>
         <tr class="item_row">
-            <td><?php echo $log['issue_date']; ?></td>
-            <td><?php echo $log['return_date']; ?></td>
-            <td><?php echo $log['return_status']; ?></td>
-            <td><?php echo $log['title']; ?></td>
-            <td><?php echo $log['clientName']; ?></td>
-            <td><?php echo $log['libName']; ?></td>
-            <input name="log_id" value="<?php echo $log['issue_id']; ?>" type="hidden" />
+            <td><?php echo $o['orderTime']; ?></td>
+            <td><?php echo $o['menuTitle']; ?></td>
+            <td><?php echo $o['dishTitle']; ?></td>
+            <td><?php echo $o['quantity']; ?></td>
+            <td><?php echo $o['totalSum']; ?></td>
         </tr>
         <?php endforeach; ?>
     </tbody>
-</table>
 <form action="" method="post">
-    <button class="btn addLog-btn" name="AddLog" type="submit">Добавить запись</button>
+    <button class="btn addLog-btn" name="AddOrder" type="submit">Добавить запись</button>
 </form>
+</table>
+
 <script>
-        var type = "film";
-        var filmsTable; 
-        var clientsTable; 
-        var librariansTable;
+        var type = "menus";
+        var menusTable, productsTable, dishesTable, ordersTable; 
+        var menubtn, productbtn, orderbtn, dishbtn;
+
         document.addEventListener("DOMContentLoaded", (event) => {
-            filmsTable = document.getElementById("films");
-            clientsTable = document.getElementById("clients");
-            librariansTable = document.getElementById("librarians");
+            menusTable = document.getElementById("menus");
+            productsTable = document.getElementById("products");
+            dishesTable = document.getElementById("dishes");
+            ordersTable = document.getElementById("orders");
+
+            menubtn = document.getElementById("MenuBtn");
+            productbtn = document.getElementById("ProductBtn");
+            orderbtn = document.getElementById("OrderBtn");
+            dishbtn = document.getElementById("DishBtn");
+
             SetInvisible();
             ChangeTable(type);
         });
@@ -134,19 +141,40 @@
     function ChangeTable(t)
     {
         SetInvisible();
-        if(t == "film")
-            filmsTable.style.display = "block";
-        else if(t == "client")
-            clientsTable.style.display = "block";
+        if(t == "menus")
+        {
+            menubtn.style.display = "block";
+            menusTable.style.display = "block";
+        }
+        else if(t == "products")
+        {
+            productbtn.style.display = "block";
+            productsTable.style.display = "block";
+        } 
+        else if(t == "dishes")
+        {
+            dishbtn.style.display = "block";
+            dishesTable.style.display = "block";
+        }
         else
-            librariansTable.style.display = "block";
+        {
+            orderbtn.style.display = "block";
+            ordersTable.style.display = "block";
+        }
+            
     }
 
     function SetInvisible()
     {
-        filmsTable.style.display = "none";
-        clientsTable.style.display = "none";
-        librariansTable.style.display = "none";
+        menusTable.style.display = "none";
+        productsTable.style.display = "none";
+        dishesTable.style.display = "none";
+        ordersTable.style.display = "none";
+
+        orderbtn.style.display = "none";
+        dishbtn.style.display = "none";
+        productbtn.style.display = "none";
+        menubtn.style.display = "none";
     }
 </script>
 </body>
