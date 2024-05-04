@@ -94,7 +94,7 @@ function SaveProduct($db)
             $row = $sth->fetchAll();
             for($h = 0; $h < count($row); $h++) {
                 $result = array();
-                $result['dish_id'] = $row[$h]['dish_id'];
+                $result['dish_id'] = $row[$h]['DishID'];
                 $result['title'] = $row[$h]['Title'];
                 $result['description'] = $row[$h]['Description'];
                 $result['price'] = $row[$h]['Price'];
@@ -177,6 +177,9 @@ function SaveProduct($db)
     {
         try{
             $sth = $db->prepare('DELETE FROM OrderJournal WHERE DishID = :id');
+            $sth->execute(['id' => $id]);
+
+            $sth = $db->prepare('DELETE FROM DishProducts WHERE DishID = :id');
             $sth->execute(['id' => $id]);
 
             $sth = $db->prepare('DELETE FROM Dishes WHERE DishID = :id');
