@@ -90,6 +90,7 @@ function SaveProduct($db)
         try{
             $sth = $db->prepare('SELECT DishID, d.Title as dishTitle, Description, Price, m.Title as menuTitle, d.MenuID as MenuID FROM Dishes d Join Menu m on d.MenuID = m.MenuID');
             $dishes = array();
+            $result = $sth->execute();
             $row = $sth->fetchAll();
             for($h = 0; $h < count($row); $h++) {
                 $result = array();
@@ -120,7 +121,7 @@ function SaveProduct($db)
 
                 $result['products'] = substr($productsValue, 0, -2);
 
-                $dishes[$h] = $result;
+                $dishes[$h++] = $result;
             }
 
           }
