@@ -236,7 +236,7 @@ function SaveProduct($db)
                 $result['dish_menuId'] = $row['MenuID'];
             }
 
-            $sth = $db->prepare('SELECT * FROM DishProducts WHERE DishID = :id');
+            $sth = $db->prepare('SELECT ProductID FROM DishProducts WHERE DishID = :id');
             $sth->execute(['id' => $result['dish_id']]);
             $products = [];
             $products = $sth->fetchAll();

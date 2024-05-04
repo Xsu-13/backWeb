@@ -30,7 +30,7 @@
                 <?php foreach ($menus as $dish) :?>
                 <div>
                     <label for="<?php echo $dish["title"];?>">
-                    <input type="radio" name="dish_menuId" value="<?php echo $dish["menu_id"];?>" />
+                    <input type="radio" name="dish_menuId" value="<?php echo $dish["menu_id"];?>" <?php checkMenu($dish["menu_id"])?>/>
                     <?php echo $dish["title"];?>
                     </label>
                 </div>
@@ -40,7 +40,7 @@
                 <label for="products">Выберите продукты:</label>
                 <select name="products[]" id="products" multiple>
                 <?php foreach ($products as $dish) :?>
-                    <option value="<?php echo $dish["product_id"]?>"><?php echo $dish["title"]?></option>
+                    <option value="<?php echo $dish["product_id"]?>" <?php checkProduct($dish["product_id"])?>><?php echo $dish["title"]?></option>
                 <?php endforeach;?>
                 </select>
 
@@ -50,3 +50,16 @@
     </div>
 </body>
 </html>
+<?php
+    function checkProduct($p)
+    {
+        if(in_array($currentDish["dish_products"], $p))
+            echo selected;
+    }
+
+    function checkMenu($m)
+    {
+        if($currentDish["dish_menuId"] == $m)
+            echo checked;
+    }
+?>
