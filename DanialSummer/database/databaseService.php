@@ -88,16 +88,17 @@ function SaveProduct($db)
     function GetDishes($db)
     {
         try{
-            $sth = $db->prepare('SELECT * FROM Dishes');
+            $sth = $db->prepare('SELECT * FROM Dishes d Join Menu m on Dishes.MenuID = m.MenuID');
             $dishes = array();
             $result = $sth->execute();
             $row = $sth->fetchAll();
             for($h = 0; $h < count($row); $h++) {
                 $result = array();
-                $result['dish_id'] = $row[$h]['DishID'];
-                $result['title'] = $row[$h]['Title'];
-                $result['description'] = $row[$h]['Description'];
-                $result['price'] = $row[$h]['Price'];
+                $result['dish_id'] = $row[$h]['d.DishID'];
+                $result['title'] = $row[$h]['d.Title'];
+                $result['description'] = $row[$h]['d.Description'];
+                $result['price'] = $row[$h]['d.Price'];
+                $result['menuTitle'] = $row[$h]['m.Title'];
 
                 $sth = $db->prepare('SELECT ProductID FROM DishProducts WHERE DishID = :id');
                 $sth->execute(['id' => $result['dish_id']]);

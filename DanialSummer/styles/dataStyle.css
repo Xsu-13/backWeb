@@ -1,16 +1,16 @@
-.film-table {
+.table {
     width: 100%;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
 
-.film-table th,
-.film-table td {
+.table th,
+.table td {
     padding: 8px;
     border: 1px solid #ddd;
 }
 
-.film-table th {
+.table th {
     background-color: #f2f2f2;
     text-align: left;
 }

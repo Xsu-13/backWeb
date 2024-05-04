@@ -17,89 +17,79 @@
         Добавить
     </a>
 </div>
-<table class="film-table" id="films">
+<table class="table" id="menus">
     <thead>
         <tr>
             <th>Название</th>
-            <th>Режиссёр</th>
-            <th>Год выпуска</th>
-            <th>Жанр</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($menu as $m) : ?>
+        <tr class="item_row">
+            <td><?php echo $m['title']; ?></td>
+            <td>
+                <form action="" method="post">
+                    <button class="btn edit-btn" name="EditMenu" type="submit">Редактировать</button>
+                    <input name="menu_id" value="<?php echo $m['menu_id']; ?>" type="hidden" />
+                </form>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<table class="table" id="products">
+    <thead>
+        <tr>
+            <th>Название</th>
+            <th>Действия</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach ($products as $p) : ?>
+        <tr class="item_row">
+            <td><?php echo $p['title']; ?></td>
+            <td>
+                <form action="" method="post">
+                    <button class="btn edit-btn" name="EditProduct" type="submit">Редактировать</button>
+                    <input name="product_id" value="<?php echo $p['product_id']; ?>" type="hidden" />
+                </form>
+            </td>
+        </tr>
+        <?php endforeach; ?>
+    </tbody>
+</table>
+<table class="table" id="dishes">
+    <thead>
+        <tr>
+            <th>Название</th>
             <th>Описание</th>
+            <th>Цена</th>
+            <th>Меню</th>
+            <th>Продукты</th>
             <th>Действия</th>
         </tr>
     </thead>
     <tbody>
-        <?php foreach ($films as $film) : ?>
+        <?php foreach ($dishes as $d) : ?>
         <tr class="item_row">
-            <td><?php echo $film['title']; ?></td>
-            <td><?php echo $film['director']; ?></td>
-            <td><?php echo $film['year']; ?></td>
-            <td><?php echo $film['genre']; ?></td>
-            <td><?php echo $film['description']; ?></td>
+            <td><?php echo $d['title']; ?></td>
+            <td><?php echo $d['description']; ?></td>
+            <td><?php echo $d['price']; ?></td>
+            <td><?php echo $d['menuTitle']; ?></td>
+            <td><?php echo $d['products']; ?></td>
             <td>
                 <form action="" method="post">
-                    <button class="btn edit-btn" name="EditFilm" type="submit">Редактировать</button>
-                    <button class="btn delete-btn" name="DeleteFilm" type="submit">Удалить</button>
-                    <input name="film_id" value="<?php echo $film['film_id']; ?>" type="hidden" />
+                    <button class="btn edit-btn" name="EditDish" type="submit">Редактировать</button>
+                    <button class="btn delete-btn" name="DeleteDish" type="submit">Удалить</button>
+                    <input name="dish_id" value="<?php echo $d['dish_id']; ?>" type="hidden" />
                 </form>
             </td>
         </tr>
         <?php endforeach; ?>
     </tbody>
 </table>
-<table class="film-table" id="librarians">
-    <thead>
-        <tr>
-            <th>Имя</th>
-            <th>Телефон</th>
-            <th>Почта</th>
-            <th>Действия</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($librarians as $librarian) : ?>
-        <tr class="item_row">
-            <td><?php echo $librarian['name']; ?></td>
-            <td><?php echo $librarian['phone']; ?></td>
-            <td><?php echo $librarian['email']; ?></td>
-            <td>
-                <form action="" method="post">
-                    <button class="btn edit-btn" name="EditLibrarian" type="submit">Редактировать</button>
-                    <button class="btn delete-btn" name="DeleteLibrarian" type="submit">Удалить</button>
-                    <input name="librarian_id" value="<?php echo $librarian['librarian_id']; ?>" type="hidden" />
-                </form>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
-<table class="film-table" id="clients">
-    <thead>
-        <tr>
-            <th>Имя</th>
-            <th>Телефон</th>
-            <th>Почта</th>
-            <th>Действия</th>
-        </tr>
-    </thead>
-    <tbody>
-        <?php foreach ($clients as $client) : ?>
-        <tr class="item_row">
-            <td><?php echo $client['name']; ?></td>
-            <td><?php echo $client['phone']; ?></td>
-            <td><?php echo $client['email']; ?></td>
-            <td>
-                <form action="" method="post">
-                    <button class="btn edit-btn" name="EditClient" type="submit">Редактировать</button>
-                    <button class="btn delete-btn" name="DeleteClient" type="submit">Удалить</button>
-                    <input name="client_id" value="<?php echo $client['client_id']; ?>" type="hidden" />
-                </form>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-    </tbody>
-</table>
-<table class="film-table" id="logs">
+<table class="table" id="logs">
     <thead>
         <tr>
             <th>Дата аренды</th>
