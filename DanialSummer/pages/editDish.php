@@ -27,7 +27,7 @@
 
                 <fieldset>
                 <legend>Выберите Меню:</legend>
-                <?php foreach ($menuForDish as $dish) :?>
+                <?php foreach ($menus as $dish) :?>
                 <div>
                     <label for="<?php echo $dish["title"];?>">
                     <input type="radio" name="dish_menuId" value="<?php echo $dish["menu_id"];?>" />
@@ -39,7 +39,7 @@
 
                 <label for="products">Выберите продукты:</label>
                 <select name="products[]" id="products" multiple>
-                <?php foreach ($productsForDish as $dish) :?>
+                <?php foreach ($products as $dish) :?>
                     <option value="<?php echo $dish["product_id"]?>"><?php echo $dish["title"]?></option>
                 <?php endforeach;?>
                 </select>
