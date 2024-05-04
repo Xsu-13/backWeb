@@ -93,6 +93,7 @@ function SaveProduct($db)
             $k = 0;
             $sth->execute();
             $row = $sth->fetchAll();
+            print(count($row));
             for($h = 0; $h < count($row); $h++) {
                 $result = array();
                 $result['dish_id'] = $row[$h]['DishID'];
