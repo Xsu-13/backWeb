@@ -119,7 +119,7 @@ function SaveProduct($db)
                   $productsValue .= $products[$i] . ", ";
                 }
 
-                $result['products'] = mb_substr($productsValue, 0, -1);
+                $result['products'] = substr($productsValue, 0, -1);
 
                 $dishes[$h] = $result;
             }
