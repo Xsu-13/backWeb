@@ -13,7 +13,7 @@
             <input name="menu_id" value="<?php echo $currentMenu['menu_id']; ?>" type="hidden" />
                 <div class="form-group">
                     <label for="menu_title">Название:</label>
-                    <input type="text" id="menu_title" name="menu_title" value="<?php echo $currentMenu['title']; ?>" required>
+                    <input type="text" id="menu_title" name="menu_title" value="<?php echo $currentMenu['menu_title']; ?>" required>
                 </div>
                 <input type="submit" value="Изменить" name="UpdateMenu">
             </form>

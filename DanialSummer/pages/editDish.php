@@ -14,15 +14,15 @@
                 <div class="form-group">
                 <input name="dish_id" value="<?php echo $currentDish['dish_id']; ?>" type="hidden" />
                     <label for="dish_title">Название:</label>
-                    <input type="text" id="dish_title" name="dish_title" value="<?php echo $currentDish['title']; ?>" required>
+                    <input type="text" id="dish_title" name="dish_title" value="<?php echo $currentDish['dish_title']; ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="dish_price">Цена:</label>
-                    <input type="number" id="dish_price" name="dish_price" value="<?php echo $currentDish['price']; ?>" required>
+                    <input type="number" id="dish_price" name="dish_price" value="<?php echo $currentDish['dish_price']; ?>" required>
                 </div>
                 <div class="form-group">
                     <label for="dish_description">Описание:</label>
-                    <input type="text" id="dish_description" name="dish_description" value="<?php echo $currentDish['description']; ?>" required>
+                    <input type="text" id="dish_description" name="dish_description" value="<?php echo $currentDish['dish_description']; ?>" required>
                 </div>
 
                 <fieldset>

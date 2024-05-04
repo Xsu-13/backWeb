@@ -22,7 +22,7 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         if(isset($_POST["DeleteDish"])){
-            DeleteLibrarian($db, $_POST["librarian_id"]);
+            DeleteDish($db, $_POST["dish_id"]);
             header('Location: ./dataTable.php');
           } 
           
