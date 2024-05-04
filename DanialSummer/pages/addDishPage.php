@@ -32,7 +32,7 @@
             </fieldset>
 
             <label for="products">Выберите продукты:</label>
-            <select name="products" id="products" multiple>
+            <select name="products[]" id="products" multiple>
             <?php foreach ($productsForDish as $dish) :?>
                 <option value="<?php echo $dish["product_id"]?>"><?php echo $dish["title"]?></option>
             <?php endforeach;?>

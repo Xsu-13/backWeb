@@ -17,7 +17,7 @@
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if(isset($_POST["AddDish"])){
           $products = array();
-          $products = $_POST["products"];
+          $products = $_POST["products[]"];
           SaveDish($db, $products);
           //header('Location: ./dataTable.php');
           exit();
