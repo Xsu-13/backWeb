@@ -88,7 +88,7 @@ function SaveProduct($db)
     function GetDishes($db)
     {
         try{
-            $sth = $db->prepare('SELECT * FROM Dishes d Join Menu m on Dishes.MenuID = m.MenuID');
+            $sth = $db->prepare('SELECT * FROM Dishes d Join Menu m on d.MenuID = m.MenuID');
             $dishes = array();
             $result = $sth->execute();
             $row = $sth->fetchAll();
