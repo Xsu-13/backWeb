@@ -51,7 +51,7 @@ function SaveProduct($db)
         
     }
 
-    function SaveOrder($db, $dishes)
+    function SaveOrder($db)
     {
       $orderTime = time();
       try{
