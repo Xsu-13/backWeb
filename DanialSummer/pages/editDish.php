@@ -55,12 +55,12 @@
     function checkProduct($p)
     {
         //if(in_array($currentDish["dish_products"], $p))
-            echo selected;
+            //echo selected;
     }
 
     function checkMenu($m)
     {
         //if($currentDish["dish_menuId"] == $m)
-            echo checked;
+            //echo checked;
     }
 ?>
