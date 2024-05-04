@@ -48,18 +48,19 @@
             </form>
         </div>
     </div>
-    <?php
+</body>
+</html>
+
+<?php
     function checkProduct($p)
     {
-        if(in_array($currentDish["dish_products"], $p))
+        //if(in_array($currentDish["dish_products"], $p))
             echo selected;
     }
 
     function checkMenu($m)
     {
-        if($currentDish["dish_menuId"] == $m)
+        //if($currentDish["dish_menuId"] == $m)
             echo checked;
     }
 ?>
-</body>
-</html>
