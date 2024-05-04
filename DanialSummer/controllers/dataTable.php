@@ -17,6 +17,8 @@
         $dishes = GetDishes($db);
         $orders = GetOrders($db);
 
+        print_r($dishes);
+
         include("../pages/dataTablePage.php");
       }
     if ($_SERVER['REQUEST_METHOD'] == 'POST') {
